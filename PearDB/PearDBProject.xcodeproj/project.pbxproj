@@ -1,0 +1,581 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */; };
+		A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */; };
+		A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */; };
+		A7C55C612B59FBFC00EF3270 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C55C602B59FBFC00EF3270 /* HomeScreen.swift */; };
+		A7C55C632B59FC0B00EF3270 /* DeviceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C55C622B59FC0B00EF3270 /* DeviceScreen.swift */; };
+		A7C55C652B59FC1400EF3270 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C55C642B59FC1400EF3270 /* SettingsScreen.swift */; };
+		A7CD9C4E2B58EC870062D081 /* PearDBPortableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CD9C4D2B58EC870062D081 /* PearDBPortableApp.swift */; };
+		A7CD9C502B58EC870062D081 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CD9C4F2B58EC870062D081 /* ContentView.swift */; };
+		A7CD9C542B58EC880062D081 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7CD9C532B58EC880062D081 /* Assets.xcassets */; };
+		A7CD9C572B58EC880062D081 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7CD9C562B58EC880062D081 /* Preview Assets.xcassets */; };
+		A7F883992BBBF3DA00356C37 /* PearDBWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F883982BBBF3DA00356C37 /* PearDBWatchApp.swift */; };
+		A7F8839B2BBBF3DA00356C37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8839A2BBBF3DA00356C37 /* ContentView.swift */; };
+		A7F8839D2BBBF3DB00356C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F8839C2BBBF3DB00356C37 /* Assets.xcassets */; };
+		A7F883A02BBBF3DB00356C37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F8839F2BBBF3DB00356C37 /* Preview Assets.xcassets */; };
+		A7F883A32BBBF3DB00356C37 /* PearDB.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A7F883962BBBF3DA00356C37 /* PearDB.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A7F883A12BBBF3DB00356C37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7CD9C422B58EC870062D081 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7F883952BBBF3DA00356C37;
+			remoteInfo = "PDB Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A79ADDB02BB368EB0094E22C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				A7F883A32BBBF3DB00356C37 /* PearDB.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PearDBMoney.storekit; sourceTree = "<group>"; };
+		A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
+		A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A7C060622BB2586F00F7F9AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A7C55C602B59FBFC00EF3270 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		A7C55C622B59FC0B00EF3270 /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
+		A7C55C642B59FC1400EF3270 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A7CD9C4A2B58EC870062D081 /* PearDBPortable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBPortable.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7CD9C4D2B58EC870062D081 /* PearDBPortableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PearDBPortableApp.swift; sourceTree = "<group>"; };
+		A7CD9C4F2B58EC870062D081 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A7CD9C532B58EC880062D081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A7CD9C562B58EC880062D081 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A7F883962BBBF3DA00356C37 /* PearDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7F883982BBBF3DA00356C37 /* PearDBWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PearDBWatchApp.swift; sourceTree = "<group>"; };
+		A7F8839A2BBBF3DA00356C37 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A7F8839C2BBBF3DB00356C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A7F8839F2BBBF3DB00356C37 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A7CD9C472B58EC870062D081 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7F883932BBBF3DA00356C37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A7CD9C412B58EC870062D081 = {
+			isa = PBXGroup;
+			children = (
+				A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */,
+				A7CD9C4C2B58EC870062D081 /* PearDBPortable */,
+				A7F883972BBBF3DA00356C37 /* PearDBWatchApp */,
+				A7CD9C4B2B58EC870062D081 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A7CD9C4B2B58EC870062D081 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A7CD9C4A2B58EC870062D081 /* PearDBPortable.app */,
+				A7F883962BBBF3DA00356C37 /* PearDB.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A7CD9C4C2B58EC870062D081 /* PearDBPortable */ = {
+			isa = PBXGroup;
+			children = (
+				A7C060622BB2586F00F7F9AE /* Info.plist */,
+				A7CD9C4F2B58EC870062D081 /* ContentView.swift */,
+				A7C55C602B59FBFC00EF3270 /* HomeScreen.swift */,
+				A7C55C622B59FC0B00EF3270 /* DeviceScreen.swift */,
+				A7C55C642B59FC1400EF3270 /* SettingsScreen.swift */,
+				A7CD9C4D2B58EC870062D081 /* PearDBPortableApp.swift */,
+				A7CD9C532B58EC880062D081 /* Assets.xcassets */,
+				A7CD9C552B58EC880062D081 /* Preview Content */,
+			);
+			path = PearDBPortable;
+			sourceTree = "<group>";
+		};
+		A7CD9C552B58EC880062D081 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A7CD9C562B58EC880062D081 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A7F883972BBBF3DA00356C37 /* PearDBWatchApp */ = {
+			isa = PBXGroup;
+			children = (
+				A7F8839A2BBBF3DA00356C37 /* ContentView.swift */,
+				A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */,
+				A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */,
+				A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */,
+				A7F883982BBBF3DA00356C37 /* PearDBWatchApp.swift */,
+				A7F8839C2BBBF3DB00356C37 /* Assets.xcassets */,
+				A7F8839E2BBBF3DB00356C37 /* Preview Content */,
+			);
+			path = PearDBWatchApp;
+			sourceTree = "<group>";
+		};
+		A7F8839E2BBBF3DB00356C37 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A7F8839F2BBBF3DB00356C37 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A7CD9C492B58EC870062D081 /* PearDBPortable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7CD9C5A2B58EC880062D081 /* Build configuration list for PBXNativeTarget "PearDBPortable" */;
+			buildPhases = (
+				A7CD9C462B58EC870062D081 /* Sources */,
+				A7CD9C472B58EC870062D081 /* Frameworks */,
+				A7CD9C482B58EC870062D081 /* Resources */,
+				A79ADDB02BB368EB0094E22C /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7F883A22BBBF3DB00356C37 /* PBXTargetDependency */,
+			);
+			name = PearDBPortable;
+			productName = iTrackerMobile;
+			productReference = A7CD9C4A2B58EC870062D081 /* PearDBPortable.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A7F883952BBBF3DA00356C37 /* PearDBWatchApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7F883A42BBBF3DB00356C37 /* Build configuration list for PBXNativeTarget "PearDBWatchApp" */;
+			buildPhases = (
+				A7F883922BBBF3DA00356C37 /* Sources */,
+				A7F883932BBBF3DA00356C37 /* Frameworks */,
+				A7F883942BBBF3DA00356C37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PearDBWatchApp;
+			productName = "PDB Watch App";
+			productReference = A7F883962BBBF3DA00356C37 /* PearDB.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A7CD9C422B58EC870062D081 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					A7CD9C492B58EC870062D081 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					A7F883952BBBF3DA00356C37 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = A7CD9C452B58EC870062D081 /* Build configuration list for PBXProject "PearDBProject" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A7CD9C412B58EC870062D081;
+			productRefGroup = A7CD9C4B2B58EC870062D081 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A7CD9C492B58EC870062D081 /* PearDBPortable */,
+				A7F883952BBBF3DA00356C37 /* PearDBWatchApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A7CD9C482B58EC870062D081 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7CD9C572B58EC880062D081 /* Preview Assets.xcassets in Resources */,
+				A7CD9C542B58EC880062D081 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7F883942BBBF3DA00356C37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7F883A02BBBF3DB00356C37 /* Preview Assets.xcassets in Resources */,
+				A7F8839D2BBBF3DB00356C37 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A7CD9C462B58EC870062D081 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7CD9C502B58EC870062D081 /* ContentView.swift in Sources */,
+				A7C55C652B59FC1400EF3270 /* SettingsScreen.swift in Sources */,
+				A7C55C612B59FBFC00EF3270 /* HomeScreen.swift in Sources */,
+				A7C55C632B59FC0B00EF3270 /* DeviceScreen.swift in Sources */,
+				A7CD9C4E2B58EC870062D081 /* PearDBPortableApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7F883922BBBF3DA00356C37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7F8839B2BBBF3DA00356C37 /* ContentView.swift in Sources */,
+				A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */,
+				A7F883992BBBF3DA00356C37 /* PearDBWatchApp.swift in Sources */,
+				A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */,
+				A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A7F883A22BBBF3DB00356C37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7F883952BBBF3DA00356C37 /* PearDBWatchApp */;
+			targetProxy = A7F883A12BBBF3DB00356C37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A7CD9C582B58EC880062D081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		A7CD9C592B58EC880062D081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		A7CD9C5B2B58EC880062D081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"PearDBPortable/Preview Content\"";
+				DEVELOPMENT_TEAM = XVQR493263;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PearDBPortable/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.16;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7CD9C5C2B58EC880062D081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"PearDBPortable/Preview Content\"";
+				DEVELOPMENT_TEAM = XVQR493263;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PearDBPortable/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.16;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A7F883A52BBBF3DB00356C37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PearDBWatchApp/Preview Content\"";
+				DEVELOPMENT_TEAM = XVQR493263;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.hydrate.PearDB;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB.watchkitapp;
+				PRODUCT_NAME = PearDB;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		A7F883A62BBBF3DB00356C37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PearDBWatchApp/Preview Content\"";
+				DEVELOPMENT_TEAM = XVQR493263;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.hydrate.PearDB;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB.watchkitapp;
+				PRODUCT_NAME = PearDB;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A7CD9C452B58EC870062D081 /* Build configuration list for PBXProject "PearDBProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7CD9C582B58EC880062D081 /* Debug */,
+				A7CD9C592B58EC880062D081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7CD9C5A2B58EC880062D081 /* Build configuration list for PBXNativeTarget "PearDBPortable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7CD9C5B2B58EC880062D081 /* Debug */,
+				A7CD9C5C2B58EC880062D081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7F883A42BBBF3DB00356C37 /* Build configuration list for PBXNativeTarget "PearDBWatchApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7F883A52BBBF3DB00356C37 /* Debug */,
+				A7F883A62BBBF3DB00356C37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A7CD9C422B58EC870062D081 /* Project object */;
+}
