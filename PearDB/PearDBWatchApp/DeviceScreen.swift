@@ -18,6 +18,14 @@ struct DeviceScreen: View {
             .ignoresSafeArea()
             VStack {
                 Text("Buy Rune!")
+                AsyncImage(url: URL(string: "https://img.appledb.dev/device@main/iPhone16,1/0.avif")) { phase in
+                    if let image = phase.image {
+                        image
+                    } else if phase.error != nil {
+                        Image(systemName: "exclamationmark.triangle").padding()
+                    } else {
+                        Text("Loading")
+                    }}
             }
         }
     }

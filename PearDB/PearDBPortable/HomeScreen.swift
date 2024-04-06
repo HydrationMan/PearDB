@@ -22,9 +22,17 @@ struct HomeScreen: View {
                     .background(Material.bar)
             }
             VStack {
-                Text("Buy Rune")
+                Text("PearDB!")
+                AsyncImage(url: URL(string: "https://img.appledb.dev/device@main/iPhone16,1/0.avif")) { phase in
+                    if let image = phase.image {
+                        image
+                    } else if phase.error != nil {
+                        Image(systemName: "exclamationmark.triangle").padding()
+                    } else {
+                        ProgressView()
+                        Text("Loading...")
+                    }}
             }
         }
     }
 }
-

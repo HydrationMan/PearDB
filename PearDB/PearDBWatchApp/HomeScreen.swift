@@ -17,19 +17,7 @@ struct HomeScreen: View {
             )
             .ignoresSafeArea()
             VStack {
-                List {
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                    Text("Buy Rune!")
-                }
+                Text("Buy Rune!")
             }
         }
     }
