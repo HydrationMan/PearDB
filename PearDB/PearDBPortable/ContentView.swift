@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static let fixedCyan = Color("MyCyan")
+    static let PearCyan = Color("PearCyan")
 }
 
 struct ContentView: View {

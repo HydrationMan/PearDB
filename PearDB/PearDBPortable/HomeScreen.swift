@@ -14,7 +14,7 @@ struct HomeScreen: View {
     }
   var body: some View {
       ZStack {
-          LinearGradient(colors: [.purple, .myCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
+          LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
               .ignoresSafeArea()
           .bottomSafeAreaInset(bottomBar)
           VStack {

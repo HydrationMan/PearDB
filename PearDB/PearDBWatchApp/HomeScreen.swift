@@ -10,10 +10,10 @@ import SwiftUI
 struct HomeScreen: View {
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.purple, .myCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
+            LinearGradient(colors: [.purple, .fixedCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             VStack {
-                Text("Buy Rune!, this is the main landing page")
+                Link("Buy Rune!", destination: URL(string:"https://havoc.app/package/rune")!)
             }
         }
     }
