@@ -10,14 +10,10 @@ import SwiftUI
 struct HomeScreen: View {
     var body: some View {
         ZStack {
-            LinearGradient(
-                colors: [.purple, .cyan],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            LinearGradient(colors: [.purple, .myCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
+                .ignoresSafeArea()
             VStack {
-                Text("Buy Rune!")
+                Text("Buy Rune!, this is the main landing page")
             }
         }
     }

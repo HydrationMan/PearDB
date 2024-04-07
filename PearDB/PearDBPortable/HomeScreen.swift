@@ -8,31 +8,24 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    var body: some View {
-        ZStack {
-            LinearGradient(
-                colors: [.purple, .cyan],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            .safeAreaInset(edge: .bottom, alignment: .center, spacing: 0) {
-                Color.clear
-                    .frame(height: 5)
-                    .background(Material.bar)
-            }
-            VStack {
-                Text("PearDB!")
-                AsyncImage(url: URL(string: "https://img.appledb.dev/device@main/iPhone16,1/0.avif")) { phase in
-                    if let image = phase.image {
-                        image
-                    } else if phase.error != nil {
-                        Image(systemName: "exclamationmark.triangle").padding()
-                    } else {
-                        ProgressView()
-                        Text("Loading...")
-                    }}
-            }
-        }
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+    }
+  var body: some View {
+      ZStack {
+          LinearGradient(colors: [.purple, .myCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
+              .ignoresSafeArea()
+          .bottomSafeAreaInset(bottomBar)
+          VStack {
+              Text("Buy Rune!, this is the main landing page")
+          }
+      }
+  }
+
+    var bottomBar: some View {
+        Color.clear
+            .frame(height: 5)
+            .background(BlurView().ignoresSafeArea())
     }
 }

@@ -7,17 +7,22 @@
 
 import SwiftUI
 
+extension Color {
+    static let fixedCyan = Color("MyCyan")
+}
+
 struct ContentView: View {
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottomLeading) {
             VStack {
                 TabView() {
                     HomeScreen()
                     DeviceScreen()
                     SettingsScreen()
                 }
-                .tabViewStyle(.verticalPage)
             }
+            .tabViewStyle(.carousel)
         }
+        .compositingGroup()
     }
 }
