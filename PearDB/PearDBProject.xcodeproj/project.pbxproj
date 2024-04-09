@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		348B895B2BC2B9F80001E793 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895A2BC2B9F80001E793 /* DeviceManager.swift */; };
+		348B895E2BC2BA340001E793 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895D2BC2BA340001E793 /* NetworkManager.swift */; };
+		348B895F2BC2BA340001E793 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895D2BC2BA340001E793 /* NetworkManager.swift */; };
+		348B89612BC2BE3D0001E793 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89602BC2BE3D0001E793 /* Shared.swift */; };
+		348B89622BC2BE3D0001E793 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89602BC2BE3D0001E793 /* Shared.swift */; };
+		348B89632BC2BFA10001E793 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895A2BC2B9F80001E793 /* DeviceManager.swift */; };
+		348B89662BC2D8100001E793 /* Devices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89652BC2D8100001E793 /* Devices.swift */; };
+		348B89672BC2D8100001E793 /* Devices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89652BC2D8100001E793 /* Devices.swift */; };
+		348B896D2BC2D92F0001E793 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896C2BC2D92F0001E793 /* Device.swift */; };
+		348B896E2BC2D92F0001E793 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896C2BC2D92F0001E793 /* Device.swift */; };
+		348B89702BC2F9530001E793 /* DeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896F2BC2F9530001E793 /* DeviceGroup.swift */; };
+		348B89712BC2F9530001E793 /* DeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896F2BC2F9530001E793 /* DeviceGroup.swift */; };
+		348B89732BC2FA420001E793 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89722BC2FA420001E793 /* Constants.swift */; };
+		348B89742BC2FA420001E793 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89722BC2FA420001E793 /* Constants.swift */; };
 		A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */; };
 		A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */; };
 		A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */; };
@@ -49,6 +63,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		348B895A2BC2B9F80001E793 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		348B895D2BC2BA340001E793 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		348B89602BC2BE3D0001E793 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		348B89652BC2D8100001E793 /* Devices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Devices.swift; sourceTree = "<group>"; };
+		348B896C2BC2D92F0001E793 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		348B896F2BC2F9530001E793 /* DeviceGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceGroup.swift; sourceTree = "<group>"; };
+		348B89722BC2FA420001E793 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PearDBMoney.storekit; sourceTree = "<group>"; };
 		A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
@@ -87,9 +108,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		348B89192BC293DC0001E793 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				348B895C2BC2BA1D0001E793 /* Network */,
+				348B891A2BC2942D0001E793 /* Models */,
+				348B89602BC2BE3D0001E793 /* Shared.swift */,
+				348B89722BC2FA420001E793 /* Constants.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		348B891A2BC2942D0001E793 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				348B89682BC2D9040001E793 /* AppleDB */,
+				348B895A2BC2B9F80001E793 /* DeviceManager.swift */,
+				348B89652BC2D8100001E793 /* Devices.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		348B895C2BC2BA1D0001E793 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				348B895D2BC2BA340001E793 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		348B89682BC2D9040001E793 /* AppleDB */ = {
+			isa = PBXGroup;
+			children = (
+				348B896C2BC2D92F0001E793 /* Device.swift */,
+				348B896F2BC2F9530001E793 /* DeviceGroup.swift */,
+			);
+			path = AppleDB;
+			sourceTree = "<group>";
+		};
 		A7CD9C412B58EC870062D081 = {
 			isa = PBXGroup;
 			children = (
+				348B89192BC293DC0001E793 /* Shared */,
 				A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */,
 				A7CD9C4C2B58EC870062D081 /* PearDBPortable */,
 				A7F883972BBBF3DA00356C37 /* PearDBWatchApp */,
@@ -253,11 +313,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348B895E2BC2BA340001E793 /* NetworkManager.swift in Sources */,
+				348B89702BC2F9530001E793 /* DeviceGroup.swift in Sources */,
 				A7CD9C502B58EC870062D081 /* ContentView.swift in Sources */,
+				348B895B2BC2B9F80001E793 /* DeviceManager.swift in Sources */,
+				348B89612BC2BE3D0001E793 /* Shared.swift in Sources */,
+				348B89662BC2D8100001E793 /* Devices.swift in Sources */,
 				A7C55C652B59FC1400EF3270 /* SettingsScreen.swift in Sources */,
 				A7C55C612B59FBFC00EF3270 /* HomeScreen.swift in Sources */,
 				A7C55C632B59FC0B00EF3270 /* DeviceScreen.swift in Sources */,
+				348B896D2BC2D92F0001E793 /* Device.swift in Sources */,
 				A7CD9C4E2B58EC870062D081 /* PearDBPortableApp.swift in Sources */,
+				348B89732BC2FA420001E793 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,11 +332,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348B89632BC2BFA10001E793 /* DeviceManager.swift in Sources */,
+				348B89712BC2F9530001E793 /* DeviceGroup.swift in Sources */,
 				A7F8839B2BBBF3DA00356C37 /* ContentView.swift in Sources */,
+				348B895F2BC2BA340001E793 /* NetworkManager.swift in Sources */,
 				A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */,
+				348B89672BC2D8100001E793 /* Devices.swift in Sources */,
 				A7F883992BBBF3DA00356C37 /* PearDBWatchApp.swift in Sources */,
 				A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */,
+				348B896E2BC2D92F0001E793 /* Device.swift in Sources */,
 				A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */,
+				348B89622BC2BE3D0001E793 /* Shared.swift in Sources */,
+				348B89742BC2FA420001E793 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

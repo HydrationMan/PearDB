@@ -13,7 +13,7 @@ struct SettingsScreen: View {
             LinearGradient(colors: [.purple, .fixedCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             VStack {
-                Text("Buy Rune!, this is the settings page")
+                Text("Buy 16Player!, this is the settings page")
             }
         }
     }
