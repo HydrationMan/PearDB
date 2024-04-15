@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsScreen: View {
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.purple, .fixedCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
+            LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             VStack {
                 Text("Buy Rune!, this is the settings page")

@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+
 extension Color {
-    static let fixedCyan = Color("MyCyan")
+    static let PearCyan = Color("PearCyan")
 }
 
 struct ContentView: View {
@@ -19,6 +20,7 @@ struct ContentView: View {
                     HomeScreen()
                     DeviceScreen()
                     SettingsScreen()
+                    SoundScreen()
                 }
             }
             .tabViewStyle(.carousel)
@@ -26,3 +28,4 @@ struct ContentView: View {
         .compositingGroup()
     }
 }
+

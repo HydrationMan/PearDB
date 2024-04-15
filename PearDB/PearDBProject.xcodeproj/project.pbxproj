@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A725DF8C2BC2BF0400CDA258 /* SoundScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A725DF8B2BC2BF0400CDA258 /* SoundScreen.swift */; };
 		A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */; };
 		A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */; };
 		A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A725DF8B2BC2BF0400CDA258 /* SoundScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundScreen.swift; sourceTree = "<group>"; };
 		A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PearDBMoney.storekit; sourceTree = "<group>"; };
 		A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				A7F8839E2BBBF3DB00356C37 /* Preview Content */,
 				A7F8839A2BBBF3DA00356C37 /* ContentView.swift */,
 				A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */,
+				A725DF8B2BC2BF0400CDA258 /* SoundScreen.swift */,
 				A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */,
 				A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */,
 				A7F883982BBBF3DA00356C37 /* PearDBWatchApp.swift */,
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7F8839B2BBBF3DA00356C37 /* ContentView.swift in Sources */,
+				A725DF8C2BC2BF0400CDA258 /* SoundScreen.swift in Sources */,
 				A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */,
 				A7F883992BBBF3DA00356C37 /* PearDBWatchApp.swift in Sources */,
 				A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */,
@@ -420,7 +424,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBPortable/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
@@ -433,8 +437,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,7 +459,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBPortable/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
@@ -469,8 +472,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
