@@ -10,6 +10,7 @@ import Combine
 import UIKit
 
 struct HomeScreen: View {
+    @State var iPhoneiPad: Bool = false // false if iPhone, true if iPad
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear

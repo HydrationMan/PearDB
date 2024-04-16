@@ -124,7 +124,6 @@ struct ExtraBottomSafeAreaInset: View {
 }
 
 public extension UIDevice {
-    
     static let modelName: String = {
         var systemInfo = utsname()
         uname(&systemInfo)

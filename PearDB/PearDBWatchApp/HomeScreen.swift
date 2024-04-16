@@ -14,6 +14,7 @@ struct HomeScreen: View {
                 .ignoresSafeArea()
             VStack {
                 Text("Buy Rune!, this is the main landing page")
+                Text(modelName)
             }
         }
     }
