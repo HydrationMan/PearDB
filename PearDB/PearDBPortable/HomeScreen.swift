@@ -10,10 +10,15 @@ import Combine
 import UIKit
 
 struct HomeScreen: View {
+    @State var devices: Devices?
+    
     @State var iPhoneiPad: Bool = false // false if iPhone, true if iPad
+
+    
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
+
     }
     let version = UIDevice.current.systemVersion
     let deviceID = UIDevice.modelName
@@ -24,11 +29,45 @@ struct HomeScreen: View {
                 .ignoresSafeArea()
                 .bottomSafeAreaInset(bottomBar)
             VStack {
-                Text("deviceID: \(deviceID)")
-                let appledb = URL(string: "https://img.appledb.dev/device@main/\(deviceID)/0.avif")
-                Text("\(deviceID) running \(osName) \(version)")
-                URLImage(appledb!)
-                    .frame(width: 100, height: 200)
+                
+                let appledb = URL(string: "https://img.appledb.dev/device@main/\(deviceID)/0.webp")
+                
+                HStack {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("\(UIDevice.current.name)").font(.title).padding(.bottom).foregroundColor(.primary)
+                        Text("Device : \(deviceID)").foregroundColor(.primary)
+                        Text("Running : \(osName) \(version)").foregroundColor(.primary)
+                    }.padding()
+                    Spacer()
+                    URLImage(appledb!)
+                        .frame(width: 50, height: 100)
+                        .padding()
+                    
+                }.background(RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.black.opacity(0.5))
+                    .blur(radius: 3, opaque: false)
+                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5))
+                .padding()
+                
+                Spacer()
+
+// Dynamic Loading
+//                if let devices = devices {
+//                    ForEach(devices.iPhones) { iPhone in
+//
+//                        Text("iPhone : \(iPhone.name)")
+//
+//                    }
+//
+//
+//                }
+                
+
+            }
+        }.onAppear {
+            Shared.sharedInstance.deviceManager.getGroups { devices in
+                self.devices = devices
+
             }
         }
     }

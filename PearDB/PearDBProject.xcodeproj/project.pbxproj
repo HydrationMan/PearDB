@@ -7,7 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A725DF8C2BC2BF0400CDA258 /* SoundScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A725DF8B2BC2BF0400CDA258 /* SoundScreen.swift */; };
+		34C5EB172BD003440039AF49 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895D2BC2BA340001E793 /* NetworkManager.swift */; };
+		34C5EB182BD003450039AF49 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895D2BC2BA340001E793 /* NetworkManager.swift */; };
+		34C5EB192BD003480039AF49 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89602BC2BE3D0001E793 /* Shared.swift */; };
+		34C5EB1A2BD003480039AF49 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89602BC2BE3D0001E793 /* Shared.swift */; };
+		34C5EB1B2BD0034B0039AF49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89722BC2FA420001E793 /* Constants.swift */; };
+		34C5EB1C2BD0034C0039AF49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89722BC2FA420001E793 /* Constants.swift */; };
+		34C5EB1D2BD0038F0039AF49 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895A2BC2B9F80001E793 /* DeviceManager.swift */; };
+		34C5EB1E2BD003910039AF49 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895A2BC2B9F80001E793 /* DeviceManager.swift */; };
+		34C5EB1F2BD003930039AF49 /* Devices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89652BC2D8100001E793 /* Devices.swift */; };
+		34C5EB202BD003940039AF49 /* Devices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89652BC2D8100001E793 /* Devices.swift */; };
+		34C5EB212BD0039B0039AF49 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896C2BC2D92F0001E793 /* Device.swift */; };
+		34C5EB222BD0039C0039AF49 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896C2BC2D92F0001E793 /* Device.swift */; };
+		34C5EB232BD0039E0039AF49 /* DeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896F2BC2F9530001E793 /* DeviceGroup.swift */; };
+		34C5EB242BD0039F0039AF49 /* DeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896F2BC2F9530001E793 /* DeviceGroup.swift */; };
+		A725DF8C2BC2BF0400CDA258 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */; };
 		A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */; };
 		A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */; };
@@ -22,18 +36,7 @@
 		A7F8839B2BBBF3DA00356C37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8839A2BBBF3DA00356C37 /* ContentView.swift */; };
 		A7F8839D2BBBF3DB00356C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F8839C2BBBF3DB00356C37 /* Assets.xcassets */; };
 		A7F883A02BBBF3DB00356C37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F8839F2BBBF3DB00356C37 /* Preview Assets.xcassets */; };
-		A7F883A32BBBF3DB00356C37 /* PearDB.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A7F883962BBBF3DA00356C37 /* PearDB.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A7F883A12BBBF3DB00356C37 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7CD9C422B58EC870062D081 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7F883952BBBF3DA00356C37;
-			remoteInfo = "PDB Watch App";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A79ADDB02BB368EB0094E22C /* Embed Watch Content */ = {
@@ -42,7 +45,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				A7F883A32BBBF3DB00356C37 /* PearDB.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +52,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A725DF8B2BC2BF0400CDA258 /* SoundScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundScreen.swift; sourceTree = "<group>"; };
+		348B895A2BC2B9F80001E793 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		348B895D2BC2BA340001E793 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		348B89602BC2BE3D0001E793 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		348B89652BC2D8100001E793 /* Devices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Devices.swift; sourceTree = "<group>"; };
+		348B896C2BC2D92F0001E793 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		348B896F2BC2F9530001E793 /* DeviceGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceGroup.swift; sourceTree = "<group>"; };
+		348B89722BC2FA420001E793 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PearDBMoney.storekit; sourceTree = "<group>"; };
 		A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
@@ -89,9 +97,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		348B89192BC293DC0001E793 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				348B895C2BC2BA1D0001E793 /* Network */,
+				348B891A2BC2942D0001E793 /* Models */,
+				348B89602BC2BE3D0001E793 /* Shared.swift */,
+				348B89722BC2FA420001E793 /* Constants.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		348B891A2BC2942D0001E793 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				348B89682BC2D9040001E793 /* AppleDB */,
+				348B895A2BC2B9F80001E793 /* DeviceManager.swift */,
+				348B89652BC2D8100001E793 /* Devices.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		348B895C2BC2BA1D0001E793 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				348B895D2BC2BA340001E793 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		348B89682BC2D9040001E793 /* AppleDB */ = {
+			isa = PBXGroup;
+			children = (
+				348B896C2BC2D92F0001E793 /* Device.swift */,
+				348B896F2BC2F9530001E793 /* DeviceGroup.swift */,
+			);
+			path = AppleDB;
+			sourceTree = "<group>";
+		};
 		A7CD9C412B58EC870062D081 = {
 			isa = PBXGroup;
 			children = (
+				348B89192BC293DC0001E793 /* Shared */,
 				A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */,
 				A7CD9C4C2B58EC870062D081 /* PearDBPortable */,
 				A7F883972BBBF3DA00356C37 /* PearDBWatchApp */,
@@ -137,7 +184,6 @@
 				A7F8839E2BBBF3DB00356C37 /* Preview Content */,
 				A7F8839A2BBBF3DA00356C37 /* ContentView.swift */,
 				A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */,
-				A725DF8B2BC2BF0400CDA258 /* SoundScreen.swift */,
 				A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */,
 				A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */,
 				A7F883982BBBF3DA00356C37 /* PearDBWatchApp.swift */,
@@ -169,7 +215,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A7F883A22BBBF3DB00356C37 /* PBXTargetDependency */,
 			);
 			name = PearDBPortable;
 			productName = iTrackerMobile;
@@ -256,11 +301,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C5EB212BD0039B0039AF49 /* Device.swift in Sources */,
+				34C5EB232BD0039E0039AF49 /* DeviceGroup.swift in Sources */,
+				34C5EB192BD003480039AF49 /* Shared.swift in Sources */,
+				34C5EB172BD003440039AF49 /* NetworkManager.swift in Sources */,
 				A7CD9C502B58EC870062D081 /* ContentView.swift in Sources */,
 				A7C55C652B59FC1400EF3270 /* SettingsScreen.swift in Sources */,
 				A7C55C612B59FBFC00EF3270 /* HomeScreen.swift in Sources */,
 				A7C55C632B59FC0B00EF3270 /* DeviceScreen.swift in Sources */,
 				A7CD9C4E2B58EC870062D081 /* PearDBPortableApp.swift in Sources */,
+				34C5EB1F2BD003930039AF49 /* Devices.swift in Sources */,
+				34C5EB1D2BD0038F0039AF49 /* DeviceManager.swift in Sources */,
+				34C5EB1B2BD0034B0039AF49 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,23 +321,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7F8839B2BBBF3DA00356C37 /* ContentView.swift in Sources */,
-				A725DF8C2BC2BF0400CDA258 /* SoundScreen.swift in Sources */,
+				A725DF8C2BC2BF0400CDA258 /* (null) in Sources */,
 				A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */,
+				34C5EB222BD0039C0039AF49 /* Device.swift in Sources */,
+				34C5EB1E2BD003910039AF49 /* DeviceManager.swift in Sources */,
+				34C5EB202BD003940039AF49 /* Devices.swift in Sources */,
+				34C5EB182BD003450039AF49 /* NetworkManager.swift in Sources */,
 				A7F883992BBBF3DA00356C37 /* PearDBWatchApp.swift in Sources */,
 				A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */,
+				34C5EB242BD0039F0039AF49 /* DeviceGroup.swift in Sources */,
+				34C5EB1A2BD003480039AF49 /* Shared.swift in Sources */,
 				A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */,
+				34C5EB1C2BD0034C0039AF49 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A7F883A22BBBF3DB00356C37 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7F883952BBBF3DA00356C37 /* PearDBWatchApp */;
-			targetProxy = A7F883A12BBBF3DB00356C37 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A7CD9C582B58EC880062D081 /* Debug */ = {
@@ -426,7 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBPortable/Preview Content\"";
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = D5Q75KD345;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBPortable/Info.plist;
@@ -446,7 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.16;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.bibifire.PearDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

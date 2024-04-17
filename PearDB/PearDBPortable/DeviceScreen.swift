@@ -18,7 +18,7 @@ struct DeviceScreen: View {
               .ignoresSafeArea()
           .bottomSafeAreaInset(bottomBar)
           VStack {
-              Text("Buy Rune!, this is the device page")
+              Link("Buy 16Player!, this is the Settings page", destination: URL(string:"https://chariz.com/buy/16player")!)
           }
       }
   }
