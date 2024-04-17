@@ -22,6 +22,7 @@
 		34C5EB232BD0039E0039AF49 /* DeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896F2BC2F9530001E793 /* DeviceGroup.swift */; };
 		34C5EB242BD0039F0039AF49 /* DeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896F2BC2F9530001E793 /* DeviceGroup.swift */; };
 		A725DF8C2BC2BF0400CDA258 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		A773C3102BD077960076A591 /* SoundScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773C30F2BD077960076A591 /* SoundScreen.swift */; };
 		A78E8CEC2BBBFC63005A2B2A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */; };
 		A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */; };
 		A78E8CF02BBBFCEC005A2B2A /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */; };
@@ -60,6 +61,7 @@
 		348B896F2BC2F9530001E793 /* DeviceGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceGroup.swift; sourceTree = "<group>"; };
 		348B89722BC2FA420001E793 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PearDBMoney.storekit; sourceTree = "<group>"; };
+		A773C30F2BD077960076A591 /* SoundScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundScreen.swift; sourceTree = "<group>"; };
 		A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
 		A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -138,8 +140,8 @@
 		A7CD9C412B58EC870062D081 = {
 			isa = PBXGroup;
 			children = (
-				348B89192BC293DC0001E793 /* Shared */,
 				A767C49D2BACFB1A003DE8F1 /* PearDBMoney.storekit */,
+				348B89192BC293DC0001E793 /* Shared */,
 				A7CD9C4C2B58EC870062D081 /* PearDBPortable */,
 				A7F883972BBBF3DA00356C37 /* PearDBWatchApp */,
 				A7CD9C4B2B58EC870062D081 /* Products */,
@@ -186,6 +188,7 @@
 				A78E8CEB2BBBFC63005A2B2A /* HomeScreen.swift */,
 				A78E8CED2BBBFC9A005A2B2A /* DeviceScreen.swift */,
 				A78E8CEF2BBBFCEC005A2B2A /* SettingsScreen.swift */,
+				A773C30F2BD077960076A591 /* SoundScreen.swift */,
 				A7F883982BBBF3DA00356C37 /* PearDBWatchApp.swift */,
 				A7F8839C2BBBF3DB00356C37 /* Assets.xcassets */,
 			);
@@ -246,7 +249,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					A7CD9C492B58EC870062D081 = {
 						CreatedOnToolsVersion = 15.2;
@@ -323,6 +326,7 @@
 				A7F8839B2BBBF3DA00356C37 /* ContentView.swift in Sources */,
 				A725DF8C2BC2BF0400CDA258 /* (null) in Sources */,
 				A78E8CEE2BBBFC9A005A2B2A /* DeviceScreen.swift in Sources */,
+				A773C3102BD077960076A591 /* SoundScreen.swift in Sources */,
 				34C5EB222BD0039C0039AF49 /* Device.swift in Sources */,
 				34C5EB1E2BD003910039AF49 /* DeviceManager.swift in Sources */,
 				34C5EB202BD003940039AF49 /* Devices.swift in Sources */,
@@ -477,7 +481,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBPortable/Preview Content\"";
-				DEVELOPMENT_TEAM = D5Q75KD345;
+				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBPortable/Info.plist;
@@ -497,7 +501,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.16;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.bibifire.PearDB;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

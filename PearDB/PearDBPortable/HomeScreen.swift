@@ -12,14 +12,17 @@ import UIKit
 struct HomeScreen: View {
     @State var devices: Devices?
     
-    @State var iPhoneiPad: Bool = false // false if iPhone, true if iPad
+    @State var isiPad: Bool = (UIDevice.current.userInterfaceIdiom == .pad) // false if iPhone/iPod, true if iPad
+    let devicetype = UIDevice.current.localizedModel
 
     
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
+        print(isiPad)
 
     }
+    let name = UIDevice.current.name
     let version = UIDevice.current.systemVersion
     let deviceID = UIDevice.modelName
     let osName = UIDevice.current.systemName
@@ -34,18 +37,18 @@ struct HomeScreen: View {
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("\(UIDevice.current.name)").font(.title).padding(.bottom).foregroundColor(.primary)
+                        Text("\(name)").font(.title).padding(.bottom).foregroundColor(.primary)
                         Text("Device : \(deviceID)").foregroundColor(.primary)
                         Text("Running : \(osName) \(version)").foregroundColor(.primary)
                     }.padding()
                     Spacer()
                     URLImage(appledb!)
-                        .frame(width: 50, height: 100)
+                        .frame(width: (isiPad ? 275 : 50), height: (isiPad ? 355 : 100))
                         .padding()
                     
                 }.background(RoundedRectangle(cornerRadius: 25)
                     .fill(Color.black.opacity(0.5))
-                    .blur(radius: 3, opaque: false)
+                    .blur(radius: 1, opaque: false)
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5))
                 .padding()
                 
@@ -64,11 +67,11 @@ struct HomeScreen: View {
                 
 
             }
-        }.onAppear {
-            Shared.sharedInstance.deviceManager.getGroups { devices in
-                self.devices = devices
-
-            }
+//        }.onAppear {
+//            Shared.sharedInstance.deviceManager.getGroups { devices in
+//                self.devices = devices
+//
+//          }
         }
     }
 
@@ -76,29 +79,5 @@ struct HomeScreen: View {
         Color.clear
             .frame(height: 5)
             .background(BlurView().ignoresSafeArea())
-    }
-}
-
-class RemoteImageLoader: ObservableObject {
-    @Published var data: Data = Data()
-    init(imageURL: URL) {
-            URLSession.shared.dataTask(with: imageURL) { data, response, error in
-                guard let data = data else { return }
-                DispatchQueue.main.async { self.data = data }
-            }
-        .resume()
-        
-    }
-}
-struct URLImage: View {
-    @ObservedObject var remoteImageLoader: RemoteImageLoader
-    init(_ imageUrl: URL) {
-        remoteImageLoader = RemoteImageLoader(imageURL: imageUrl)
-    }
-    
-    var body: some View {
-        Image(uiImage: UIImage(data: remoteImageLoader.data) ?? UIImage())
-            .resizable()
-            .renderingMode(.original)
     }
 }
