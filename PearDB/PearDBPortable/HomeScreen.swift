@@ -13,16 +13,14 @@ struct HomeScreen: View {
     @State var devices: Devices?
     
     @State var isiPad: Bool = (UIDevice.current.userInterfaceIdiom == .pad) // false if iPhone/iPod, true if iPad
-    let devicetype = UIDevice.current.localizedModel
 
     
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
-        print(isiPad)
 
     }
-    let name = UIDevice.current.name
+    @State var name = UIDevice.current.name
     let version = UIDevice.current.systemVersion
     let deviceID = UIDevice.modelName
     let osName = UIDevice.current.systemName
@@ -32,26 +30,22 @@ struct HomeScreen: View {
                 .ignoresSafeArea()
                 .bottomSafeAreaInset(bottomBar)
             VStack {
-                
                 let appledb = URL(string: "https://img.appledb.dev/device@main/\(deviceID)/0.webp")
-                
                 HStack {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("\(name)").font(.title).padding(.bottom).foregroundColor(.primary)
                         Text("Device : \(deviceID)").foregroundColor(.primary)
-                        Text("Running : \(osName) \(version)").foregroundColor(.primary)
+                        Text("Running : \(osName) \(version) (\(buildNumber()))").foregroundColor(.primary)
                     }.padding()
                     Spacer()
                     URLImage(appledb!)
                         .frame(width: (isiPad ? 275 : 50), height: (isiPad ? 355 : 100))
                         .padding()
-                    
                 }.background(RoundedRectangle(cornerRadius: 25)
                     .fill(Color.black.opacity(0.5))
-                    .blur(radius: 1, opaque: false)
+                    .blur(radius: 0.01, opaque: false)
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5))
                 .padding()
-                
                 Spacer()
 
 // Dynamic Loading
