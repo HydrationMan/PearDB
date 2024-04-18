@@ -11,6 +11,8 @@ import UIKit
 
 struct HomeScreen: View {
     @State var devices: Devices?
+    @State var homePage: HomePage?
+    @State var currentDeviceDisplayName: String?
     
     @State var isiPad: Bool = (UIDevice.current.userInterfaceIdiom == .pad) // false if iPhone/iPod, true if iPad
 
@@ -18,7 +20,11 @@ struct HomeScreen: View {
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
-
+        
+        let apparence = UITabBarAppearance()
+        apparence.configureWithTransparentBackground()
+        if #available(iOS 15.0, *) {UITabBar.appearance().scrollEdgeAppearance = apparence}
+        
     }
     @State var name = UIDevice.current.name
     let version = UIDevice.current.systemVersion
@@ -29,40 +35,26 @@ struct HomeScreen: View {
             LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
                 .ignoresSafeArea()
                 .bottomSafeAreaInset(bottomBar)
-            VStack {
-                let appledb = URL(string: "https://img.appledb.dev/device@main/\(deviceID)/0.webp")
-                HStack {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("\(name)").font(.title).padding(.bottom).foregroundColor(.primary)
-                        Text("Device : \(deviceID)").foregroundColor(.primary)
-                        Text("Running : \(osName) \(version) (\(buildNumber()))").foregroundColor(.primary)
-                    }.padding()
-                    Spacer()
-                    URLImage(appledb!)
-                        .frame(width: (isiPad ? 275 : 50), height: (isiPad ? 355 : 100))
-                        .padding()
-                }.background(BackgroundView())
-                .padding()
-                Spacer()
-
-// Dynamic Loading
-//                if let devices = devices {
-//                    ForEach(devices.iPhones) { iPhone in
-//
-//                        Text("iPhone : \(iPhone.name)")
-//
-//                    }
-//
-//
-//                }
-                
-
+            ScrollView {
+                VStack {
+                    CurrentDeviceView(name: name, deviceID: deviceID, osName: osName, version: version, isiPad: isiPad)
+                    
+                    if let homePage = homePage {
+                        GridItemView(title: "Devices", items: homePage.deviceTypeCardArray)
+                        GridItemView(title: "Firmware versions", items: homePage.osTypeCardArray)
+                    }
+                }.padding()
             }
-//        }.onAppear {
+
+        }.onAppear {
 //            Shared.sharedInstance.deviceManager.getGroups { devices in
 //                self.devices = devices
-//
-//          }
+//                
+//            }
+            Shared.sharedInstance.deviceManager.getHomePage { homePage in
+                print(homePage.deviceTypeCardArray[0].image.type)
+                self.homePage = homePage
+            }
         }
     }
 

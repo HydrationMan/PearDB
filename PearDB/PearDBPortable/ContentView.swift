@@ -157,6 +157,8 @@ struct URLImage: View {
         Image(uiImage: UIImage(data: remoteImageLoader.data) ?? UIImage())
             .resizable()
             .renderingMode(.original)
+            .aspectRatio(contentMode: .fit)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

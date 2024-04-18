@@ -16,3 +16,4 @@ struct DeviceGroup: Codable, Identifiable {
     var devices: [String]
     var key: String
 }
+

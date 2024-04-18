@@ -11,6 +11,10 @@ struct SettingsScreen: View {
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
+        
+        let apparence = UITabBarAppearance()
+        apparence.configureWithTransparentBackground()
+        if #available(iOS 15.0, *) {UITabBar.appearance().scrollEdgeAppearance = apparence}
     }
   var body: some View {
       ZStack {
