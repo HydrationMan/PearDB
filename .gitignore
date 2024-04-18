@@ -1,2 +1,4 @@
 *.DS_Store
 build/
+PearDB/PearDBProject.xcodeproj/xcuserdata/*
+PearDB/PearDBProject/project.xcworkspace/*

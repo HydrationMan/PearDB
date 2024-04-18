@@ -160,11 +160,3 @@ struct URLImage: View {
     }
 }
 
-func buildNumber() -> String {
-    var size = 0
-    sysctlbyname("kern.osversion", nil, &size, nil, 0)
-    var version = [CChar](repeating: 0,  count: size)
-    sysctlbyname("kern.osversion", &version, &size, nil, 0)
-    return String(cString: version)
-}
-

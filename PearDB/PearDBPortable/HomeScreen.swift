@@ -41,10 +41,7 @@ struct HomeScreen: View {
                     URLImage(appledb!)
                         .frame(width: (isiPad ? 275 : 50), height: (isiPad ? 355 : 100))
                         .padding()
-                }.background(RoundedRectangle(cornerRadius: 25)
-                    .fill(Color.black.opacity(0.5))
-                    .blur(radius: 0.01, opaque: false)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5))
+                }.background(BackgroundView())
                 .padding()
                 Spacer()
 
