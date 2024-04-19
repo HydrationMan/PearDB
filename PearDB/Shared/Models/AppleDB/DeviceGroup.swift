@@ -13,7 +13,16 @@ struct DeviceGroup: Codable, Identifiable {
     var name: String
     var type: String
     var products: [Device]?
-    var devices: [String]
+    var devices: [String]?
+    var hideChildren: Bool?
     var key: String
+    var order: Int
+    var subgroups: [DeviceSubGroup]?
+}
+
+struct DeviceSubGroup: Codable {
+    var name: String
+    var type: String
+    var devices: [String]
 }
 

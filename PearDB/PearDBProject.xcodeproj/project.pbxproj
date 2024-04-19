@@ -21,8 +21,6 @@
 		34C5EB1C2BD0034C0039AF49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89722BC2FA420001E793 /* Constants.swift */; };
 		34C5EB1D2BD0038F0039AF49 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895A2BC2B9F80001E793 /* DeviceManager.swift */; };
 		34C5EB1E2BD003910039AF49 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B895A2BC2B9F80001E793 /* DeviceManager.swift */; };
-		34C5EB1F2BD003930039AF49 /* Devices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89652BC2D8100001E793 /* Devices.swift */; };
-		34C5EB202BD003940039AF49 /* Devices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B89652BC2D8100001E793 /* Devices.swift */; };
 		34C5EB212BD0039B0039AF49 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896C2BC2D92F0001E793 /* Device.swift */; };
 		34C5EB222BD0039C0039AF49 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896C2BC2D92F0001E793 /* Device.swift */; };
 		34C5EB232BD0039E0039AF49 /* DeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B896F2BC2F9530001E793 /* DeviceGroup.swift */; };
@@ -72,7 +70,6 @@
 		348B895A2BC2B9F80001E793 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		348B895D2BC2BA340001E793 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		348B89602BC2BE3D0001E793 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
-		348B89652BC2D8100001E793 /* Devices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Devices.swift; sourceTree = "<group>"; };
 		348B896C2BC2D92F0001E793 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		348B896F2BC2F9530001E793 /* DeviceGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceGroup.swift; sourceTree = "<group>"; };
 		348B89722BC2FA420001E793 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -142,7 +139,6 @@
 			children = (
 				348B89682BC2D9040001E793 /* AppleDB */,
 				348B895A2BC2B9F80001E793 /* DeviceManager.swift */,
-				348B89652BC2D8100001E793 /* Devices.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,7 +359,6 @@
 				34C5EB332BD1217C0039AF49 /* CurrentDeviceView.swift in Sources */,
 				3493A4542BD185A3000DA889 /* HomePage.swift in Sources */,
 				A7CD9C4E2B58EC870062D081 /* PearDBPortableApp.swift in Sources */,
-				34C5EB1F2BD003930039AF49 /* Devices.swift in Sources */,
 				34C5EB1D2BD0038F0039AF49 /* DeviceManager.swift in Sources */,
 				34C5EB1B2BD0034B0039AF49 /* Constants.swift in Sources */,
 			);
@@ -383,7 +378,6 @@
 				34C5EB2A2BD11F360039AF49 /* Utilities.swift in Sources */,
 				34C5EB2E2BD11F6D0039AF49 /* BackgroundView.swift in Sources */,
 				34C5EB1E2BD003910039AF49 /* DeviceManager.swift in Sources */,
-				34C5EB202BD003940039AF49 /* Devices.swift in Sources */,
 				34C5EB312BD11F8F0039AF49 /* ProductView.swift in Sources */,
 				34C5EB182BD003450039AF49 /* NetworkManager.swift in Sources */,
 				A7F883992BBBF3DA00356C37 /* PearDBWatchApp.swift in Sources */,

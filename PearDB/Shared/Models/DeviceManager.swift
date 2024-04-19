@@ -8,13 +8,13 @@
 import Foundation
 
 class DeviceManager {
-    var devices: Devices
+    var devices: Dictionary<String, [DeviceGroup]>
     var homePage: HomePage
     
     init() {
         //self.fetchDevices()
         print("Init")
-        self.devices = Devices(iPhones: [], watches: [], macs: [], iPads: [], iPods: [], tvs: [], airPods: [], homePods: [], others: [], softwares: [])
+        self.devices = Dictionary()
         
         self.homePage = HomePage(deviceTypeCardArray: [], osTypeCardArray: [])
     }
@@ -23,9 +23,9 @@ class DeviceManager {
 
     }
     
-    func getGroups(completion: @escaping(Devices) -> Void) {
+    func getGroups(completion: @escaping(Dictionary<String, [DeviceGroup]>) -> Void) {
         
-        if self.devices.iPhones.isEmpty {
+        if self.devices.isEmpty {
             Shared.sharedInstance.networkManager.getGroups{ devices in
 
                 //self.devices = devices
@@ -45,27 +45,54 @@ class DeviceManager {
         }
     }
     
-    func getDevices(completion: @escaping(Devices) -> Void) {
-//        if self.devices.iPhones.isEmpty {
-//            Shared.sharedInstance.networkManager.getDevices { devices in
-//                Shared.sharedInstance.networkManager.getGroups { groups in
-//                    var tempDevices: [Device] = devices
-//                    var tempGroups: [DeviceGroup] = []
-//                    for group in groups {
-//                        group.products = []
-//                        for tempDevice in tempDevices {
-//                                if group.devices.contains(tempDevice.key) {
-//
-//                                    tempGroups.append(group.products?.append(tempDevice))
-//                                    tempDevices.remove(tempDevice)
-//                                }
-//                        }
-//                        print($0)
-//                    }
-//                }
-//            }
-//        } else {
-//            completion(self.devices)
-//        }
+    func getDevices(completion: @escaping(Dictionary<String, [DeviceGroup]>) -> Void) {
+        if self.devices.isEmpty {
+            Shared.sharedInstance.networkManager.getDevices { devices in
+                Shared.sharedInstance.networkManager.getGroups { groups in
+                    Shared.sharedInstance.networkManager.getImages { images in
+                        
+                        var processedGroupArr: [DeviceGroup] = groups
+                        
+                        processedGroupArr = processedGroupArr.map { x in
+                            var group: DeviceGroup = x
+                            var products: [Device] = []
+                            
+                            if let currentDevices = x.devices {
+                                for deviceKey in currentDevices {
+                                    
+                                    if var device = devices.first(where: { $0.key == deviceKey }) {
+                                        products.append(device)
+                                        if let image = images.first { $0.key == deviceKey } {
+                                            device.images = image
+                                        }
+                                    }
+                                    
+
+                                }
+                            }
+                            group.products = products
+                            
+                            return group
+                        }.compactMap { $0 }
+                        
+                        var processedGroupsDict: [String: [DeviceGroup]] = [:]
+                        //                    print("Found \(processedGroupArr.count) devices ")
+                        for group in processedGroupArr {
+                            processedGroupsDict[group.type, default: []].append(group)
+                            
+                            //                        if let products = group.products {
+                            //                            for product in products {
+                            //                                print("Found \(product.key) for group : \(group.key)")
+                            //                            }
+                            //                        }
+                        }
+                        self.devices = processedGroupsDict
+                        completion(processedGroupsDict)
+                    }
+                }
+            }
+        } else {
+            completion(self.devices)
+        }
     }
 }

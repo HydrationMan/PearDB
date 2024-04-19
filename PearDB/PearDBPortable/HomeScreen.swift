@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 struct HomeScreen: View {
-    @State var devices: Devices?
+    @State var devices: Dictionary<String, [DeviceGroup]>?
     @State var homePage: HomePage?
     @State var currentDeviceDisplayName: String?
     
@@ -24,8 +24,8 @@ struct HomeScreen: View {
         let apparence = UITabBarAppearance()
         apparence.configureWithTransparentBackground()
         if #available(iOS 15.0, *) {UITabBar.appearance().scrollEdgeAppearance = apparence}
-        
     }
+    
     @State var name = UIDevice.current.name
     let version = UIDevice.current.systemVersion
     let deviceID = UIDevice.modelName
@@ -40,20 +40,20 @@ struct HomeScreen: View {
                     CurrentDeviceView(name: name, deviceID: deviceID, osName: osName, version: version, isiPad: isiPad)
                     
                     if let homePage = homePage {
-                        GridItemView(title: "Devices", items: homePage.deviceTypeCardArray)
+                        GridItemView(title: "Products", items: homePage.deviceTypeCardArray)
                         GridItemView(title: "Firmware versions", items: homePage.osTypeCardArray)
                     }
                 }.padding()
             }
 
         }.onAppear {
-//            Shared.sharedInstance.deviceManager.getGroups { devices in
-//                self.devices = devices
-//                
-//            }
             Shared.sharedInstance.deviceManager.getHomePage { homePage in
                 print(homePage.deviceTypeCardArray[0].image.type)
                 self.homePage = homePage
+            }
+            
+            Shared.sharedInstance.deviceManager.getDevices { devices in
+                self.devices = devices
             }
         }
     }

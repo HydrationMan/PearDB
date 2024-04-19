@@ -9,14 +9,17 @@ import Foundation
 
 class NetworkManager {
     func sendGetRequest(url: URL, completion: @escaping (Data, HTTPURLResponse?) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-//            if error != nil {
-//                // Display popup fr
-//            } else
-            if let data = data {
-                completion(data, (response as! HTTPURLResponse))
-            }
-        }.resume()
+        DispatchQueue.global().async {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+    //            if error != nil {
+    //                // Display popup fr
+    //            } else
+                if let data = data {
+                    completion(data, (response as! HTTPURLResponse))
+                }
+            }.resume()
+        }
+
     }
         
     func getGroups(completion: @escaping([DeviceGroup]) -> Void) {
@@ -85,7 +88,19 @@ class NetworkManager {
                 
                 completion(devices)
             } catch {
-                print("An error occured while attempting to deserialize the data !")
+                print("An error occured while attempting to deserialize the data ! Error \(error)")
+            }
+        })
+    }
+    
+    func getImages(completion: @escaping([DeviceImageList]) -> Void) {
+        sendGetRequest(url: URL(string: "https://img.appledb.dev/main.json")!, completion: { data, response in
+            do {
+                let images: [DeviceImageList] = try JSONDecoder().decode([DeviceImageList].self, from: data)
+                
+                completion(images)
+            } catch {
+                print("An error occured while attempting to deserialize the data ! Error \(error)")
             }
         })
     }
