@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProductView: View {
+struct GlobalProductView: View {
     var imageURL: URL
     var text: String
     var body: some View {
@@ -24,8 +24,8 @@ struct ProductView: View {
     }
 }
 
-struct ProductView_Previews: PreviewProvider {
+struct GlobalProductView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductView(imageURL: URL(string: "https://img.appledb.dev/images@128/mac_combo/0.png")!, text: "Mac")
+        GlobalProductView(imageURL: URL(string: "https://img.appledb.dev/images@128/mac_combo/0.png")!, text: "Mac")
     }
 }

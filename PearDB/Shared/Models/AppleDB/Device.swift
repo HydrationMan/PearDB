@@ -125,7 +125,7 @@ struct DeviceImageList : Codable {
     var index: [DeviceImage]
 }
 
-struct DeviceImage : Codable {   
+struct DeviceImage : Codable, Identifiable {   
     var id: Int
     var dark: Bool
 }

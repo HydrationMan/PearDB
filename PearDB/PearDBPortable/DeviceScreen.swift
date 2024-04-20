@@ -43,53 +43,56 @@ struct DeviceScreen: View {
           LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
               .ignoresSafeArea()
           VStack {
-              if let homePage = homePage, let devices = devices {
-                  ScrollView(.horizontal, showsIndicators: false) {
-                      HStack {
-                          ForEach(possibleProducts, id: \.self) { product in
-                              Button(product, action: {
-                                  self.selectedProduct = product
-                              })
+              ScrollView {
+                  
+                  if let homePage = homePage, let devices = devices {
+                      ScrollView(.horizontal, showsIndicators: false) {
+                          HStack {
+                              ForEach(possibleProducts, id: \.self) { product in
+                                  Button(product, action: {
+                                      self.selectedProduct = product
+                                  }).font(.title2)
+                              }
                           }
                       }
-                  }
-                  
-                  ScrollView(.horizontal, showsIndicators: false) {
-                      HStack {
-                          ForEach(Array(devices.keys + ["All"]).filter( { $0.contains(selectedProduct) || selectedProduct == "All" || $0 == "All"}), id: \.self) { key in
-                              Button(key, action: {
-                                  self.selectedDevice = key
-                              })
+                      
+                      ScrollView(.horizontal, showsIndicators: false) {
+                          HStack {
+                              ForEach(Array(["All"] + devices.keys).filter( { $0.contains(selectedProduct) || selectedProduct == "All" || $0 == "All"}), id: \.self) { key in
+                                  Button(key, action: {
+                                      self.selectedDevice = key
+                                  }).font(.title3)
+                              }
                           }
+                          
                       }
-
-                  }
-                  
-                    List {
-                        ForEach(Array(devices.keys).filter( { $0.contains(selectedProduct) || selectedProduct == "All" }), id: \.self) { key in
-                            if let groups = devices[key] {
-                                ForEach(groups.filter( { $0.name.contains(selectedDevice) || selectedDevice == "All" })) { group in
-                                    Text(group.name)
+                      
+                            VStack {
+                            ForEach(Array(devices.keys).filter( { $0.contains(selectedProduct) || selectedProduct == "All" }), id: \.self) { key in
+                                if let groups = devices[key] {
+                                    ForEach(groups.filter( { $0.name.contains(selectedDevice) || selectedDevice == "All" })) { group in
+                                        ProductGroupView(group: group).padding()
+                                    }
                                 }
-                            }
-                            
-                        }.listRowBackground(Color.clear)
-                    }.background(Color.clear)
-                      .bottomSafeAreaInset(bottomBar)
+                                
+                            }.listRowBackground(Color.clear)
+                        }.background(Color.clear)
+                          .bottomSafeAreaInset(bottomBar)
                   
                   //
-//                  if let lastProduct = devices[key]?.last?.products?.last,
-//                  let firstImage = lastProduct.images?.index.first {
-//                   let imageURL = URL(string: "https://img.appledb.dev/device@preview/\(lastProduct.key)/\(firstImage.id).webp")!
-//
-//                   ProductView(imageURL: imageURL, text: key)
-//                 }
+                      //                  if let lastProduct = devices[key]?.last?.products?.last,
+                      //                  let firstImage = lastProduct.images?.index.first {
+                      //                   let imageURL = URL(string: "https://img.appledb.dev/device@preview/\(lastProduct.key)/\(firstImage.id).webp")!
+                      //
+                      //                   ProductView(imageURL: imageURL, text: key)
+                      //                 }
+                  }
+                  
+                  //          VStack {
+                  //              Link("Buy 16Player!, this is the Settings page", destination: URL(string:"https://chariz.com/buy/16player")!)
+                  //          }
+                  
               }
-          
-//          VStack {
-//              Link("Buy 16Player!, this is the Settings page", destination: URL(string:"https://chariz.com/buy/16player")!)
-//          }
-
           }
       }.onAppear {
           if !(possibleProducts.count > 1) {
