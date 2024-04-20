@@ -20,10 +20,9 @@ struct HomeScreen: View {
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
-        
-        let apparence = UITabBarAppearance()
-        apparence.configureWithTransparentBackground()
-        if #available(iOS 15.0, *) {UITabBar.appearance().scrollEdgeAppearance = apparence}
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        UITabBar.appearance().standardAppearance = tabBarAppearance
     }
     
     @State var name = UIDevice.current.name
@@ -34,7 +33,6 @@ struct HomeScreen: View {
         ZStack {
             LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
                 .ignoresSafeArea()
-                .bottomSafeAreaInset(bottomBar)
             ScrollView {
                 VStack {
                     CurrentDeviceView(name: name, deviceID: deviceID, osName: osName, version: version, isiPad: isiPad)
@@ -44,8 +42,8 @@ struct HomeScreen: View {
                         GridItemView(title: "Firmware versions", items: homePage.osTypeCardArray)
                     }
                 }.padding()
-            }
-
+            }.bottomSafeAreaInset(bottomBar)
+                
         }.onAppear {
             Shared.sharedInstance.deviceManager.getHomePage { homePage in
                 print(homePage.deviceTypeCardArray[0].image.type)
@@ -61,6 +59,6 @@ struct HomeScreen: View {
     var bottomBar: some View {
         Color.clear
             .frame(height: 5)
-            .background(BlurView().ignoresSafeArea())
+            .background(BlurView(style: .prominent).ignoresSafeArea())
     }
 }

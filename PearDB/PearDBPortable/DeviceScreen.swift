@@ -20,10 +20,10 @@ struct DeviceScreen: View {
     func fixBar() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
-        
-        let apparence = UITabBarAppearance()
-        apparence.configureWithTransparentBackground()
-        if #available(iOS 15.0, *) {UITabBar.appearance().scrollEdgeAppearance = apparence}
+        UITableView.appearance().tableFooterView = UIView()
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        UITabBar.appearance().standardAppearance = tabBarAppearance
     }
     
     init() {
@@ -42,7 +42,6 @@ struct DeviceScreen: View {
       ZStack {
           LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
               .ignoresSafeArea()
-          .bottomSafeAreaInset(bottomBar)
           VStack {
               if let homePage = homePage, let devices = devices {
                   ScrollView(.horizontal, showsIndicators: false) {
@@ -66,17 +65,18 @@ struct DeviceScreen: View {
 
                   }
                   
+                    List {
+                        ForEach(Array(devices.keys).filter( { $0.contains(selectedProduct) || selectedProduct == "All" }), id: \.self) { key in
+                            if let groups = devices[key] {
+                                ForEach(groups.filter( { $0.name.contains(selectedDevice) || selectedDevice == "All" })) { group in
+                                    Text(group.name)
+                                }
+                            }
+                            
+                        }.listRowBackground(Color.clear)
+                    }.background(Color.clear)
+                      .bottomSafeAreaInset(bottomBar)
                   
-                  List {
-                      ForEach(Array(devices.keys).filter( { $0.contains(selectedProduct) || selectedProduct == "All" }), id: \.self) { key in
-                          if let groups = devices[key] {
-                              ForEach(groups.filter( { $0.name.contains(selectedDevice) || selectedDevice == "All" })) { group in
-                                  Text(group.name)
-                              }
-                          }
-                          
-                      }.listRowBackground(Color.clear)
-                  }.background(Color.clear)
                   //
 //                  if let lastProduct = devices[key]?.last?.products?.last,
 //                  let firstImage = lastProduct.images?.index.first {
@@ -110,6 +110,6 @@ struct DeviceScreen: View {
     var bottomBar: some View {
         Color.clear
             .frame(height: 5)
-            .background(BlurView().ignoresSafeArea())
+            .background(BlurView(style: .prominent).ignoresSafeArea())
     }
 }

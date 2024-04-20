@@ -64,6 +64,16 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7C594992BD3B17A00B3B2EC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +100,8 @@
 		A7C55C602B59FBFC00EF3270 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A7C55C622B59FC0B00EF3270 /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
 		A7C55C642B59FC1400EF3270 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A7C5948A2BD3B17800B3B2EC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A7C5948C2BD3B17800B3B2EC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A7CD9C4A2B58EC870062D081 /* PearDBPortable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBPortable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CD9C4D2B58EC870062D081 /* PearDBPortableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PearDBPortableApp.swift; sourceTree = "<group>"; };
 		A7CD9C4F2B58EC870062D081 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,6 +185,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A7C594892BD3B17800B3B2EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7C5948A2BD3B17800B3B2EC /* WidgetKit.framework */,
+				A7C5948C2BD3B17800B3B2EC /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A7CD9C412B58EC870062D081 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +201,7 @@
 				348B89192BC293DC0001E793 /* Shared */,
 				A7CD9C4C2B58EC870062D081 /* PearDBPortable */,
 				A7F883972BBBF3DA00356C37 /* PearDBWatchApp */,
+				A7C594892BD3B17800B3B2EC /* Frameworks */,
 				A7CD9C4B2B58EC870062D081 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -267,6 +289,7 @@
 				A7F883922BBBF3DA00356C37 /* Sources */,
 				A7F883932BBBF3DA00356C37 /* Frameworks */,
 				A7F883942BBBF3DA00356C37 /* Resources */,
+				A7C594992BD3B17A00B3B2EC /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -624,7 +647,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -654,7 +677,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

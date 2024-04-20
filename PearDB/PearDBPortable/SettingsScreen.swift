@@ -11,25 +11,25 @@ struct SettingsScreen: View {
     init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
-        
-        let apparence = UITabBarAppearance()
-        apparence.configureWithTransparentBackground()
-        if #available(iOS 15.0, *) {UITabBar.appearance().scrollEdgeAppearance = apparence}
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        UITabBar.appearance().standardAppearance = tabBarAppearance
     }
   var body: some View {
       ZStack {
           LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
               .ignoresSafeArea()
-          .bottomSafeAreaInset(bottomBar)
-          VStack {
-              Link("Buy 16Player!, this is the Settings page", destination: URL(string:"https://chariz.com/buy/16player")!)
-          }
+          ScrollView {
+              VStack {
+                  Link("Buy 16Player!, this is the Settings page", destination: URL(string:"https://chariz.com/buy/16player")!)
+              }
+          }.bottomSafeAreaInset(bottomBar)
       }
   }
 
     var bottomBar: some View {
         Color.clear
             .frame(height: 5)
-            .background(BlurView().ignoresSafeArea())
+            .background(BlurView(style: .prominent).ignoresSafeArea())
     }
 }
