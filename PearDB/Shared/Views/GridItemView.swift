@@ -17,11 +17,11 @@ struct GridItemView: View {
             .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-            ForEach(items) { product in
-                
-                GlobalProductView(imageURL: URL(string: "https://img.appledb.dev/\(product.image.type)@128/\(product.image.key)/0.png".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, text: product.title)
-            }
-            
+                ForEach(items) { product in
+
+                        GlobalProductView(imageURL: URL(string: "https://img.appledb.dev/\(product.image.type)@128/\(product.image.key)/0.png".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!, text: product.title)
+
+                }
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
 }
