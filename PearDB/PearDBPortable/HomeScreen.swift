@@ -31,8 +31,7 @@ struct HomeScreen: View {
     let osName = UIDevice.current.systemName
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            Color.bgColor.ignoresSafeArea()
             ScrollView {
                 VStack {
                     CurrentDeviceView(name: name, deviceID: deviceID, osName: osName, version: version, isiPad: isiPad)

@@ -8,11 +8,14 @@
 import SwiftUI
 
 extension Color {
-    static let PearCyan = Color("PearCyan")
+    static let bgColor = Color("BackgroundColor")
+    static let cardColor = Color("CardColor")
 }
 
 struct ContentView: View {
+
     var body: some View {
+        
         ZStack(alignment: .bottomLeading) {
             VStack {
                 TabView() {
@@ -32,6 +35,7 @@ struct ContentView: View {
             }
         }
         .compositingGroup()
+
     }
 }
 

@@ -10,8 +10,7 @@ import SwiftUI
 struct BackgroundView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
-            .fill(Color.black.opacity(0.5))
-            .blur(radius: 0.01, opaque: false)
+            .fill(Color.cardColor)
             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
     }
 }

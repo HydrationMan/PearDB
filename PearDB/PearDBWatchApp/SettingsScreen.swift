@@ -10,10 +10,9 @@ import SwiftUI
 struct SettingsScreen: View {
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+
             VStack {
-                Text("Buy 16Player!, this is the settings page")
+                Link("Buy 16Player!, this is the Settings page", destination: URL(string:"https://chariz.com/buy/16player")!)
             }
         }
     }

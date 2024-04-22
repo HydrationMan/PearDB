@@ -13,8 +13,6 @@ struct HomeScreen: View {
         let version = WKInterfaceDevice.current().systemVersion
         let osName = WKInterfaceDevice.current().systemName
         ZStack {
-            LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
-                .ignoresSafeArea()
             VStack {
                 let appledb = URL(string: "https://img.appledb.dev/device@main/\(modelName)/0.png")
                 HStack {

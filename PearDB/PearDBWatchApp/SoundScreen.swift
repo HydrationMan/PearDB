@@ -22,8 +22,7 @@ struct SoundScreen: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+
             VStack {
                 Text("Haptics will not play if charging!")
                 List {

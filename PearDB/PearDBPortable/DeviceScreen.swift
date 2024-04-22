@@ -18,12 +18,12 @@ struct DeviceScreen: View {
     @State var possibleDevices: [String] = ["All"]
     
     func fixBar() {
-        UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
-        UITableView.appearance().tableFooterView = UIView()
-        let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.configureWithTransparentBackground()
-        UITabBar.appearance().standardAppearance = tabBarAppearance
+//        UITableView.appearance().backgroundColor = .clear
+//        UITableViewCell.appearance().backgroundColor = .clear
+//        UITableView.appearance().tableFooterView = UIView()
+//        let tabBarAppearance = UITabBarAppearance()
+//        tabBarAppearance.configureWithTransparentBackground()
+//        UITabBar.appearance().standardAppearance = tabBarAppearance
     }
     
     init() {
@@ -40,8 +40,7 @@ struct DeviceScreen: View {
     
   var body: some View {
       ZStack {
-          LinearGradient(colors: [.purple, .PearCyan],startPoint: .topLeading,endPoint: .bottomTrailing)
-              .ignoresSafeArea()
+          Color.bgColor.ignoresSafeArea()
           VStack {
               ScrollView {
                   
