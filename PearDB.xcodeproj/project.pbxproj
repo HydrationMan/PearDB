@@ -456,7 +456,7 @@
 				};
 			};
 			buildConfigurationList = A769E52B2BE8389D00DFAD00 /* Build configuration list for PBXProject "PearDB" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
