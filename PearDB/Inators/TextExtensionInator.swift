@@ -7,12 +7,23 @@
 
 import SwiftUI
 
-struct TextExtensionInator: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+extension Text {
+    public func foregroundLinearGradient(
+        colors: [Color],
+        startPoint: UnitPoint,
+        endPoint: UnitPoint) -> some View
+    {
+        self.overlay {
 
-#Preview {
-    TextExtensionInator()
+            LinearGradient(
+                colors: colors,
+                startPoint: startPoint,
+                endPoint: endPoint
+            )
+            .mask(
+                self
+
+            )
+        }
+    }
 }

@@ -12,7 +12,7 @@ struct ContentView: View {
         ZStack(alignment: .bottomLeading) {
             VStack {
                 TabView() {
-                    SoundView()
+                    HomeView()
                 }
             }
             .tabViewStyle(.carousel)

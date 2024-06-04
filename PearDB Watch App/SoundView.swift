@@ -24,7 +24,9 @@ struct SoundView: View {
         ZStack {
 
             VStack {
-                Text("Haptics will not play if charging!")
+                Text("Neat system sounds.")
+                Text("Charging = No Haptics")
+                Text("Mute = No Sound")
                 List {
                     ForEach(hapticTypeAllValues, id: \.self.0) { hapticInfo in
                         HapticRowView(hapticName: hapticInfo.0, hapticType: hapticInfo.1)
