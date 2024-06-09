@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,7 +33,6 @@
 		A721C6892BF5F4810070A140 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721C6882BF5F4800070A140 /* HomeView.swift */; };
 		A736A8F32BE83BE70086418E /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A8F22BE83BE70086418E /* SoundView.swift */; };
 		A7544CA52C0014DF00435D83 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = A7544CA42C0014DF00435D83 /* StoreKitTestCertificate.cer */; };
-		A7544CA82C00157100435D83 /* SwiftTipJar in Frameworks */ = {isa = PBXBuildFile; productRef = A7544CA72C00157100435D83 /* SwiftTipJar */; };
 		A7544CAA2C00213E00435D83 /* PearDBStoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A7544CA92C00213E00435D83 /* PearDBStoreKit.storekit */; };
 		A7544CB22C01B53900435D83 /* PearDB_TVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7544CB12C01B53900435D83 /* PearDB_TVApp.swift */; };
 		A7544CB42C01B53900435D83 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7544CB32C01B53900435D83 /* ContentView.swift */; };
@@ -50,6 +49,7 @@
 		A769E5512BE8399D00DFAD00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A769E5502BE8399D00DFAD00 /* Assets.xcassets */; };
 		A769E5542BE8399D00DFAD00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A769E5532BE8399D00DFAD00 /* Preview Assets.xcassets */; };
 		A769E5572BE8399D00DFAD00 /* Hugo Mason.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A769E54A2BE8399C00DFAD00 /* Hugo Mason.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A76D792E2C15BF9400936904 /* SwiftTipJar in Frameworks */ = {isa = PBXBuildFile; productRef = A76D792D2C15BF9400936904 /* SwiftTipJar */; };
 		A77884292C0BE93C008CC46A /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77884282C0BE93C008CC46A /* Detail.swift */; };
 		A778842B2C0EA611008CC46A /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778842A2C0EA611008CC46A /* HelloView.swift */; };
 		A778842D2C0EA636008CC46A /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778842C2C0EA636008CC46A /* TestView.swift */; };
@@ -177,7 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7544CA82C00157100435D83 /* SwiftTipJar in Frameworks */,
+				A76D792E2C15BF9400936904 /* SwiftTipJar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +406,7 @@
 			);
 			name = PearDB;
 			packageProductDependencies = (
-				A7544CA72C00157100435D83 /* SwiftTipJar */,
+				A76D792D2C15BF9400936904 /* SwiftTipJar */,
 			);
 			productName = PearDB;
 			productReference = A769E5302BE8389D00DFAD00 /* PearDB.app */;
@@ -465,7 +465,7 @@
 			);
 			mainGroup = A769E5272BE8389D00DFAD00;
 			packageReferences = (
-				A7544CA62C00157100435D83 /* XCLocalSwiftPackageReference "../../../github/SwiftTipJar" */,
+				A76D792C2C15BF9400936904 /* XCRemoteSwiftPackageReference "SwiftTipJar" */,
 			);
 			productRefGroup = A769E5312BE8389D00DFAD00 /* Products */;
 			projectDirPath = "";
@@ -1025,16 +1025,21 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		A7544CA62C00157100435D83 /* XCLocalSwiftPackageReference "../../../github/SwiftTipJar" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../../github/SwiftTipJar;
+/* Begin XCRemoteSwiftPackageReference section */
+		A76D792C2C15BF9400936904 /* XCRemoteSwiftPackageReference "SwiftTipJar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkasaj/SwiftTipJar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A7544CA72C00157100435D83 /* SwiftTipJar */ = {
+		A76D792D2C15BF9400936904 /* SwiftTipJar */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = A76D792C2C15BF9400936904 /* XCRemoteSwiftPackageReference "SwiftTipJar" */;
 			productName = SwiftTipJar;
 		};
 /* End XCSwiftPackageProductDependency section */
