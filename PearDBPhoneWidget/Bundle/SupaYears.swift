@@ -1,6 +1,6 @@
 //
 //  SuperBroGN.swift
-//  PearDBWidgetExtension
+//  PearDBWatchWidgetExtension
 //
 //  Created by Kane Parkinson on 15/05/2024.
 //
@@ -12,18 +12,6 @@ struct SupaYearsEntry: TimelineEntry {
     let date: Date
     let providerInfo: String
 }
-
-//var smallfamilies: [WidgetFamily] {
-//#if os(watchOS)
-//    return [.accessoryInline, .accessoryCircular, .accessoryRectangular]
-//#else
-//    if #available(iOS 16.0, *) {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular]
-//    } else {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
-//    }
-//#endif
-//}
 
 struct SupaYearsTimeLineProvider: TimelineProvider {
     typealias Entry = SupaYearsEntry
@@ -52,9 +40,7 @@ struct SupaYearsWidgetView: View {
         HStack {
             Image(uiImage: UIImage(named: "RightSupa") ?? UIImage()).resizable()
                 .frame(width: 42, height: 42)
-                .containerBackground(for: .widget) {
-                    Color.clear
-                }
+                .widgetBackground(Color.clear)
             VStack {
                 Text("Superbro")
                 Text("2005-2024")

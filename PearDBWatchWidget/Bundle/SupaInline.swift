@@ -1,6 +1,6 @@
 //
 //  SupaInline.swift
-//  PearDBWidgetExtension
+//  PearDBWatchWidgetExtension
 //
 //  Created by Kane Parkinson on 16/05/2024.
 //
@@ -12,18 +12,6 @@ struct SupaInlineEntry: TimelineEntry {
     let date: Date
     let providerInfo: String
 }
-
-//var smallfamilies: [WidgetFamily] {
-//#if os(watchOS)
-//    return [.accessoryInline, .accessoryCircular, .accessoryRectangular]
-//#else
-//    if #available(iOS 16.0, *) {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular]
-//    } else {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
-//    }
-//#endif
-//}
 
 struct SupaInlineTimeLineProvider: TimelineProvider {
     typealias Entry = SupaInlineEntry
@@ -53,7 +41,7 @@ struct SupaInlineWidgetView: View {
             Image(uiImage: UIImage(named: "SmolSupaRight") ?? UIImage()).resizable()
             Text("2005-2024")
                 .widgetLabel("SuperBro: 2005 Through 2024")
-                .widgetCurvesContent()
+                .backport.widgetCurvesContent()
                 .unredacted()
         }
     }

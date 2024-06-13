@@ -1,6 +1,6 @@
 //
 //  SupaCorner.swift
-//  PearDBWidgetExtension
+//  PearDBWatchWidgetExtension
 //
 //  Created by Kane Parkinson on 16/05/2024.
 //
@@ -12,18 +12,6 @@ struct SupaCornerRightEntry: TimelineEntry {
     let date: Date
     let providerInfo: String
 }
-
-//var smallfamilies: [WidgetFamily] {
-//#if os(watchOS)
-//    return [.accessoryInline, .accessoryCircular, .accessoryRectangular]
-//#else
-//    if #available(iOS 16.0, *) {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular]
-//    } else {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
-//    }
-//#endif
-//}
 
 struct SupaCornerRightTimeLineProvider: TimelineProvider {
     typealias Entry = SupaCornerRightEntry
@@ -51,13 +39,9 @@ struct SupaCornerRightWidgetView: View {
     var body: some View {
         Text(Image.supaCornerRight)
             .font(.system(size: 10))
-//        Image(uiImage: UIImage(named: "SmolSupa") ?? UIImage())
-//            .resizable()
-            .widgetCurvesContent()
+            .backport.widgetCurvesContent()
             .widgetLabel("Supa!")
-            .containerBackground(for: .widget) {
-                Color.clear
-        }
+            .widgetBackground(Color.clear)
     }
 }
 
@@ -68,8 +52,8 @@ struct SupaCornerRightWidget: Widget {
         StaticConfiguration(kind: kind, provider: SupaCornerRightTimeLineProvider()) { entry in
             SupaCornerRightWidgetView(entry: entry)
         }
-        .configurationDisplayName("Supa Corner")
-        .description("Supa in da Corner")
+        .configurationDisplayName("Supa Corner Right")
+        .description("Supa Corner - Right Face")
         .supportedFamilies([.accessoryCorner])
     }
 }

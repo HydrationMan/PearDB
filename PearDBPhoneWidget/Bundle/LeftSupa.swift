@@ -1,8 +1,8 @@
 //
-//  SwiftUIView.swift
-//  PearDBWidgetExtension
+//  PearDBPhoneWidget.swift
+//  PearDBPhoneWidget
 //
-//  Created by Kane Parkinson on 15/05/2024.
+//  Created by Kane Parkinson on 12/06/2024.
 //
 
 import SwiftUI
@@ -12,18 +12,6 @@ struct LeftSupaEntry: TimelineEntry {
     let date: Date
     let providerInfo: String
 }
-
-//var smallfamilies: [WidgetFamily] {
-//#if os(watchOS)
-//    return [.accessoryInline, .accessoryCircular, .accessoryRectangular]
-//#else
-//    if #available(iOS 16.0, *) {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular]
-//    } else {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
-//    }
-//#endif
-//}
 
 struct LeftSupaTimeLineProvider: TimelineProvider {
     typealias Entry = LeftSupaEntry
@@ -51,9 +39,7 @@ struct LeftSupaWidgetView: View {
     var body: some View {
         Image("LeftSupa").resizable()
             .frame(width: 42, height: 42)
-            .containerBackground(for: .widget) {
-                Color.clear
-            }
+            .widgetBackground(Color.clear)
         
     }
 }

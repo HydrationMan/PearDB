@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NavigationBackport
 
 struct SettingsView: View {
     let navigationTable = [
@@ -67,6 +68,7 @@ struct SettingsView: View {
                 })
             }
         }
+        .navigationTitle("Settings")
     }
 }
 

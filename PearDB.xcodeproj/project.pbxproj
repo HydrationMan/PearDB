@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,15 +22,18 @@
 		A7012F282BF2E0730021415B /* UINaviContInator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F272BF2E0730021415B /* UINaviContInator.swift */; };
 		A7012F5A2BF4115F0021415B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7012F2F2BF40AEC0021415B /* WidgetKit.framework */; };
 		A7012F5B2BF4115F0021415B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7012F312BF40AEC0021415B /* SwiftUI.framework */; };
-		A7012F5E2BF4115F0021415B /* PearDBWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F5D2BF4115F0021415B /* PearDBWidget.swift */; };
-		A7012F602BF4115F0021415B /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F5F2BF4115F0021415B /* AppIntent.swift */; };
+		A7012F5E2BF4115F0021415B /* PearDBWatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F5D2BF4115F0021415B /* PearDBWatchWidget.swift */; };
 		A7012F622BF411610021415B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7012F612BF411610021415B /* Assets.xcassets */; };
-		A7012F662BF411610021415B /* PearDBWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7012F592BF4115F0021415B /* PearDBWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A7012F662BF411610021415B /* PearDBWatchWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7012F592BF4115F0021415B /* PearDBWatchWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A7012F6B2BF41B1A0021415B /* LeftSupa.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F6A2BF41B1A0021415B /* LeftSupa.swift */; };
 		A7012F6E2BF41B970021415B /* RightSupa.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F6D2BF41B970021415B /* RightSupa.swift */; };
-		A7012F722BF434330021415B /* SuperBroGM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F712BF434330021415B /* SuperBroGM.swift */; };
 		A7012F742BF4343C0021415B /* SupaYears.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7012F732BF4343C0021415B /* SupaYears.swift */; };
 		A721C6892BF5F4810070A140 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721C6882BF5F4800070A140 /* HomeView.swift */; };
+		A7242FCE2C19BFAB00100ABE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7012F2F2BF40AEC0021415B /* WidgetKit.framework */; };
+		A7242FCF2C19BFAB00100ABE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7012F312BF40AEC0021415B /* SwiftUI.framework */; };
+		A7242FD22C19BFAB00100ABE /* PearDBPhoneWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7242FD12C19BFAB00100ABE /* PearDBPhoneWidgetBundle.swift */; };
+		A7242FD62C19BFAC00100ABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7242FD52C19BFAC00100ABE /* Assets.xcassets */; };
+		A7242FDA2C19BFAC00100ABE /* PearDBPhoneWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7242FCD2C19BFAB00100ABE /* PearDBPhoneWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A736A8F32BE83BE70086418E /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A8F22BE83BE70086418E /* SoundView.swift */; };
 		A7544CA52C0014DF00435D83 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = A7544CA42C0014DF00435D83 /* StoreKitTestCertificate.cer */; };
 		A7544CAA2C00213E00435D83 /* PearDBStoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A7544CA92C00213E00435D83 /* PearDBStoreKit.storekit */; };
@@ -67,6 +70,13 @@
 			remoteGlobalIDString = A7012F582BF4115F0021415B;
 			remoteInfo = PearDBWidgetExtension;
 		};
+		A7242FD82C19BFAC00100ABE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A769E5282BE8389D00DFAD00 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7242FCC2C19BFAB00100ABE;
+			remoteInfo = PearDBPhoneWidgetExtension;
+		};
 		A769E5552BE8399D00DFAD00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A769E5282BE8389D00DFAD00 /* Project object */;
@@ -83,7 +93,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A7012F662BF411610021415B /* PearDBWidgetExtension.appex in Embed Foundation Extensions */,
+				A7012F662BF411610021415B /* PearDBWatchWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7242FDE2C19BFAC00100ABE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A7242FDA2C19BFAC00100ABE /* PearDBPhoneWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,16 +138,20 @@
 		A7012F272BF2E0730021415B /* UINaviContInator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINaviContInator.swift; sourceTree = "<group>"; };
 		A7012F2F2BF40AEC0021415B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A7012F312BF40AEC0021415B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		A7012F592BF4115F0021415B /* PearDBWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PearDBWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7012F5D2BF4115F0021415B /* PearDBWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PearDBWidget.swift; sourceTree = "<group>"; };
-		A7012F5F2BF4115F0021415B /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		A7012F592BF4115F0021415B /* PearDBWatchWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PearDBWatchWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7012F5D2BF4115F0021415B /* PearDBWatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PearDBWatchWidget.swift; sourceTree = "<group>"; };
 		A7012F612BF411610021415B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7012F632BF411610021415B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7012F6A2BF41B1A0021415B /* LeftSupa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSupa.swift; sourceTree = "<group>"; };
 		A7012F6D2BF41B970021415B /* RightSupa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSupa.swift; sourceTree = "<group>"; };
-		A7012F712BF434330021415B /* SuperBroGM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperBroGM.swift; sourceTree = "<group>"; };
 		A7012F732BF4343C0021415B /* SupaYears.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaYears.swift; sourceTree = "<group>"; };
 		A721C6882BF5F4800070A140 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A7242FC72C19BDBA00100ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A7242FC82C19BDD300100ABE /* PearDB-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PearDB-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		A7242FCD2C19BFAB00100ABE /* PearDBPhoneWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PearDBPhoneWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7242FD12C19BFAB00100ABE /* PearDBPhoneWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PearDBPhoneWidgetBundle.swift; sourceTree = "<group>"; };
+		A7242FD52C19BFAC00100ABE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A7242FD72C19BFAC00100ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A736A8F22BE83BE70086418E /* SoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
 		A7544CA42C0014DF00435D83 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		A7544CA92C00213E00435D83 /* PearDBStoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PearDBStoreKit.storekit; sourceTree = "<group>"; };
@@ -156,6 +181,24 @@
 		A788DD4F2BF5A45F00F8F734 /* SupaCornerLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaCornerLeft.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A7242FE02C19C0C000100ABE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LeftSupa.swift,
+				RightSupa.swift,
+				SupaSmall.swift,
+				SupaYears.swift,
+				SupaYearsText.swift,
+			);
+			target = A7242FCC2C19BFAB00100ABE /* PearDBPhoneWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A7242FDF2C19C0BC00100ABE /* Bundle */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A7242FE02C19C0C000100ABE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Bundle; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		A7012F562BF4115F0021415B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -163,6 +206,15 @@
 			files = (
 				A7012F5B2BF4115F0021415B /* SwiftUI.framework in Frameworks */,
 				A7012F5A2BF4115F0021415B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7242FCA2C19BFAB00100ABE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7242FCF2C19BFAB00100ABE /* SwiftUI.framework in Frameworks */,
+				A7242FCE2C19BFAB00100ABE /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +246,7 @@
 		A7012F092BF0ABC00021415B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A7012F102BF173800021415B /* Settings */,
 				A7012F052BF0A8C20021415B /* SettingsView.swift */,
 				A7012F072BF0AB8D0021415B /* AppleDBView.swift */,
 			);
@@ -235,16 +288,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A7012F5C2BF4115F0021415B /* PearDBWidget */ = {
+		A7012F5C2BF4115F0021415B /* PearDBWatchWidget */ = {
 			isa = PBXGroup;
 			children = (
-				A7012F5D2BF4115F0021415B /* PearDBWidget.swift */,
+				A7012F5D2BF4115F0021415B /* PearDBWatchWidget.swift */,
 				A7012F6C2BF41B700021415B /* Bundle */,
-				A7012F5F2BF4115F0021415B /* AppIntent.swift */,
 				A7012F612BF411610021415B /* Assets.xcassets */,
 				A7012F632BF411610021415B /* Info.plist */,
 			);
-			path = PearDBWidget;
+			path = PearDBWatchWidget;
 			sourceTree = "<group>";
 		};
 		A7012F6C2BF41B700021415B /* Bundle */ = {
@@ -256,9 +308,19 @@
 				A7012F732BF4343C0021415B /* SupaYears.swift */,
 				A788DD4F2BF5A45F00F8F734 /* SupaCornerLeft.swift */,
 				A788DD4D2BF5968C00F8F734 /* SupaCornerRight.swift */,
-				A7012F712BF434330021415B /* SuperBroGM.swift */,
 			);
 			path = Bundle;
+			sourceTree = "<group>";
+		};
+		A7242FD02C19BFAB00100ABE /* PearDBPhoneWidget */ = {
+			isa = PBXGroup;
+			children = (
+				A7242FD12C19BFAB00100ABE /* PearDBPhoneWidgetBundle.swift */,
+				A7242FDF2C19C0BC00100ABE /* Bundle */,
+				A7242FD52C19BFAC00100ABE /* Assets.xcassets */,
+				A7242FD72C19BFAC00100ABE /* Info.plist */,
+			);
+			path = PearDBPhoneWidget;
 			sourceTree = "<group>";
 		};
 		A7544CB02C01B53900435D83 /* PearDB TV */ = {
@@ -290,7 +352,8 @@
 				A7544CA92C00213E00435D83 /* PearDBStoreKit.storekit */,
 				A769E5322BE8389D00DFAD00 /* PearDB */,
 				A769E54B2BE8399C00DFAD00 /* PearDB Watch App */,
-				A7012F5C2BF4115F0021415B /* PearDBWidget */,
+				A7242FD02C19BFAB00100ABE /* PearDBPhoneWidget */,
+				A7012F5C2BF4115F0021415B /* PearDBWatchWidget */,
 				A7544CB02C01B53900435D83 /* PearDB TV */,
 				A7012F2E2BF40AEC0021415B /* Frameworks */,
 				A769E5312BE8389D00DFAD00 /* Products */,
@@ -302,8 +365,9 @@
 			children = (
 				A769E5302BE8389D00DFAD00 /* PearDB.app */,
 				A769E54A2BE8399C00DFAD00 /* Hugo Mason.app */,
-				A7012F592BF4115F0021415B /* PearDBWidgetExtension.appex */,
+				A7012F592BF4115F0021415B /* PearDBWatchWidgetExtension.appex */,
 				A7544CAF2C01B53900435D83 /* PearDB TV.app */,
+				A7242FCD2C19BFAB00100ABE /* PearDBPhoneWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,7 +375,7 @@
 		A769E5322BE8389D00DFAD00 /* PearDB */ = {
 			isa = PBXGroup;
 			children = (
-				A7012F102BF173800021415B /* Settings */,
+				A7242FC72C19BDBA00100ABE /* Info.plist */,
 				A7012F0D2BF0B5250021415B /* Inators */,
 				A7012F092BF0ABC00021415B /* Views */,
 				A769E5332BE8389D00DFAD00 /* PearDBApp.swift */,
@@ -335,6 +399,7 @@
 		A769E54B2BE8399C00DFAD00 /* PearDB Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				A7242FC82C19BDD300100ABE /* PearDB-Watch-App-Info.plist */,
 				A769E54C2BE8399C00DFAD00 /* PearDBWatchApp.swift */,
 				A769E54E2BE8399C00DFAD00 /* ContentView.swift */,
 				A736A8F22BE83BE70086418E /* SoundView.swift */,
@@ -356,9 +421,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A7012F582BF4115F0021415B /* PearDBWidgetExtension */ = {
+		A7012F582BF4115F0021415B /* PearDBWatchWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7012F672BF411610021415B /* Build configuration list for PBXNativeTarget "PearDBWidgetExtension" */;
+			buildConfigurationList = A7012F672BF411610021415B /* Build configuration list for PBXNativeTarget "PearDBWatchWidgetExtension" */;
 			buildPhases = (
 				A7012F552BF4115F0021415B /* Sources */,
 				A7012F562BF4115F0021415B /* Frameworks */,
@@ -368,9 +433,26 @@
 			);
 			dependencies = (
 			);
-			name = PearDBWidgetExtension;
+			name = PearDBWatchWidgetExtension;
 			productName = PearDBWidgetExtension;
-			productReference = A7012F592BF4115F0021415B /* PearDBWidgetExtension.appex */;
+			productReference = A7012F592BF4115F0021415B /* PearDBWatchWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		A7242FCC2C19BFAB00100ABE /* PearDBPhoneWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7242FDB2C19BFAC00100ABE /* Build configuration list for PBXNativeTarget "PearDBPhoneWidgetExtension" */;
+			buildPhases = (
+				A7242FC92C19BFAB00100ABE /* Sources */,
+				A7242FCA2C19BFAB00100ABE /* Frameworks */,
+				A7242FCB2C19BFAB00100ABE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PearDBPhoneWidgetExtension;
+			productName = PearDBPhoneWidgetExtension;
+			productReference = A7242FCD2C19BFAB00100ABE /* PearDBPhoneWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		A7544CAE2C01B53900435D83 /* PearDB TV */ = {
@@ -398,11 +480,13 @@
 				A769E52D2BE8389D00DFAD00 /* Frameworks */,
 				A769E52E2BE8389D00DFAD00 /* Resources */,
 				A769E55B2BE8399D00DFAD00 /* Embed Watch Content */,
+				A7242FDE2C19BFAC00100ABE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A769E5562BE8399D00DFAD00 /* PBXTargetDependency */,
+				A7242FD92C19BFAC00100ABE /* PBXTargetDependency */,
 			);
 			name = PearDB;
 			packageProductDependencies = (
@@ -438,11 +522,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					A7012F582BF4115F0021415B = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					A7242FCC2C19BFAB00100ABE = {
+						CreatedOnToolsVersion = 16.0;
 					};
 					A7544CAE2C01B53900435D83 = {
 						CreatedOnToolsVersion = 15.4;
@@ -474,7 +561,8 @@
 				A769E52F2BE8389D00DFAD00 /* PearDB */,
 				A7544CAE2C01B53900435D83 /* PearDB TV */,
 				A769E5492BE8399C00DFAD00 /* PearDB Watch App */,
-				A7012F582BF4115F0021415B /* PearDBWidgetExtension */,
+				A7012F582BF4115F0021415B /* PearDBWatchWidgetExtension */,
+				A7242FCC2C19BFAB00100ABE /* PearDBPhoneWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -485,6 +573,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7012F622BF411610021415B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7242FCB2C19BFAB00100ABE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7242FD62C19BFAC00100ABE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,13 +622,19 @@
 			files = (
 				A7012F742BF4343C0021415B /* SupaYears.swift in Sources */,
 				A788DD502BF5A45F00F8F734 /* SupaCornerLeft.swift in Sources */,
-				A7012F5E2BF4115F0021415B /* PearDBWidget.swift in Sources */,
+				A7012F5E2BF4115F0021415B /* PearDBWatchWidget.swift in Sources */,
 				A7012F6E2BF41B970021415B /* RightSupa.swift in Sources */,
-				A7012F722BF434330021415B /* SuperBroGM.swift in Sources */,
-				A7012F602BF4115F0021415B /* AppIntent.swift in Sources */,
 				A788DD4E2BF5968C00F8F734 /* SupaCornerRight.swift in Sources */,
 				A788DD4C2BF5916E00F8F734 /* SupaInline.swift in Sources */,
 				A7012F6B2BF41B1A0021415B /* LeftSupa.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7242FC92C19BFAB00100ABE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7242FD22C19BFAB00100ABE /* PearDBPhoneWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,8 +691,13 @@
 /* Begin PBXTargetDependency section */
 		A7012F652BF411610021415B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A7012F582BF4115F0021415B /* PearDBWidgetExtension */;
+			target = A7012F582BF4115F0021415B /* PearDBWatchWidgetExtension */;
 			targetProxy = A7012F642BF411610021415B /* PBXContainerItemProxy */;
+		};
+		A7242FD92C19BFAC00100ABE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7242FCC2C19BFAB00100ABE /* PearDBPhoneWidgetExtension */;
+			targetProxy = A7242FD82C19BFAC00100ABE /* PBXContainerItemProxy */;
 		};
 		A769E5562BE8399D00DFAD00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -607,10 +714,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = XVQR493263;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PearDBWidget/Info.plist;
+				INFOPLIST_FILE = PearDBWatchWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PearDBWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -627,7 +734,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -638,10 +745,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = XVQR493263;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PearDBWidget/Info.plist;
+				INFOPLIST_FILE = PearDBWatchWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PearDBWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -658,13 +765,70 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		A7242FDC2C19BFAC00100ABE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 24;
+				DEVELOPMENT_TEAM = XVQR493263;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PearDBPhoneWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PearDBPhoneWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.16;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB.PearDBPhoneWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7242FDD2C19BFAC00100ABE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 24;
+				DEVELOPMENT_TEAM = XVQR493263;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PearDBPhoneWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PearDBPhoneWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.16;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB.PearDBPhoneWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		A7544CBA2C01B53A00435D83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -695,6 +859,7 @@
 		A7544CBB2C01B53A00435D83 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -851,11 +1016,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PearDB/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -885,11 +1051,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PearDB/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -919,11 +1086,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PearDB-Watch-App-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.hydrate.PearDB;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -951,11 +1120,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PearDB-Watch-App-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.hydrate.PearDB;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -978,11 +1149,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A7012F672BF411610021415B /* Build configuration list for PBXNativeTarget "PearDBWidgetExtension" */ = {
+		A7012F672BF411610021415B /* Build configuration list for PBXNativeTarget "PearDBWatchWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7012F682BF411610021415B /* Debug */,
 				A7012F692BF411610021415B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7242FDB2C19BFAC00100ABE /* Build configuration list for PBXNativeTarget "PearDBPhoneWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7242FDC2C19BFAC00100ABE /* Debug */,
+				A7242FDD2C19BFAC00100ABE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -11,6 +11,13 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationStack {
+                AppleDBView()
+            }            
+            .tabItem {
+                Image(systemName: "pc")
+                Text("AppleDB")
+            }
+            NavigationStack {
                 SettingsView()
             }
             .tabItem {

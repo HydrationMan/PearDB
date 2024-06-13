@@ -9,9 +9,7 @@ import SwiftUI
 
 struct Detail: View {
     var body: some View {
-        NavigationView {
-            Text("Detail")
-        }
+        Text("Detail")
         .navigationTitle("DETAIL")
     }
 }

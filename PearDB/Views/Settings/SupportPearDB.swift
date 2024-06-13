@@ -1,5 +1,5 @@
 //
-//  SupportViaKoFi.swift
+//  SupportPearDB.swift
 //  PearDB
 //
 //  Created by Kane Parkinson on 13/05/2024.

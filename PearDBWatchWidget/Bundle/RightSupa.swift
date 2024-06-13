@@ -1,6 +1,6 @@
 //
 //  SupaMedium.swift
-//  PearDBWidgetExtension
+//  PearDBWatchWidgetExtension
 //
 //  Created by Kane Parkinson on 15/05/2024.
 //
@@ -12,18 +12,6 @@ struct RightSupaEntry: TimelineEntry {
     let date: Date
     let providerInfo: String
 }
-
-//var smallfamilies: [WidgetFamily] {
-//#if os(watchOS)
-//    return [.accessoryInline, .accessoryCircular, .accessoryRectangular]
-//#else
-//    if #available(iOS 16.0, *) {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular]
-//    } else {
-//        return [.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge]
-//    }
-//#endif
-//}
 
 struct RightSupaTimeLineProvider: TimelineProvider {
     typealias Entry = RightSupaEntry
@@ -51,9 +39,7 @@ struct RightSupaWidgetView: View {
     var body: some View {
         Image("RightSupa").resizable()
             .frame(width: 42, height: 42)
-            .containerBackground(for: .widget) {
-                Color.clear
-            }
+            .widgetBackground(Color.clear)
         
     }
 }

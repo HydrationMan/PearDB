@@ -17,13 +17,11 @@ struct AppleDBView: View {
     @State private var deviceModel = ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(items) { item in
-                    NavigationLink {
+                    NavigationLink(value: item.device) {
                         Text("Model Number: \(item.device!)")
-                    } label: {
-                        Text(item.device!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -47,16 +45,8 @@ struct AppleDBView: View {
                 Button("Cancel", role: .cancel, action: {})
                 TextField("Device Model", text: $deviceModel)
             }
-            Text("Select an item")
         }
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                HStack {
-                    Text("Settings").font(.largeTitle).bold()
-                        .foregroundLinearGradient(colors: [Color(hex: 0x79a4f2), Color(hex: 0x90b4f5)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                }
-            }
-        }
+        .navigationTitle("AppleDB")
     }
 
         private func addItem() {
