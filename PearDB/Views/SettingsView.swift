@@ -6,29 +6,9 @@
 //
 
 import SwiftUI
-import NavigationBackport
 
 struct SettingsView: View {
-    let navigationTable = [
-        [
-        NavigationItem(name: "Display", description: "", menu: .displays),
-        NavigationItem(name: "Languages", description: "", menu: .languages),
-        ],
-        [
-        NavigationItem(name: "Licences", description: "", menu: .licences),
-        NavigationItem(name: "Github Repository", description: "", menu: .githubrepository),
-        NavigationItem(name: "Support PearDB", description: "", menu: .supportviakofi),
-        ],
-        [
-        NavigationItem(name: "Clear Network Cache", description: "", menu: .clearnetworkcache),
-        NavigationItem(name: "Reset Settings", description: "", menu: .resetsettings)
-        ],
-        [
-        NavigationItem(name: "Detail", description: "", menu: .detail)
-        ],
-        ]
-        
-    let sectionTitles = ["General", "About", "Advanced", "Detail"]
+
     @State private var SettingsSubView: String? = nil
     var body: some View {
         NavigationStack {
@@ -44,8 +24,6 @@ struct SettingsView: View {
                 }
                 
                 .navigationTitle("Settings")
-                
-
                 .navigationDestination(for: NavigationItem.self, destination: { item in
                     switch item.menu {
                     case .detail:
@@ -68,7 +46,6 @@ struct SettingsView: View {
                 })
             }
         }
-        .navigationTitle("Settings")
     }
 }
 
@@ -92,4 +69,23 @@ enum Menu: String {
     case resetsettings
 }
 
-
+let navigationTable = [
+    [
+    NavigationItem(name: "Display", description: "", menu: .displays),
+    NavigationItem(name: "Languages", description: "", menu: .languages),
+    ],
+    [
+    NavigationItem(name: "Licences", description: "", menu: .licences),
+    NavigationItem(name: "Github Repository", description: "", menu: .githubrepository),
+    NavigationItem(name: "Support PearDB", description: "", menu: .supportviakofi),
+    ],
+    [
+    NavigationItem(name: "Clear Network Cache", description: "", menu: .clearnetworkcache),
+    NavigationItem(name: "Reset Settings", description: "", menu: .resetsettings)
+    ],
+    [
+    NavigationItem(name: "Detail", description: "", menu: .detail)
+    ],
+    ]
+    
+let sectionTitles = ["General", "About", "Advanced", "Detail"]

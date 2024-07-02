@@ -20,8 +20,10 @@ struct AppleDBView: View {
         NavigationStack {
             List {
                 ForEach(items) { item in
-                    NavigationLink(value: item.device) {
+                    NavigationLink {
                         Text("Model Number: \(item.device!)")
+                    } label: {
+                        Text(item.device!)
                     }
                 }
                 .onDelete(perform: deleteItems)

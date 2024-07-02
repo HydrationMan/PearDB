@@ -52,11 +52,11 @@
 		A769E5512BE8399D00DFAD00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A769E5502BE8399D00DFAD00 /* Assets.xcassets */; };
 		A769E5542BE8399D00DFAD00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A769E5532BE8399D00DFAD00 /* Preview Assets.xcassets */; };
 		A769E5572BE8399D00DFAD00 /* Hugo Mason.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A769E54A2BE8399C00DFAD00 /* Hugo Mason.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A76D792E2C15BF9400936904 /* SwiftTipJar in Frameworks */ = {isa = PBXBuildFile; productRef = A76D792D2C15BF9400936904 /* SwiftTipJar */; };
 		A77884292C0BE93C008CC46A /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77884282C0BE93C008CC46A /* Detail.swift */; };
 		A778842B2C0EA611008CC46A /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778842A2C0EA611008CC46A /* HelloView.swift */; };
 		A778842D2C0EA636008CC46A /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778842C2C0EA636008CC46A /* TestView.swift */; };
 		A778842F2C0EA63F008CC46A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778842E2C0EA63F008CC46A /* SettingsView.swift */; };
+		A781AFAB2C2D7EC1003E646D /* SwiftTipJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781AFAA2C2D7EC1003E646D /* SwiftTipJar.swift */; };
 		A788DD4C2BF5916E00F8F734 /* SupaInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788DD4B2BF5916E00F8F734 /* SupaInline.swift */; };
 		A788DD4E2BF5968C00F8F734 /* SupaCornerRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788DD4D2BF5968C00F8F734 /* SupaCornerRight.swift */; };
 		A788DD502BF5A45F00F8F734 /* SupaCornerLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788DD4F2BF5A45F00F8F734 /* SupaCornerLeft.swift */; };
@@ -176,6 +176,7 @@
 		A778842A2C0EA611008CC46A /* HelloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloView.swift; sourceTree = "<group>"; };
 		A778842C2C0EA636008CC46A /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		A778842E2C0EA63F008CC46A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A781AFAA2C2D7EC1003E646D /* SwiftTipJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTipJar.swift; sourceTree = "<group>"; };
 		A788DD4B2BF5916E00F8F734 /* SupaInline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaInline.swift; sourceTree = "<group>"; };
 		A788DD4D2BF5968C00F8F734 /* SupaCornerRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaCornerRight.swift; sourceTree = "<group>"; };
 		A788DD4F2BF5A45F00F8F734 /* SupaCornerLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaCornerLeft.swift; sourceTree = "<group>"; };
@@ -187,6 +188,7 @@
 			membershipExceptions = (
 				LeftSupa.swift,
 				RightSupa.swift,
+				SmolSupa.swift,
 				SupaSmall.swift,
 				SupaYears.swift,
 				SupaYearsText.swift,
@@ -229,7 +231,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A76D792E2C15BF9400936904 /* SwiftTipJar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +383,7 @@
 				A769E5352BE8389D00DFAD00 /* ContentView.swift */,
 				A769E5372BE8389E00DFAD00 /* Assets.xcassets */,
 				A769E53C2BE8389E00DFAD00 /* Persistence.swift */,
+				A781AFAA2C2D7EC1003E646D /* SwiftTipJar.swift */,
 				A769E53E2BE8389E00DFAD00 /* PearDB.xcdatamodeld */,
 				A769E5392BE8389E00DFAD00 /* Preview Content */,
 			);
@@ -490,7 +492,6 @@
 			);
 			name = PearDB;
 			packageProductDependencies = (
-				A76D792D2C15BF9400936904 /* SwiftTipJar */,
 			);
 			productName = PearDB;
 			productReference = A769E5302BE8389D00DFAD00 /* PearDB.app */;
@@ -552,7 +553,6 @@
 			);
 			mainGroup = A769E5272BE8389D00DFAD00;
 			packageReferences = (
-				A76D792C2C15BF9400936904 /* XCRemoteSwiftPackageReference "SwiftTipJar" */,
 			);
 			productRefGroup = A769E5312BE8389D00DFAD00 /* Products */;
 			projectDirPath = "";
@@ -659,6 +659,7 @@
 				A77884292C0BE93C008CC46A /* Detail.swift in Sources */,
 				A7012F142BF173A80021415B /* Languages.swift in Sources */,
 				A7012F262BF187E40021415B /* TextExtensionInator.swift in Sources */,
+				A781AFAB2C2D7EC1003E646D /* SwiftTipJar.swift in Sources */,
 				A7012F182BF173C60021415B /* GithubRepository.swift in Sources */,
 				A769E53D2BE8389E00DFAD00 /* Persistence.swift in Sources */,
 				A7012F242BF187D60021415B /* ColorExtensionInator.swift in Sources */,
@@ -710,11 +711,14 @@
 		A7012F682BF411610021415B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = XVQR493263;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBWatchWidget/Info.plist;
@@ -741,11 +745,14 @@
 		A7012F692BF411610021415B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = XVQR493263;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBWatchWidget/Info.plist;
@@ -772,10 +779,14 @@
 		A7242FDC2C19BFAC00100ABE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = XVQR493263;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBPhoneWidget/Info.plist;
@@ -800,10 +811,14 @@
 		A7242FDD2C19BFAC00100ABE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = XVQR493263;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBPhoneWidget/Info.plist;
@@ -1012,11 +1027,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
@@ -1047,11 +1065,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
@@ -1082,11 +1103,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
@@ -1116,11 +1140,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDB Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
@@ -1204,25 +1231,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A76D792C2C15BF9400936904 /* XCRemoteSwiftPackageReference "SwiftTipJar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dkasaj/SwiftTipJar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A76D792D2C15BF9400936904 /* SwiftTipJar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A76D792C2C15BF9400936904 /* XCRemoteSwiftPackageReference "SwiftTipJar" */;
-			productName = SwiftTipJar;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A769E53E2BE8389E00DFAD00 /* PearDB.xcdatamodeld */ = {

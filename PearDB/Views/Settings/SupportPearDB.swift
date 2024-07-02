@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftTipJar
 
 
 struct SupportPearDB: View {
@@ -38,6 +37,8 @@ struct SupportPearDB: View {
              }
 
          }
+         .navigationTitle("Support PearDB")
+         .scrollContentBackground(.hidden)
          .onAppear {
              tipJar.transactionSuccessfulBlock = {
                  // Will be called from background, but manipulates UI - has to run on main queue

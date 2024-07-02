@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftTipJar
 
 @main
 struct PearDBApp: App {
