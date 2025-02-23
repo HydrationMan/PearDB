@@ -10,6 +10,7 @@ import OSLog
 
 struct DeviceDetailView: View {
     var device: Device
+    @State var selection = 0
     
     var body: some View {
         ZStack {
@@ -18,7 +19,7 @@ struct DeviceDetailView: View {
             VStack {
                 HStack(alignment: .center) {
                     HStack {
-                        AsyncImageView(url: "https://img.appledb.dev/device@main/\(device.key)/0.png")
+                        AsyncImageView(url: "https://img.appledb.dev/device@256/\(device.key)/0.png")
                             .frame(width: 128, height: 256)
                         VStack(alignment: .leading) {
                             Text(device.name)
@@ -43,29 +44,51 @@ struct DeviceDetailView: View {
                 .compositingGroup()
                 .shadow(radius: 5)
                 .border(width: 1, edges: [.bottom], color: Color(NSColor.gridColor))
-                .onAppear() {
-                    let peardbLogger = Logger.init(
-                        subsystem: "com.hydrate.PearDB.device", category: "com.hydrate.PearDB.debug"
-                    )
-                    peardbLogger.log(level: .error,"""
-                    📝 Device: \(device.name)
-                        ↳ IDENTIFIER: \(device.identifier ?? ["⚠️ N/A"])
-                        ↳ SOC: \(device.soc ?? "⚠️ N/A")
-                        ↳ CPID: \(device.cpid ?? "⚠️ N/A")
-                        ↳ ARCH: \(device.arch ?? "⚠️ N/A")
-                        ↳ TYPE: \(device.type ?? "⚠️ N/A")
-                        ↳ BOARD: \(device.board ?? ["⚠️ N/A"])
-                        ↳ BDID: \(device.bdid ?? "⚠️ N/A")
-                        ↳ MODEL: \(device.model ?? ["⚠️ N/A"])
-                        ↳ INFO: \(device.info?.map { "\($0.type) (\($0.Storage ?? "⚠️ N/A") Storage, \($0.RAM ?? "⚠️ N/A") RAM)" }.joined(separator: ", ") ?? "⚠️ N/A")
-                        ↳ KEY: \(device.key)
-                        ↳ RELEASED: \(device.released ?? "⚠️ N/A")
-                    """)
+                
+                TabView(selection: $selection) {
+                    DeviceInfoView(device: device)
+                    .tabItem({
+                        Label {
+                            Text("Device Info")
+                        } icon: {
+                            Image(systemName: "info.circle.fill")
+                        }
+                    })
+                    .tag(0)
+                    .padding(.horizontal ,16)
+                    DeviceFirmwaresView()
+                        .tabItem({
+                            Label {
+                                Text("Device Firmwares")
+                            } icon: {
+                                Image(systemName: "terminal")
+                            }
+                        })
+                        .tag(0)
+                        .padding(.horizontal ,16)
                 }
-//                ScrollView {
-//                    
-//                }
+                .padding(.horizontal, 16)
             }
+        }
+        .onAppear() {
+            let peardbLogger = Logger.init(
+                subsystem: "com.hydrate.PearDB.device", category: "com.hydrate.PearDB.debug"
+            )
+            peardbLogger.log(level: .error,"""
+            📝 Device: \(device.name)
+                ↳ IDENTIFIER: \(device.identifier ?? "⚠️ N/A")
+                ↳ SOC: \(device.soc ?? "⚠️ N/A")
+                ↳ CPID: \(device.cpid ?? "⚠️ N/A")
+                ↳ ARCH: \(device.arch ?? "⚠️ N/A")
+                ↳ TYPE: \(device.type ?? "⚠️ N/A")
+                ↳ BOARD: \(device.board ?? ["⚠️ N/A"])
+                ↳ BDID: \(device.bdid ?? "⚠️ N/A")
+                ↳ MODEL: \(device.model ?? ["⚠️ N/A"])
+                ↳ KEY: \(device.key)
+                ↳ RELEASED: \(device.released ?? "⚠️ N/A")
+            """)
         }
     }
 }
+
+
