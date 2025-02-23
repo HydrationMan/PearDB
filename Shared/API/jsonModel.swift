@@ -11,7 +11,7 @@ import Foundation
 struct Device: Codable, Identifiable {
     var id: String { key }
     let name: String
-    let identifier: [String]?
+    let identifierRaw: IdentifierType?
     let socRaw: SOCType?  // Use a custom enum for handling multiple types
     let cpidRaw: CPIDType?
     let arch: String?
@@ -25,7 +25,7 @@ struct Device: Codable, Identifiable {
     let releasedRaw: ReleasedType?
     
     enum CodingKeys: String, CodingKey {
-        case name, identifier, socRaw = "soc", cpidRaw = "cpid", arch, type, board, bdid, model, info, key, releasedRaw = "released"
+        case name, identifierRaw = "identifier", socRaw = "soc", cpidRaw = "cpid", arch, type, board, bdid, model, info, key, releasedRaw = "released"
     }
 
     var soc: String? {
@@ -33,6 +33,17 @@ struct Device: Codable, Identifiable {
         case .single(let string): return string
         case .array(let strings): return strings.joined(separator: ", ")  // Convert array to string
         case .none: return nil
+        }
+    }
+    
+    var identifier: String? {
+        switch identifierRaw {
+        case .single(let string):
+            return string
+        case .array(let array):
+            return array.joined(separator: ", ")
+        case nil:
+            return nil
         }
     }
     
@@ -115,6 +126,24 @@ struct Device: Codable, Identifiable {
         case "iPod shuffle": return .ipodShuffle
         case "iPod touch": return .ipodTouch
         default: return nil
+        }
+    }
+    
+    enum IdentifierType: Codable {
+        case single(String)
+        case array([String])
+        
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let string = try? container.decode(String.self) {
+                self = .single(string)
+            } else if let strings = try? container.decode([String].self) {
+                self = .array(strings)
+            } else {
+                throw DecodingError.typeMismatch(SOCType.self,
+                    DecodingError.Context(codingPath: decoder.codingPath,
+                    debugDescription: "❌ Invalid type for IdentifierType"))
+            }
         }
     }
 
@@ -200,35 +229,469 @@ struct Device: Codable, Identifiable {
 // Model for memory/storage info
 struct DeviceInfo: Codable {
     let type: String
-    let Storage: String?
-    let RAM: String?
+    
+    // Type SoC
+    let soc: String?
+    let architecture: String?
+    let manifacturingProcess: String?
+    
+    // Type Cores
+    let cpuCoreCount: String?
+    let performanceCores: String?
+    let efficiencyCores: String?
+    let gpuCoreCount: String?
+    let neuralEngineCoreCount: String?
+    
+    // Type Memory
+    let storage: String?
+    let ram: String?
+    
+    // Type Power
+    let batteryCapacity: String?
+    let batteryLife: String?
+    let charger: String?
+    
+    // Type Connectivity
+    let ports: String?
+    let cellular: String?
+    let wifi: String?
+    let bluetooth: String?
+    let ultraWideBand: String?
+    let supports: String?
+    let externalDisplayCount: String?
+    
+    // Type sensors
+    let camera: String?
+    let frontCamera: String?
+    let telephotoCamera: String?
+    let wideCamera: String?
+    let ultraWideCamera: String?
+    let trueDepthCamera: String?
+    let biometrics: String?
+    let other: String?
+    
+    // Type Audio
+    let channels: String?
+    let speakers: String?
+    let dolbyAtmos: String?
+    let headphoneJack: String?
+    let microphone: String?
+    
+    // Type Display
+    let resolution: Resolution?
+    let screenSize: String?
+    let refreshRate: String?
+    let peakBrightness: String?
+    let colorGamut: String?
+    let trueTone: String?
+    let proMotion: String?
+    let ppi: String?
+    
+    // Type Input
+    let keyCount: String?
+    let trackpad: String?
+    let touchbar: String?
+    let touchId: String?
 
     enum CodingKeys: String, CodingKey {
-        case type, Storage, RAM
+        case type, soc = "SoC", architecture = "Architecture", manifacturingProcess = "Manufacturing_Process", cpuCoreCount = "CPU_Core_Count", performanceCores = "Performance_Cores", efficiencyCores = "Efficiency_Cores", gpuCoreCount = "GPU_Core_Count", neuralEngineCoreCount = "Neural_Engine_Core_Count", storage = "Storage", ram = "RAM", batteryCapacity = "Battery_Capacity", batteryLife = "Battery_Life", charger = "Charger", ports = "Ports", cellular = "Cellular", wifi = "Wi-Fi", bluetooth = "Bluetooth", ultraWideBand = "Ultra-wideband", frontCamera = "Front_Camera", telephotoCamera = "Telephoto_Camera", wideCamera = "Wide_Camera", ultraWideCamera = "Ultrawide_Camera", trueDepthCamera = "TrueDepth_Camera", biometrics = "Biometrics", other = "Other", channels = "Channels", headphoneJack = "Headphone_Jack", microphone = "Microphone", resolution = "Resolution", screenSize = "Screen_Size", refreshRate = "Refresh_Rate", peakBrightness = "Peak_Brightness", colorGamut = "Color_Gamut", trueTone = "True_Tone", proMotion = "ProMotion", ppi = "Pixels_per_Inch", speakers = "Speakers", dolbyAtmos = "Dolby_Atmos", camera = "Camera", keyCount = "Key_Count", trackpad = "Trackpad", touchbar = "Touch_Bar", touchId = "Touch_ID", supports = "Supports", externalDisplayCount = "External_Display_Count"
+    }
+    
+    var deviceInfoType: DeviceInfoType? {
+        switch type {
+        case "SoC": return .soc
+        case "Cores": return .cores
+        case "Memory": return .memory
+        case "Connectivity": return .connectivity
+        case "Power": return .power
+        case "Sensors": return .sensors
+        case "Audio": return .audio
+        case "Storage": return .storage
+        case "Display": return .display
+        case "Input": return .input
+        default: return nil
+        }
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(String.self, forKey: .type)
+        resolution = try container.decodeIfPresent(Resolution.self, forKey: .resolution)
+        
+        if let supportsString = try? container.decodeIfPresent(String.self, forKey: .supports) {
+            supports = supportsString
+        } else if let supportsArray = try? container.decodeIfPresent([String].self, forKey: .supports) {
+            supports = supportsArray.joined(separator: ", ")
+        } else {
+            supports = nil
+        }
+        
+        if let externalDisplayCountInt = try? container.decodeIfPresent(Int.self, forKey: .externalDisplayCount) {
+            externalDisplayCount = externalDisplayCountInt.description
+        } else if let externalDisplayCountArray = try? container.decodeIfPresent([Int].self, forKey: .externalDisplayCount) {
+            externalDisplayCount = externalDisplayCountArray.map { $0.description }.joined(separator: ", ")
+        } else {
+            externalDisplayCount = nil
+        }
+        
+        if let ppiInt = try? container.decodeIfPresent(Int.self, forKey: .ppi) {
+            ppi = ppiInt.description
+        } else if let ppiArray = try? container.decodeIfPresent([Int].self, forKey: .ppi) {
+            ppi = ppiArray.map { "\($0)" }.joined(separator: ", ")
+        } else {
+            ppi = nil
+        }
+        
+        if let cpuCoreCountInt = try? container.decodeIfPresent(Int.self, forKey: .cpuCoreCount) {
+            cpuCoreCount = cpuCoreCountInt.description
+        } else if let cpuCoreCountArray = try? container.decodeIfPresent([Int].self, forKey: .cpuCoreCount) {
+            cpuCoreCount = cpuCoreCountArray.map { "\($0)" }.joined(separator: ", ")
+        } else {
+            cpuCoreCount = nil
+        }
+        
+        if let gpuCoreCountInt = try? container.decodeIfPresent(Int.self, forKey: .gpuCoreCount) {
+            gpuCoreCount = gpuCoreCountInt.description
+        } else if let gpuCoreCountArray = try? container.decodeIfPresent([Int].self, forKey: .gpuCoreCount) {
+            gpuCoreCount = gpuCoreCountArray.map { "\($0)" }.joined(separator: ", ")
+        } else {
+            gpuCoreCount = nil
+        }
+        
+        if let neuralEngineCoreCountInt = try? container.decodeIfPresent(Int.self, forKey: .neuralEngineCoreCount) {
+            neuralEngineCoreCount = neuralEngineCoreCountInt.description
+        } else if let neuralEngineCoreCountArray = try? container.decodeIfPresent([Int].self, forKey: .gpuCoreCount) {
+            neuralEngineCoreCount = neuralEngineCoreCountArray.map { "\($0)" }.joined(separator: ", ")
+        } else {
+            neuralEngineCoreCount = nil
+        }
+        
+        if let ultraWideBandBool = try? container.decodeIfPresent(Bool.self, forKey: .ultraWideBand) {
+            ultraWideBand = ultraWideBandBool ? "Yes" : "No"
+        } else {
+            ultraWideBand = nil
+        }
+        
+        if let touchbarBool = try? container.decodeIfPresent(Bool.self, forKey: .touchbar) {
+            touchbar = touchbarBool ? "Yes" : "No"
+        } else {
+            touchbar = nil
+        }
+        
+        if let touchIdBool = try? container.decodeIfPresent(Bool.self, forKey: .touchId) {
+            touchId = touchIdBool ? "Yes" : "No"
+        } else {
+            touchId = nil
+        }
+        
+        if let headphoneJackBool = try? container.decodeIfPresent(Bool.self, forKey: .headphoneJack) {
+            headphoneJack = headphoneJackBool ? "Yes" : "No"
+        } else if let headphoneJackString = try? container.decodeIfPresent(String.self, forKey: .headphoneJack) {
+            headphoneJack = headphoneJackString
+        } else {
+            headphoneJack = nil
+        }
+        
+        if let microphoneBool = try? container.decodeIfPresent(Bool.self, forKey: .microphone) {
+            microphone = microphoneBool ? "Yes" : "No"
+        } else if let microphoneString = try? container.decodeIfPresent(String.self, forKey: .microphone) {
+            microphone = microphoneString
+        } else {
+            microphone = nil
+        }
+        
+        if let speakerString = try? container.decodeIfPresent(String.self, forKey: .speakers) {
+            speakers = speakerString
+        } else if let speakerArray = try? container.decodeIfPresent([String].self, forKey: .speakers) {
+            speakers = speakerArray.joined(separator: ", ")
+        } else {
+            speakers = nil
+        }
+        
+        if let dolbyAtmosBool = try? container.decodeIfPresent(Bool.self, forKey: .dolbyAtmos) {
+            dolbyAtmos = dolbyAtmosBool ? "Yes" : "No"
+        } else {
+            dolbyAtmos = nil
+        }
+        
+        if let trueToneBool = try? container.decodeIfPresent(Bool.self, forKey: .trueTone) {
+            trueTone = trueToneBool ? "Yes" : "No"
+        } else {
+            trueTone = nil
+        }
+        
+        if let proMotionBool = try? container.decodeIfPresent(Bool.self, forKey: .proMotion) {
+            proMotion = proMotionBool ? "Yes" : "No"
+        } else {
+            proMotion = nil
+        }
+        
+        // Decode SoC as either a String or an Array
+        if let socString = try? container.decodeIfPresent(String.self, forKey: .soc) {
+            soc = socString
+        } else if let socArray = try? container.decodeIfPresent([String].self, forKey: .soc) {
+            soc = socArray.joined(separator: ", ")
+        } else {
+            soc = nil
+        }
+        
+        // Decode Architecture as either a String or an Array
+        if let architectureString = try? container.decodeIfPresent(String.self, forKey: .architecture) {
+            architecture = architectureString
+        } else if let architectureArray = try? container.decodeIfPresent([String].self, forKey: .architecture) {
+            architecture = architectureArray.joined(separator: ", ")
+        } else {
+            architecture = nil
+        }
+        
+        // Decode Manifacturing Process as either a String or an Array
+        if let manifacturingProcessString = try? container.decodeIfPresent(String.self, forKey: .manifacturingProcess) {
+            manifacturingProcess = manifacturingProcessString
+        } else if let manifacturingProcessArray = try? container.decodeIfPresent([String].self, forKey: .manifacturingProcess) {
+            manifacturingProcess = manifacturingProcessArray.joined(separator: ", ")
+        } else {
+            manifacturingProcess = nil
+        }
+        
+        // Decode Performance Cores as either a String or an Array
+        if let performanceCoresString = try? container.decodeIfPresent(String.self, forKey: .performanceCores) {
+            performanceCores = performanceCoresString
+        } else if let performanceCoresArray = try? container.decodeIfPresent([String].self, forKey: .performanceCores) {
+            performanceCores = performanceCoresArray.joined(separator: ", ")
+        } else {
+            performanceCores = nil
+        }
+        
+        // Decode Efficiency Cores as either a String or an Array
+        if let efficiencyCoresString = try? container.decodeIfPresent(String.self, forKey: .efficiencyCores) {
+            efficiencyCores = efficiencyCoresString
+        } else if let efficiencyCoresArray = try? container.decodeIfPresent([String].self, forKey: .efficiencyCores) {
+            efficiencyCores = efficiencyCoresArray.joined(separator: ", ")
+        } else {
+            efficiencyCores = nil
+        }
 
         // Decode Storage as either a String or an Array
-        if let storageString = try? container.decode(String.self, forKey: .Storage) {
-            Storage = storageString
-        } else if let storageArray = try? container.decode([String].self, forKey: .Storage) {
-            Storage = storageArray.joined(separator: ", ")
+        if let storageString = try? container.decodeIfPresent(String.self, forKey: .storage) {
+            storage = storageString
+        } else if let storageArray = try? container.decodeIfPresent([String].self, forKey: .storage) {
+            storage = storageArray.joined(separator: ", ")
         } else {
-            Storage = nil
+            storage = nil
         }
 
         // Decode RAM as either a String or an Array
-        if let ramString = try? container.decode(String.self, forKey: .RAM) {
-            RAM = ramString
-        } else if let ramArray = try? container.decode([String].self, forKey: .RAM) {
-            RAM = ramArray.joined(separator: ", ")
+        if let ramString = try? container.decodeIfPresent(String.self, forKey: .ram) {
+            ram = ramString
+        } else if let ramArray = try? container.decodeIfPresent([String].self, forKey: .ram) {
+            ram = ramArray.joined(separator: ", ")
         } else {
-            RAM = nil
+            ram = nil
+        }
+        
+        // Decode Battery Capacity as either a String or an Array
+        if let batteryCapacityString = try? container.decodeIfPresent(String.self, forKey: .batteryCapacity) {
+            batteryCapacity = batteryCapacityString
+        } else if let batteryCapacityArray = try? container.decodeIfPresent([String].self, forKey: .batteryCapacity) {
+            batteryCapacity = batteryCapacityArray.joined(separator: ", ")
+        } else {
+            batteryCapacity = nil
+        }
+        
+        // Decode Battery Life as either a String or an Array
+        if let batteryLifeString = try? container.decodeIfPresent(String.self, forKey: .batteryLife) {
+            batteryLife = batteryLifeString
+        } else if let batteryLifeArray = try? container.decodeIfPresent([String].self, forKey: .batteryLife) {
+            batteryLife = batteryLifeArray.joined(separator: ", ")
+        } else {
+            batteryLife = nil
+        }
+        
+        // Decode Charger as either a String or an Array
+        if let chargerString = try? container.decodeIfPresent(String.self, forKey: .charger) {
+            charger = chargerString
+        } else if let chargerArray = try? container.decodeIfPresent([String].self, forKey: .charger) {
+            charger = chargerArray.joined(separator: ", ")
+        } else {
+            charger = nil
+        }
+        
+        // Decode Ports as either a String or an Array
+        if let portsString = try? container.decodeIfPresent(String.self, forKey: .ports) {
+            ports = portsString
+        } else if let portsArray = try? container.decodeIfPresent([String].self, forKey: .ports) {
+            ports = portsArray.joined(separator: ", ")
+        } else {
+            ports = nil
+        }
+        
+        // Decode Cellular as either a String or an Array
+        if let cellularString = try? container.decodeIfPresent(String.self, forKey: .cellular) {
+            cellular = cellularString
+        } else if let cellularArray = try? container.decodeIfPresent([String].self, forKey: .cellular) {
+            cellular = cellularArray.joined(separator: ", ")
+        } else {
+            cellular = nil
+        }
+        
+        // Decode Wifi as either a String or an Array
+        if let wifiString = try? container.decodeIfPresent(String.self, forKey: .wifi) {
+            wifi = wifiString
+        } else if let wifiArray = try? container.decodeIfPresent([String].self, forKey: .wifi) {
+            wifi = wifiArray.joined(separator: ", ")
+        } else {
+            wifi = nil
+        }
+        
+        // Decode Bluetooth as either a String or an Array
+        if let bluetoothString = try? container.decodeIfPresent(String.self, forKey: .bluetooth) {
+            bluetooth = bluetoothString
+        } else if let bluetoothArray = try? container.decodeIfPresent([String].self, forKey: .bluetooth) {
+            bluetooth = bluetoothArray.joined(separator: ", ")
+        } else {
+            bluetooth = nil
+        }
+        
+        // Decode Front Camera as either a String or an Array
+        if let frontCameraString = try? container.decodeIfPresent(String.self, forKey: .frontCamera) {
+            frontCamera = frontCameraString
+        } else if let frontCameraArray = try? container.decodeIfPresent([String].self, forKey: .frontCamera) {
+            frontCamera = frontCameraArray.joined(separator: ", ")
+        } else {
+            frontCamera = nil
+        }
+        
+        // Decode Front Camera as either a String or an Array
+        if let telephotoCameraString = try? container.decodeIfPresent(String.self, forKey: .telephotoCamera) {
+            telephotoCamera = telephotoCameraString
+        } else if let telephotoCameraArray = try? container.decodeIfPresent([String].self, forKey: .telephotoCamera) {
+            telephotoCamera = telephotoCameraArray.joined(separator: ", ")
+        } else {
+            telephotoCamera = nil
+        }
+        
+        // Decode Wide Camera as either a String or an Array
+        if let wideCameraString = try? container.decodeIfPresent(String.self, forKey: .wideCamera) {
+            wideCamera = wideCameraString
+        } else if let wideCameraArray = try? container.decodeIfPresent([String].self, forKey: .wideCamera) {
+            wideCamera = wideCameraArray.joined(separator: ", ")
+        } else {
+            wideCamera = nil
+        }
+        
+        // Decode Ultra wide Camera as either a String or an Array
+        if let ultraWideCameraString = try? container.decodeIfPresent(String.self, forKey: .ultraWideCamera) {
+            ultraWideCamera = ultraWideCameraString
+        } else if let ultraWideCameraArray = try? container.decodeIfPresent([String].self, forKey: .ultraWideCamera) {
+            ultraWideCamera = ultraWideCameraArray.joined(separator: ", ")
+        } else {
+            ultraWideCamera = nil
+        }
+        
+        // Decode True depth Camera as either a String or an Array
+        if let trueDepthCameraString = try? container.decodeIfPresent(String.self, forKey: .trueDepthCamera) {
+            trueDepthCamera = trueDepthCameraString
+        } else if let trueDepthCameraArray = try? container.decodeIfPresent([String].self, forKey: .trueDepthCamera) {
+            trueDepthCamera = trueDepthCameraArray.joined(separator: ", ")
+        } else {
+            trueDepthCamera = nil
+        }
+        
+        // Decode Biometrics as either a String or an Array
+        if let biometricsString = try? container.decodeIfPresent(String.self, forKey: .biometrics) {
+            biometrics = biometricsString
+        } else if let biometricsArray = try? container.decodeIfPresent([String].self, forKey: .biometrics) {
+            biometrics = biometricsArray.joined(separator: ", ")
+        } else {
+            biometrics = nil
+        }
+        
+        // Decode Other as either a String or an Array
+        if let otherString = try? container.decodeIfPresent(String.self, forKey: .other) {
+            other = otherString
+        } else if let otherArray = try? container.decodeIfPresent([String].self, forKey: .other) {
+            other = otherArray.joined(separator: ", ")
+        } else {
+            other = nil
+        }
+        
+        // Decode Channels as either a String or an Array
+        if let channelsString = try? container.decodeIfPresent(String.self, forKey: .channels) {
+            channels = channelsString
+        } else if let channelsArray = try? container.decodeIfPresent([String].self, forKey: .channels) {
+            channels = channelsArray.joined(separator: ", ")
+        } else {
+            channels = nil
+        }
+        
+        // Decode Screen Size as either a String or an Array
+        if let screenSizeString = try? container.decodeIfPresent(String.self, forKey: .screenSize) {
+            screenSize = screenSizeString
+        } else if let screenSizeArray = try? container.decodeIfPresent([String].self, forKey: .screenSize) {
+            screenSize = screenSizeArray.joined(separator: ", ")
+        } else {
+            screenSize = nil
+        }
+        
+        // Decode Refresh Rate as either a String or an Array
+        if let refreshRateString = try? container.decodeIfPresent(String.self, forKey: .refreshRate) {
+            refreshRate = refreshRateString
+        } else if let refreshRateArray = try? container.decodeIfPresent([String].self, forKey: .refreshRate) {
+            refreshRate = refreshRateArray.joined(separator: ", ")
+        } else {
+            refreshRate = nil
+        }
+        
+        // Decode Peak Brightness as either a String or an Array
+        if let peakBrightnessString = try? container.decodeIfPresent(String.self, forKey: .peakBrightness) {
+            peakBrightness = peakBrightnessString
+        } else if let peakBrightnessArray = try? container.decodeIfPresent([String].self, forKey: .peakBrightness) {
+            peakBrightness = peakBrightnessArray.joined(separator: ", ")
+        } else {
+            peakBrightness = nil
+        }
+        
+        // Decode Peak Brightness as either a String or an Array
+        if let colorGamutString = try? container.decodeIfPresent(String.self, forKey: .colorGamut) {
+            colorGamut = colorGamutString
+        } else if let colorGamutArray = try? container.decodeIfPresent([String].self, forKey: .colorGamut) {
+            colorGamut = colorGamutArray.joined(separator: ", ")
+        } else {
+            colorGamut = nil
+        }
+        
+        // Decode Camera as either a String or an Array
+        if let cameraString = try? container.decodeIfPresent(String.self, forKey: .camera) {
+            camera = cameraString
+        } else if let cameraArray = try? container.decodeIfPresent([String].self, forKey: .camera) {
+            camera = cameraArray.joined(separator: ", ")
+        } else {
+            camera = nil
+        }
+        
+        // Decode Key Count as either a String or an Array
+        if let keyCountString = try? container.decodeIfPresent(String.self, forKey: .keyCount) {
+            keyCount = keyCountString
+        } else if let keyCountArray = try? container.decodeIfPresent([String].self, forKey: .keyCount) {
+            keyCount = keyCountArray.joined(separator: ", ")
+        } else {
+            keyCount = nil
+        }
+        
+        // Decode Trackpad as either a String or an Array
+        if let trackpadString = try? container.decodeIfPresent(String.self, forKey: .trackpad) {
+            trackpad = trackpadString
+        } else if let trackpadArray = try? container.decodeIfPresent([String].self, forKey: .trackpad) {
+            trackpad = trackpadArray.joined(separator: ", ")
+        } else {
+            trackpad = nil
         }
     }
+}
+
+struct Resolution: Codable {
+    let x: Int?
+    let y: Int?
 }
 
 class DeviceDetailViewModel: ObservableObject {
@@ -241,6 +704,19 @@ class DeviceDetailViewModel: ObservableObject {
             }
         }
     }
+}
+
+enum DeviceInfoType: String, Codable, CaseIterable {
+    case soc = "SoC"
+    case cores = "Cores"
+    case memory = "Memory"
+    case power = "Power"
+    case connectivity = "Connectivity"
+    case sensors = "Sensors"
+    case audio = "Audio"
+    case storage = "Storage"
+    case display = "Display"
+    case input = "Input"
 }
 
 enum DeviceType: String, Codable, CaseIterable {
@@ -304,4 +780,19 @@ enum DeviceType: String, Codable, CaseIterable {
     case ipodNano = "iPod nano"
     case ipodShuffle = "iPod shuffle"
     case ipodTouch = "iPod touch"
+}
+
+struct Firmware: Identifiable, Codable {
+    var id = UUID()
+    let osStr: String
+    let version: String
+    let build: String?
+    let key: String
+    let released: String?
+    let appledburl: String
+    let deviceMap: [String]
+
+    private enum CodingKeys: String, CodingKey {
+        case osStr, version, build, key, released, appledburl, deviceMap
+    }
 }

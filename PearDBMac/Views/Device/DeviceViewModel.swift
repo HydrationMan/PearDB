@@ -13,6 +13,7 @@ import SwiftUICore
     @Published var searchedDevices: [Device] = []
     @Published var filter: DeviceType = .accessories
     @Published var isLoading: Bool = true
+    @Published var firmwares: [Firmware] = []
     
     init(appDbDownloader: AppleDBDownloader) {
         self.appDbDownloader = appDbDownloader
