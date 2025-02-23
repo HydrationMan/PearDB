@@ -17,7 +17,7 @@ struct PearDBMacApp: App {
     }
 }
 
-// MARK: NavigationStack
+// MARK: NavigationSplitView
 struct MainView: View {
     @State private var selected: Int? = 0
 
@@ -50,7 +50,7 @@ struct MainView: View {
             if let selected = selected {
                 switch selected {
                 case 0:
-                    DeviceView()
+                    DeviceSectionView()
                 case 1:
                     Text("Firmware - soon")
                 case 2:

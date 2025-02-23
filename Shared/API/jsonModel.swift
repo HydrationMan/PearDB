@@ -129,6 +129,105 @@ struct Device: Codable, Identifiable {
         }
     }
     
+    var deviceGroup: DeviceGroupType? {
+        switch deviceType {
+        case .accessories:
+            return .homeAndAccessories
+        case .adapters:
+            return .homeAndAccessories
+        case .airPods:
+            return .audio
+        case .airPort:
+            return .homeAndAccessories
+        case .airTag:
+            return .homeAndAccessories
+        case .applePencil:
+            return .inputs
+        case .appleTV:
+            return .homeAndAccessories
+        case .appleWatch:
+            return .homeAndAccessories
+        case .audio:
+            return .audio
+        case .beatsEarbuds:
+            return .audio
+        case .beatsHeadphones:
+            return .audio
+        case .beatsSpeakers:
+            return .audio
+        case .beddit:
+            return .homeAndAccessories
+        case .bluetooth:
+            return .homeAndAccessories
+        case .cases:
+            return .homeAndAccessories
+        case .display:
+            return .homeAndAccessories
+        case .headset:
+            return .homeAndAccessories
+        case .homePod:
+            return .audio
+        case .keyboard:
+            return .inputs
+        case .macPro:
+            return .macs
+        case .macStudio:
+            return .macs
+        case .macMini:
+            return .macs
+        case .macBook:
+            return .macs
+        case .macBookAir:
+            return .macs
+        case .macBookPro:
+            return .macs
+        case .macintosh:
+            return .macs
+        case .mouse:
+            return .inputs
+        case .power:
+            return .homeAndAccessories
+        case .powerBook:
+            return .macs
+        case .powerMac:
+            return .macs
+        case .remote:
+            return .inputs
+        case .trackpad:
+            return .inputs
+        case .xserve:
+            return .macs
+        case .emac:
+            return .macs
+        case .ibook:
+            return .macs
+        case .iphone:
+            return .iOSDevices
+        case .imac:
+            return .macs
+        case .ipad:
+            return .iOSDevices
+        case .ipadAir:
+            return .iOSDevices
+        case .ipadPro:
+            return .iOSDevices
+        case .ipadMini:
+            return .iOSDevices
+        case .ipod:
+            return .iPods
+        case .ipodMini:
+            return .iPods
+        case .ipodNano:
+            return .iPods
+        case .ipodShuffle:
+            return .iPods
+        case .ipodTouch:
+            return .iPods
+        default:
+            return nil
+        }
+    }
+    
     enum IdentifierType: Codable {
         case single(String)
         case array([String])
@@ -795,4 +894,13 @@ struct Firmware: Identifiable, Codable {
     private enum CodingKeys: String, CodingKey {
         case osStr, version, build, key, released, appledburl, deviceMap
     }
+}
+
+enum DeviceGroupType: String, Codable, CaseIterable {
+    case iOSDevices = "iOS Devices"
+    case macs = "Macs"
+    case homeAndAccessories = "Home and Accessories"
+    case audio = "Audio"
+    case iPods = "iPods"
+    case inputs = "Inputs"
 }

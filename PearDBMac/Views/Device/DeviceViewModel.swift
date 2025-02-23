@@ -10,6 +10,7 @@ import SwiftUICore
 @MainActor class DeviceViewModel: ObservableObject {
     private let appDbDownloader: AppleDBDownloader
     @Published var devices: [Device] = []
+    @Published var selectedDeviceGroup: DeviceGroupType = DeviceGroupType.iOSDevices
     @Published var searchedDevices: [Device] = []
     @Published var filter: DeviceType = .accessories
     @Published var isLoading: Bool = true
@@ -29,6 +30,106 @@ import SwiftUICore
             self.searchedDevices = self.devices.filter { $0.name.lowercased().contains(searchString.lowercased())}
         } else {
             self.searchedDevices = []
+        }
+    }
+    
+    public func changeFilter(filter: DeviceType) {
+        self.filter = filter
+        switch filter {
+        case .accessories:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .adapters:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .airPods:
+            self.selectedDeviceGroup = .audio
+        case .airPort:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .airTag:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .applePencil:
+            self.selectedDeviceGroup = .inputs
+        case .appleTV:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .appleWatch:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .audio:
+            self.selectedDeviceGroup = .audio
+        case .beatsEarbuds:
+            self.selectedDeviceGroup = .audio
+        case .beatsHeadphones:
+            self.selectedDeviceGroup = .audio
+        case .beatsSpeakers:
+            self.selectedDeviceGroup = .audio
+        case .beddit:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .bluetooth:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .cases:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .display:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .headset:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .homePod:
+            self.selectedDeviceGroup = .audio
+        case .keyboard:
+            self.selectedDeviceGroup = .inputs
+        case .macPro:
+            self.selectedDeviceGroup = .macs
+        case .macStudio:
+            self.selectedDeviceGroup = .macs
+        case .macMini:
+            self.selectedDeviceGroup = .macs
+        case .macBook:
+            self.selectedDeviceGroup = .macs
+        case .macBookAir:
+            self.selectedDeviceGroup = .macs
+        case .macBookPro:
+            self.selectedDeviceGroup = .macs
+        case .macintosh:
+            self.selectedDeviceGroup = .macs
+        case .mouse:
+            self.selectedDeviceGroup = .inputs
+        case .power:
+            self.selectedDeviceGroup = .homeAndAccessories
+        case .powerBook:
+            self.selectedDeviceGroup = .macs
+        case .powerMac:
+            self.selectedDeviceGroup = .macs
+        case .remote:
+            self.selectedDeviceGroup = .inputs
+        case .trackpad:
+            self.selectedDeviceGroup = .inputs
+        case .xserve:
+            self.selectedDeviceGroup = .macs
+        case .emac:
+            self.selectedDeviceGroup = .macs
+        case .ibook:
+            self.selectedDeviceGroup = .macs
+        case .iphone:
+            self.selectedDeviceGroup = .iOSDevices
+        case .imac:
+            self.selectedDeviceGroup = .macs
+        case .ipad:
+            self.selectedDeviceGroup = .iOSDevices
+        case .ipadAir:
+            self.selectedDeviceGroup = .iOSDevices
+        case .ipadPro:
+            self.selectedDeviceGroup = .iOSDevices
+        case .ipadMini:
+            self.selectedDeviceGroup = .iOSDevices
+        case .ipod:
+            self.selectedDeviceGroup = .iPods
+        case .ipodMini:
+            self.selectedDeviceGroup = .iPods
+        case .ipodNano:
+            self.selectedDeviceGroup = .iPods
+        case .ipodShuffle:
+            self.selectedDeviceGroup = .iPods
+        case .ipodTouch:
+            self.selectedDeviceGroup = .iPods
+        default:
+            self.selectedDeviceGroup = .iOSDevices
         }
     }
     

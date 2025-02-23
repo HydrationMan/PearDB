@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DeviceView: View {
     let columns = [GridItem(.adaptive(minimum: 300))]
-
-    @StateObject var deviceViewModel: DeviceViewModel = .init(appDbDownloader: AppleDBDownloader.shared)
+    @State var selectedFilter: DeviceType = .iphone
+    @EnvironmentObject var deviceViewModel: DeviceViewModel
     
     var body: some View {
         ZStack {
@@ -20,7 +20,7 @@ struct DeviceView: View {
                     HeaderView(title: "Devices") { search in
                         deviceViewModel.search(searchString: search)
                     } applyFilter: { filter in
-                        deviceViewModel.filter = filter
+                        deviceViewModel.changeFilter(filter: filter)
                     }
                     
                     if deviceViewModel.isLoading {
@@ -29,7 +29,6 @@ struct DeviceView: View {
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
-                    
                     else {
                         ScrollView {
                             LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
@@ -60,6 +59,10 @@ struct DeviceView: View {
                         .padding(.horizontal, 16)
                     }
                 }
+            }
+            .navigationTitle(deviceViewModel.selectedDeviceGroup.rawValue)
+            .onAppear {
+                deviceViewModel.filter = selectedFilter
             }
         }
     }

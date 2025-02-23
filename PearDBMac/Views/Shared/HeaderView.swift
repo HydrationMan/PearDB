@@ -16,6 +16,8 @@ struct HeaderView: View {
     @State var filter: String = DeviceType.allCases[0].rawValue
     @State var search: String = ""
     
+    @EnvironmentObject var deviceViewModel: DeviceViewModel
+    
     var body: some View {
         HStack(alignment: .center) {
             Text(title)
@@ -56,5 +58,8 @@ struct HeaderView: View {
         .compositingGroup()
         .shadow(radius: 5)
         .border(width: 1, edges: [.bottom], color: Color(NSColor.gridColor))
+        .onAppear {
+            filter = deviceViewModel.filter.rawValue
+        }
     }
 }
