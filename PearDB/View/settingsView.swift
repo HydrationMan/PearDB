@@ -51,9 +51,9 @@ struct SettingsView: View {
         Task {
             do {
                 try await AppleDBDownloader.shared.purgeData()
-                print("Data purged successfully")
+                print("✅ Data purged successfully")
             } catch {
-                print("Error purging data: \(error)")
+                print("❌ Error purging data: \(error)")
             }
             isPurging = false
         }
@@ -64,9 +64,9 @@ struct SettingsView: View {
         Task {
             do {
                 try await AppleDBDownloader.shared.downloadAllIfNeeded()
-                print("Data redownloaded successfully")
+                print("✅ Data redownloaded successfully")
             } catch {
-                print("Error redownloading data: \(error)")
+                print("❌ Error redownloading data: \(error)")
             }
             isRedownloading = false
         }

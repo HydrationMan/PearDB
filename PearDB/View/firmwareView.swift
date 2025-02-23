@@ -39,7 +39,7 @@ struct FirmwareView: View {
                     do {
                         try await downloader.downloadAllIfNeeded()
                     } catch {
-                        print("Error downloading firmwares: \(error)")
+                        print("❌ Error downloading firmwares: \(error)")
                     }
                     loadFirmwareData()
                 }
@@ -58,10 +58,10 @@ struct FirmwareView: View {
                             self.isLoading = false
                         }
                     } catch {
-                        print("Error decoding firmwares: \(error)")
+                        print("❌ Error decoding firmwares: \(error)")
                     }
                 } else {
-                    print("No local firmware data found.")
+                    print("⚠️ No local firmware data found.")
                 }
             }
         }
@@ -111,7 +111,7 @@ class FirmwareAPI {
             do {
                 return try JSONDecoder().decode([Firmware].self, from: data)
             } catch {
-                print("Error decoding firmwares: \(error)")
+                print("❌ Error decoding firmwares: \(error)")
             }
         }
         return []

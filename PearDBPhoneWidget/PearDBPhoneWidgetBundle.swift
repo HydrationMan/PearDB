@@ -17,8 +17,7 @@ struct PearDBPhoneWidgetBundle: WidgetBundle {
             RightSupaWidget()
             SupaYearsWidget()
         }
-        BDaySupaLeftWidget()
-        BDaySupaRightWidget()
+        BDaySupaFlipWidget()
     }
 }
 

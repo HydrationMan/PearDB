@@ -10,21 +10,6 @@ import SwiftUI
 struct SettingsView: View {
     @State private var isPurging = false
     @State private var isRedownloading = false
-
-//    var body: some View {
-//        VStack {
-//            Button("Purge Data") {
-//                purgeData()
-//            }
-//            .disabled(isPurging)
-//
-//            Button("Redownload Data") {
-//                redownloadData()
-//            }
-//            .disabled(isRedownloading)
-//        }
-//        .padding()
-//    }
     var body: some View {
         Form {
             Section(header: Text("Debug")) {
@@ -43,6 +28,7 @@ struct SettingsView: View {
                     )
                 }
             }
+            .navigationTitle("Settings")
         }
     }
 
@@ -51,9 +37,9 @@ struct SettingsView: View {
         Task {
             do {
                 try await AppleDBDownloader.shared.purgeData()
-                print("Data purged successfully")
+                print("✅Data purged successfully")
             } catch {
-                print("Error purging data: \(error)")
+                print("❌ Error purging data: \(error)")
             }
             isPurging = false
         }
@@ -64,9 +50,9 @@ struct SettingsView: View {
         Task {
             do {
                 try await AppleDBDownloader.shared.downloadAllIfNeeded()
-                print("Data redownloaded successfully")
+                print("✅Data redownloaded successfully")
             } catch {
-                print("Error redownloading data: \(error)")
+                print("❌ Error redownloading data: \(error)")
             }
             isRedownloading = false
         }

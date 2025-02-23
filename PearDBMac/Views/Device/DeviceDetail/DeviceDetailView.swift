@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct DeviceDetailView: View {
     var device: Device
@@ -42,10 +43,28 @@ struct DeviceDetailView: View {
                 .compositingGroup()
                 .shadow(radius: 5)
                 .border(width: 1, edges: [.bottom], color: Color(NSColor.gridColor))
-                
-                ScrollView {
-                    
+                .onAppear() {
+                    let peardbLogger = Logger.init(
+                        subsystem: "com.hydrate.PearDB.device", category: "com.hydrate.PearDB.debug"
+                    )
+                    peardbLogger.log(level: .error,"""
+                    📝 Device: \(device.name)
+                        ↳ IDENTIFIER: \(device.identifier ?? ["⚠️ N/A"])
+                        ↳ SOC: \(device.soc ?? "⚠️ N/A")
+                        ↳ CPID: \(device.cpid ?? "⚠️ N/A")
+                        ↳ ARCH: \(device.arch ?? "⚠️ N/A")
+                        ↳ TYPE: \(device.type ?? "⚠️ N/A")
+                        ↳ BOARD: \(device.board ?? ["⚠️ N/A"])
+                        ↳ BDID: \(device.bdid ?? "⚠️ N/A")
+                        ↳ MODEL: \(device.model ?? ["⚠️ N/A"])
+                        ↳ INFO: \(device.info?.map { "\($0.type) (\($0.Storage ?? "⚠️ N/A") Storage, \($0.RAM ?? "⚠️ N/A") RAM)" }.joined(separator: ", ") ?? "⚠️ N/A")
+                        ↳ KEY: \(device.key)
+                        ↳ RELEASED: \(device.released ?? "⚠️ N/A")
+                    """)
                 }
+//                ScrollView {
+//                    
+//                }
             }
         }
     }

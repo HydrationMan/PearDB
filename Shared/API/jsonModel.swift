@@ -22,7 +22,11 @@ struct Device: Codable, Identifiable {
     let info: [DeviceInfo]?
     let key: String
 
-    let releasedRaw: ReleasedType?  // Handle multiple formats
+    let releasedRaw: ReleasedType?
+    
+    enum CodingKeys: String, CodingKey {
+        case name, identifier, socRaw = "soc", cpidRaw = "cpid", arch, type, board, bdid, model, info, key, releasedRaw = "released"
+    }
 
     var soc: String? {
         switch socRaw {
@@ -32,16 +36,16 @@ struct Device: Codable, Identifiable {
         }
     }
     
-    var cpid: String? {
-        switch cpidRaw {
+    var released: String? {
+        switch releasedRaw {
         case .single(let string): return string
         case .array(let strings): return strings.joined(separator: ", ")
         case .none: return nil
         }
     }
-
-    var released: String? {
-        switch releasedRaw {
+    
+    var cpid: String? {
+        switch cpidRaw {
         case .single(let string): return string
         case .array(let strings): return strings.joined(separator: ", ")
         case .none: return nil
@@ -127,7 +131,7 @@ struct Device: Codable, Identifiable {
             } else {
                 throw DecodingError.typeMismatch(SOCType.self,
                     DecodingError.Context(codingPath: decoder.codingPath,
-                    debugDescription: "Invalid type for SOCType"))
+                    debugDescription: "❌ Invalid type for SOCType"))
             }
         }
 
@@ -153,7 +157,7 @@ struct Device: Codable, Identifiable {
             } else {
                 throw DecodingError.typeMismatch(SOCType.self,
                     DecodingError.Context(codingPath: decoder.codingPath,
-                    debugDescription: "Invalid type for CPIDType"))
+                    debugDescription: "❌ Invalid type for CPIDType"))
             }
         }
 
@@ -172,29 +176,22 @@ struct Device: Codable, Identifiable {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
-
-            // Try to decode a single string
             if let string = try? container.decode(String.self) {
                 self = .single(string)
-            }
-            // Try to decode an array of strings
-            else if let strings = try? container.decode([String].self) {
+            } else if let strings = try? container.decode([String].self) {
                 self = .array(strings)
-            }
-            else {
+            } else {
                 throw DecodingError.typeMismatch(ReleasedType.self,
                     DecodingError.Context(codingPath: decoder.codingPath,
-                                          debugDescription: "Invalid type for ReleasedType"))
+                    debugDescription: "❌ Invalid type for ReleasedType"))
             }
         }
 
         func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .single(let string):
-                try container.encode(string)
-            case .array(let strings):
-                try container.encode(strings)
+            case .single(let string): try container.encode(string)
+            case .array(let strings): try container.encode(strings)
             }
         }
     }

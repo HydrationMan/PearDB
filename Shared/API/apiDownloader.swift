@@ -124,7 +124,7 @@ class AppleDBDownloader: ObservableObject {
             do {
                 try fileManager.createDirectory(at: localDirectory, withIntermediateDirectories: true, attributes: nil)
             } catch {
-                print("Error creating AppleDB directory: \(error.localizedDescription)")
+                print("❌ Error creating AppleDB directory: \(error.localizedDescription)")
             }
         }
     }

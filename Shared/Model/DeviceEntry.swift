@@ -11,7 +11,7 @@ import CoreData
 final class Entry: NSManagedObject, Identifiable {
     @NSManaged var type: String?
     @NSManaged var soc: String?
-    @NSManaged var released: Date?
+    @NSManaged var released: String?
     @NSManaged var name: String?
     @NSManaged var model: [String]?
     @NSManaged var key: String?

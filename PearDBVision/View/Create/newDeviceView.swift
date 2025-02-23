@@ -52,20 +52,20 @@ struct newDeviceView: View {
                             self.filteredDevices = decodedDevices
                         }
                     } catch let DecodingError.typeMismatch(_, context) {
-                        print("Type mismatch error: \(context.debugDescription)")
+                        print("❌ Type mismatch error: \(context.debugDescription)")
                         print("Coding Path: \(context.codingPath)")
 
                         if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
                            let jsonArray = jsonObject as? [[String: Any]] {
                             if let index = context.codingPath.first?.intValue, index < jsonArray.count {
-                                print("Offending JSON entry: \(jsonArray[index])")
+                                print("❌ Offending JSON entry: \(jsonArray[index])")
                             }
                         }
                     } catch {
-                        print("Error decoding devices: \(error)")
+                        print("❌ Error decoding devices: \(error)")
                     }
                 } else {
-                    print("No local device data found.")
+                    print("⚠️ No local device data found.")
                 }
             }
         }

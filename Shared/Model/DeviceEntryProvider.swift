@@ -27,7 +27,7 @@ final class DeviceEntryProvider {
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         persistentContainer.loadPersistentStores {_, error in
             if let error {
-                fatalError("Unable to load store with error: \(error)")
+                fatalError("❌ Unable to load store with error: \(error)")
             }
         }
     }

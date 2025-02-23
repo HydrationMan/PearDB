@@ -58,7 +58,7 @@ struct SupaYearsWidgetView: View {
     
     var body: some View {
         HStack {
-            Image(uiImage: UIImage(named: isBirthdayToday ? "BDaySupaRight" : "NoBDaySupaRight") ?? UIImage())
+            Image(uiImage: UIImage(named: isBirthdayToday ? "BDaySupa" : "NoBDaySupa") ?? UIImage())
                 .resizable()
                 .frame(width: 42, height: 42)
                 .widgetBackground(Color.clear)

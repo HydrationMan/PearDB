@@ -39,7 +39,7 @@ struct FirmwareView: View {
                     do {
                         try await downloader.downloadAllIfNeeded()
                     } catch {
-                        print("Error downloading firmwares: \(error)")
+                        print("❌ Error downloading firmwares: \(error)")
                     }
                     loadFirmwareData()
                 }
@@ -58,10 +58,10 @@ struct FirmwareView: View {
                             self.isLoading = false
                         }
                     } catch {
-                        print("Error decoding firmwares: \(error)")
+                        print("❌ Error decoding firmwares: \(error)")
                     }
                 } else {
-                    print("No local firmware data found.")
+                    print("⚠️ No local firmware data found.")
                 }
             }
         }
@@ -82,13 +82,23 @@ struct FirmwareDetailView: View {
                 Text("Released: \(released)")
                     .foregroundColor(.secondary)
             }
-            Link("More Info", destination: URL(string: firmware.appledburl)!)
+            
+            if !firmware.deviceMap.isEmpty {
+                Text("Compatible Devices:")
+                    .font(.headline)
+                    .padding(.top, 5)
+                List(firmware.deviceMap, id: \.self) { device in
+                    Text(device)
+                }
+            }
+            
+            Link("View online at AppleDB", destination: URL(string: firmware.appledburl)!)
                 .font(.headline)
                 .padding(.top, 10)
             Spacer()
         }
         .padding()
-        .navigationTitle(firmware.version)
+        .navigationTitle("\(firmware.osStr) \(firmware.version) (\(firmware.build ?? ""))")
     }
 }
 
@@ -96,12 +106,14 @@ struct Firmware: Identifiable, Codable {
     var id = UUID()
     let osStr: String
     let version: String
+    let build: String?
     let key: String
     let released: String?
     let appledburl: String
+    let deviceMap: [String]
 
     private enum CodingKeys: String, CodingKey {
-        case osStr, version, key, released, appledburl
+        case osStr, version, build, key, released, appledburl, deviceMap
     }
 }
 
@@ -111,7 +123,7 @@ class FirmwareAPI {
             do {
                 return try JSONDecoder().decode([Firmware].self, from: data)
             } catch {
-                print("Error decoding firmwares: \(error)")
+                print("❌ Error decoding firmwares: \(error)")
             }
         }
         return []

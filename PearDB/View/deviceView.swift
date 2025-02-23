@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct DeviceListView: View {
     @State private var devices: [Device] = []
@@ -41,7 +42,7 @@ struct DeviceListView: View {
                     do {
                         try await downloader.downloadAllIfNeeded()
                     } catch {
-                        print("Error downloading device data: \(error)")
+                        print("❌ Error downloading device data: \(error)")
                     }
                     loadDeviceData()
                 }
@@ -60,7 +61,7 @@ struct DeviceListView: View {
                             self.isLoading = false
                         }
                     } catch let DecodingError.typeMismatch(_, context) {
-                        print("Type mismatch error: \(context.debugDescription)")
+                        print("❌ Type mismatch error: \(context.debugDescription)")
                         print("Coding Path: \(context.codingPath)")
 
                         // Attempt to print the offending JSON section
@@ -69,14 +70,14 @@ struct DeviceListView: View {
 
                             // Print the specific object at the reported index
                             if let index = context.codingPath.first?.intValue, index < jsonArray.count {
-                                print("Offending JSON entry: \(jsonArray[index])")
+                                print("❌ Offending JSON entry: \(jsonArray[index])")
                             }
                         }
                     } catch {
-                        print("Error decoding devices: \(error)")
+                        print("❌ Error decoding devices: \(error)")
                     }
                 } else {
-                    print("No local device data found.")
+                    print("⚠️ No local device data found.")
                 }
             }
         }
@@ -104,7 +105,23 @@ struct DeviceDetailView: View {
         .padding()
         .navigationTitle(device.name)
         .onAppear() {
-            print(device)
+            let peardbLogger = Logger.init(
+                subsystem: "com.hydrate.PearDB.device", category: "com.hydrate.PearDB.debug"
+            )
+            peardbLogger.log(level: .error,"""
+            📝 Device: \(device.name)
+                ↳ IDENTIFIER: \(device.identifier ?? ["⚠️ N/A"])
+                ↳ SOC: \(device.soc ?? "⚠️ N/A")
+                ↳ CPID: \(device.cpid ?? "⚠️ N/A")
+                ↳ ARCH: \(device.arch ?? "⚠️ N/A")
+                ↳ TYPE: \(device.type ?? "⚠️ N/A")
+                ↳ BOARD: \(device.board ?? ["⚠️ N/A"])
+                ↳ BDID: \(device.bdid ?? "⚠️ N/A")
+                ↳ MODEL: \(device.model ?? ["⚠️ N/A"])
+                ↳ INFO: \(device.info?.map { "\($0.type) (\($0.Storage ?? "⚠️ N/A") Storage, \($0.RAM ?? "⚠️ N/A") RAM)" }.joined(separator: ", ") ?? "⚠️ N/A")
+                ↳ KEY: \(device.key)
+                ↳ RELEASED: \(device.released ?? "⚠️ N/A")
+            """)
         }
     }
 }

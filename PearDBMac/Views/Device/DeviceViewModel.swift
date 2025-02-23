@@ -40,7 +40,7 @@ import SwiftUICore
                 self.isLoading = true
             }
         } catch {
-            print("Error downloading device data: \(error)")
+            print("❌ Error downloading device data: \(error)")
         }
         self.loadDeviceData()
     }
@@ -54,7 +54,7 @@ import SwiftUICore
                     self.isLoading = false
                 }
             } catch let DecodingError.typeMismatch(_, context) {
-                print("Type mismatch error: \(context.debugDescription)")
+                print("❌ Type mismatch error: \(context.debugDescription)")
                 print("Coding Path: \(context.codingPath)")
 
                 // Attempt to print the offending JSON section
@@ -63,14 +63,14 @@ import SwiftUICore
 
                     // Print the specific object at the reported index
                     if let index = context.codingPath.first?.intValue, index < jsonArray.count {
-                        print("Offending JSON entry: \(jsonArray[index])")
+                        print("❌ Offending JSON entry: \(jsonArray[index])")
                     }
                 }
             } catch {
-                print("Error decoding devices: \(error)")
+                print("❌Error decoding devices: \(error)")
             }
         } else {
-            print("No local device data found.")
+            print("⚠️ No local device data found.")
         }
     }
 }
