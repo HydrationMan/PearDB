@@ -56,7 +56,7 @@ struct DeviceDetailView: View {
                     })
                     .tag(0)
                     .padding(.horizontal ,16)
-                    DeviceFirmwaresView()
+                    DeviceFirmwaresView(device: device)
                         .tabItem({
                             Label {
                                 Text("Device Firmwares")
@@ -64,29 +64,14 @@ struct DeviceDetailView: View {
                                 Image(systemName: "terminal")
                             }
                         })
-                        .tag(0)
+                        .tag(1)
                         .padding(.horizontal ,16)
                 }
                 .padding(.horizontal, 16)
             }
         }
         .onAppear() {
-            let peardbLogger = Logger.init(
-                subsystem: "com.hydrate.PearDB.device", category: "com.hydrate.PearDB.debug"
-            )
-            peardbLogger.log(level: .error,"""
-            📝 Device: \(device.name)
-                ↳ IDENTIFIER: \(device.identifier ?? "⚠️ N/A")
-                ↳ SOC: \(device.soc ?? "⚠️ N/A")
-                ↳ CPID: \(device.cpid ?? "⚠️ N/A")
-                ↳ ARCH: \(device.arch ?? "⚠️ N/A")
-                ↳ TYPE: \(device.type ?? "⚠️ N/A")
-                ↳ BOARD: \(device.board ?? ["⚠️ N/A"])
-                ↳ BDID: \(device.bdid ?? "⚠️ N/A")
-                ↳ MODEL: \(device.model ?? ["⚠️ N/A"])
-                ↳ KEY: \(device.key)
-                ↳ RELEASED: \(device.released ?? "⚠️ N/A")
-            """)
+            
         }
     }
 }

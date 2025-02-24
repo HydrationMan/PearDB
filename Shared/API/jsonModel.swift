@@ -55,6 +55,18 @@ struct Device: Codable, Identifiable {
         }
     }
     
+    var releasedDateType: Date? {
+        switch releasedRaw {
+        case .single(let string):
+            let dateFormatter = DateFormatter()
+            let dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateFormat = dateFormat
+            return dateFormatter.date(from: string)
+        default:
+            return nil
+        }
+    }
+    
     var cpid: String? {
         switch cpidRaw {
         case .single(let string): return string
@@ -885,14 +897,59 @@ struct Firmware: Identifiable, Codable {
     var id = UUID()
     let osStr: String
     let version: String
+    let restoreVersion: String?
+    let beta: Bool?
+    let rsr: Bool?
     let build: String?
     let key: String
-    let released: String?
+    let releasedRaw: String?
     let appledburl: String
     let deviceMap: [String]
+    let releaseNotesUrl: String?
+    let securityNotesUrl: String?
+    let sources: [FirmwareSources]?
+    let rc: Bool?
 
     private enum CodingKeys: String, CodingKey {
-        case osStr, version, build, key, released, appledburl, deviceMap
+        case osStr, version, build, key, releasedRaw = "released", appledburl, deviceMap, restoreVersion, beta, rsr, releaseNotesUrl = "releaseNotes", securityNotesUrl = "securityNotes", sources, rc
+    }
+    
+    var released: String? {
+        return releasedRaw
+    }
+    
+    var releasedDateType: Date? {
+        if (releasedRaw != nil) {
+            let dateFormatter = DateFormatter()
+            let dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateFormat = dateFormat
+            return dateFormatter.date(from: releasedRaw!)
+        } else {
+            return nil
+        }
+    }
+}
+
+struct FirmwareSources: Codable {
+    let type: String
+    let deviceMap: [String]?
+    let links: [FirmwareLink]?
+    let size: Int64?
+    let hashes: FirmwareHashes?
+}
+
+struct FirmwareLink: Codable {
+    let url: String?
+    let preferred: Bool
+    let active: Bool
+}
+
+struct FirmwareHashes: Codable {
+    let sha1: String?
+    let sha256: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case sha1, sha256 = "sha2-256"
     }
 }
 
