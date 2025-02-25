@@ -15,6 +15,7 @@ import SwiftUICore
     @Published var betaFirmwares: [Firmware] = []
     @Published var rcFirmwares: [Firmware] = []
     @Published var isLoading: Bool = true
+    @Published var isFirmwareLoading: [String] = []
     
     init(appDbDownloader: AppleDBDownloader) {
         self.appDbDownloader = appDbDownloader
@@ -33,6 +34,49 @@ import SwiftUICore
         } else {
             print("⚠️ No Firmwares found")
         }
+    }
+    
+    public func checkIfSigned(build: String, deviceKey: String) async -> Bool? {
+        do {
+            try await self.appDbDownloader.downloadIPSWIfNeeded(buildid: build, identifier: deviceKey)
+            if (appDbDownloader.isDownloading) {
+                self.isFirmwareLoading.append(deviceKey)
+            }
+        } catch {
+            print("❌ Error downloading device data: \(error)")
+            return nil
+        }
+        
+        return loadIPSWData(build, deviceKey)
+    }
+    
+    private func loadIPSWData(_ build: String, _ deviceKey: String) -> Bool? {
+        if let data = appDbDownloader.loadLocalJSON(named: "\(deviceKey)_\(build)") {
+            do {
+                let decodedIPSWFirmware = try JSONDecoder().decode(IpswFirmware.self, from: data)
+                if (self.isFirmwareLoading.contains {$0 == deviceKey}) {
+                    self.isFirmwareLoading.remove(at: self.isFirmwareLoading.firstIndex(of: deviceKey)!)
+                }
+                return decodedIPSWFirmware.signed
+            } catch let DecodingError.typeMismatch(_, context) {
+                print("❌ Type mismatch error: \(context.debugDescription)")
+                print("Coding Path: \(context.codingPath)")
+
+                // Attempt to print the offending JSON section
+                if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+                   let jsonArray = jsonObject as? [[String: Any]] {
+
+                    // Print the specific object at the reported index
+                    if let index = context.codingPath.first?.intValue, index < jsonArray.count {
+                        print("❌ Offending JSON entry: \(jsonArray[index])")
+                    }
+                }
+            } catch {
+                print("❌Error decoding devices: \(error)")
+            }
+        }
+        
+        return nil
     }
     
     private func initializeDownload() async {

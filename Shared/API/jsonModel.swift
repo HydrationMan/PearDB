@@ -930,6 +930,17 @@ struct Firmware: Identifiable, Codable {
     }
 }
 
+struct IpswFirmware: Codable {
+    let identifier: String?
+    let version: String?
+    let buildid: String?
+    let sha1sum: String?
+    let md5sum: String?
+    let filesize: UInt64?
+    let url: String?
+    let signed: Bool?
+}
+
 struct FirmwareSources: Codable {
     let type: String
     let deviceMap: [String]?

@@ -14,18 +14,9 @@ struct DeviceFirmwaresView: View {
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading) {
-                ForEach(deviceFirmwaresViewModel.selectedFirmwares, id: \.id) { firmware in
-                    HStack(alignment: .center) {
-                        Text(firmware.version)
-                            .font(.title3)
-                        Spacer()
-                        Text(firmware.released ?? "")
-                            .font(.title3)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                    .background(.regularMaterial)
-                    .cornerRadius(8)
+                ForEach(Array(deviceFirmwaresViewModel.selectedFirmwares.enumerated()), id: \.element.id) { offset, firmware in
+                    DeviceFirmwareDetail(device: device, firmware: firmware, offset: offset)
+                        .environmentObject(deviceFirmwaresViewModel)
                 }
             }
         }
