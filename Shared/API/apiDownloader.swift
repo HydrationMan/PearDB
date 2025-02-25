@@ -40,6 +40,37 @@ class AppleDBDownloader: ObservableObject {
         return true
     }
     
+    func shouldDownloadIPSW(_ buildid: String, _ identifier: String) -> Bool {
+        if let lastDownload = UserDefaults.standard.object(forKey: "\(identifier)_\(buildid)") as? Date {
+            return Date().timeIntervalSince(lastDownload) > downloadInterval
+        }
+        return true
+    }
+    
+    func downloadIPSWIfNeeded(buildid: String, identifier: String) async throws {
+        guard shouldDownloadIPSW(buildid, identifier) else { return }
+        try await downloadIPSW(buildid, identifier)
+    }
+    
+    private func downloadIPSW(_ buildid: String, _ identifier: String) async throws {
+        isDownloading = true
+        let urlString = "https://api.ipsw.me/v4/ipsw/\(identifier)/\(buildid)"
+        guard let url = URL(string: urlString) else {
+            print("❌ Invalid URL: \(urlString)")
+            return
+        }
+        
+        let destinationURL = localDirectory.appendingPathComponent("\(identifier)_\(buildid).json")
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            try data.write(to: destinationURL, options: .atomic)
+            UserDefaults.standard.set(Date(), forKey: "\(identifier)_\(buildid)")
+            self.isDownloading = false
+        } catch {
+            throw error
+        }
+    }
+    
     /// Asynchronously triggers download if needed
     func downloadAllIfNeeded() async throws {
         guard shouldDownload() else { return }

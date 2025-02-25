@@ -102,21 +102,6 @@ struct FirmwareDetailView: View {
     }
 }
 
-struct Firmware: Identifiable, Codable {
-    var id = UUID()
-    let osStr: String
-    let version: String
-    let build: String?
-    let key: String
-    let released: String?
-    let appledburl: String
-    let deviceMap: [String]
-
-    private enum CodingKeys: String, CodingKey {
-        case osStr, version, build, key, released, appledburl, deviceMap
-    }
-}
-
 class FirmwareAPI {
     @MainActor static func fetchLocalFirmwareList() -> [Firmware] {
         if let data = AppleDBDownloader.shared.loadLocalJSON(named: "ios_main") {

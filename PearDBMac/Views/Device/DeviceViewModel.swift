@@ -14,12 +14,12 @@ import SwiftUICore
     @Published var searchedDevices: [Device] = []
     @Published var filter: DeviceType = .accessories
     @Published var isLoading: Bool = true
-    @Published var firmwares: [Firmware] = []
     
     init(appDbDownloader: AppleDBDownloader) {
         self.appDbDownloader = appDbDownloader
         Task {
             await self.initializeDownload()
+            self.isLoading = false
         }
     }
     
@@ -153,7 +153,6 @@ import SwiftUICore
                 let decodedDevices = try JSONDecoder().decode([Device].self, from: data)
                 DispatchQueue.main.async {
                     self.devices = decodedDevices
-                    self.isLoading = false
                 }
             } catch let DecodingError.typeMismatch(_, context) {
                 print("❌ Type mismatch error: \(context.debugDescription)")
