@@ -47,12 +47,10 @@ struct DeviceFirmwareDetail: View {
         .cornerRadius(8)
         .onAppear {
             Task {
-                if offset < 5 {
-                    if (firmware.build != nil) {
-                        let getSigned = await deviceFirmwaresViewModel.checkIfSigned(build: firmware.build!, deviceKey: device.key)
-                        if (getSigned != nil) {
-                            isSigned = getSigned!
-                        }
+                if (firmware.build != nil) {
+                    let getSigned = await deviceFirmwaresViewModel.checkIfSigned(build: firmware.build!, deviceKey: device.key)
+                    if (getSigned != nil) {
+                        isSigned = getSigned!
                     }
                 }
             }
