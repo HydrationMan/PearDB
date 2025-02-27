@@ -7,43 +7,31 @@
 
 import SwiftUI
 import WidgetKit
+import AppIntents
 
 struct SupaYearsEntry: TimelineEntry {
     let date: Date
-    let providerInfo: String
+    let isRightFacing: Bool
 }
 
-struct SupaYearsTimeLineProvider: TimelineProvider {
+struct SupaYearsTimeLineProvider: AppIntentTimelineProvider {
     typealias Entry = SupaYearsEntry
+    typealias Intent = FlipImageIntent
     
     func placeholder(in context: Context) -> Entry {
-        return SupaYearsEntry(date: Date(), providerInfo: "placeholder")
+        SupaYearsEntry(date: Date(), isRightFacing: true)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (Entry) -> ()) {
-        let entry = SupaYearsEntry(date: Date(), providerInfo: "snapshot")
-        completion(entry)
+    func snapshot(for configuration: FlipImageIntent, in context: Context) async -> Entry {
+        SupaYearsEntry(date: Date(), isRightFacing: configuration.orientation == .right)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func timeline(for configuration: FlipImageIntent, in context: Context) async -> Timeline<Entry> {
         let currentDate = Date()
-        var nextUpdateDate: Date
+        let nextUpdateDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate) ?? currentDate
         
-        // Determine the next update time
-        let today = Calendar.current.dateComponents([.day, .month], from: currentDate)
-        
-        if today.day == 7 && today.month == 9 {
-            // On September 7th, update hourly
-            nextUpdateDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate) ?? currentDate
-        } else {
-            // Set the next update for midnight
-            nextUpdateDate = Calendar.current.startOfDay(for: currentDate).addingTimeInterval(86400) // Midnight of the next day
-        }
-        
-        // Create the timeline entry
-        let entry = SupaYearsEntry(date: currentDate, providerInfo: "timeline")
-        let timeline = Timeline(entries: [entry], policy: .after(nextUpdateDate))
-        completion(timeline)
+        let entry = SupaYearsEntry(date: currentDate, isRightFacing: configuration.orientation == .right)
+        return Timeline(entries: [entry], policy: .after(nextUpdateDate))
     }
 }
 
@@ -61,38 +49,38 @@ struct SupaYearsWidgetView: View {
             Image(uiImage: UIImage(named: isBirthdayToday ? "BDaySupa" : "NoBDaySupa") ?? UIImage())
                 .resizable()
                 .frame(width: 42, height: 42)
-                .widgetBackground(Color.clear)
+                .scaleEffect(x: entry.isRightFacing ? 1 : -1, y: 1) // Flip image horizontally
+                .widgetAccentable()
             VStack {
                 Text("Superbro")
                 Text("2005-2024")
                 if isBirthdayToday {
                     Text("Happy Birthday Bro")
-                        .font(.system(size: 10))
                         .foregroundColor(.gray)
+                        .widgetAccentable()
+                        .font(.system(size: 10))
                 }
             }
+        }
+        .containerBackground(for: .widget) {
+            Color.clear
         }
     }
 }
 
 struct SupaYearsWidget: Widget {
     let kind: String = "SupaYears"
-
+    
     var body: some WidgetConfiguration {
-        if #available(iOSApplicationExtension 16.1, *) {
-            return StaticConfiguration(kind: kind, provider: SupaYearsTimeLineProvider()) { entry in
-                SupaYearsWidgetView(entry: entry)
-            }
-            .configurationDisplayName("Supa Years")
-            .description("SuperBro Living Years")
-            .supportedFamilies([.accessoryRectangular])
-        } else {
-            return StaticConfiguration(kind: kind, provider: SupaYearsTimeLineProvider()) { entry in
-                SupaYearsWidgetView(entry: entry)
-            }
-            .configurationDisplayName("Supa Years")
-            .description("SuperBro Living Years")
-            .supportedFamilies([.systemSmall])
+        AppIntentConfiguration(
+            kind: kind,
+            intent: FlipImageIntent.self,
+            provider: SupaYearsTimeLineProvider()
+        ) { entry in
+            SupaYearsWidgetView(entry: entry)
         }
+        .configurationDisplayName("Superbro smaller")
+        .description("Smaller Superbro widget, image orientation configurable.")
+        .supportedFamilies([.accessoryRectangular])
     }
 }

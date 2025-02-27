@@ -9,26 +9,6 @@ import SwiftUI
 import WidgetKit
 import AppIntents
 
-enum ImageOrientation: String, AppEnum {
-    case left = "Left"
-    case right = "Right"
-    
-    static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Image Orientation")
-    
-    static var caseDisplayRepresentations: [ImageOrientation: DisplayRepresentation] = [
-        .left: DisplayRepresentation(title: "Left Facing"),
-        .right: DisplayRepresentation(title: "Right Facing")
-    ]
-}
-
-struct FlipImageIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "Image Orientation"
-    static var description = IntentDescription("Choose whether the image should face left or right.")
-    
-    @Parameter(title: "Orientation", default: .right)
-    var orientation: ImageOrientation?
-}
-
 struct BDaySupaFlipEntry: TimelineEntry {
     let date: Date
     let isRightFacing: Bool
@@ -78,13 +58,15 @@ struct BDaySupaFlipWidgetView: View {
             
             if isBirthdayToday {
                 Text("Happy Birthday Bro")
-                    .font(.caption)
                     .foregroundColor(.gray)
                     .widgetAccentable()
+                    .font(.system(size: 10))
             }
         }
+        .containerBackground(for: .widget) {
+            Color.clear
+        }
         .padding()
-        .widgetBackground(Color.clear)
     }
 }
 
@@ -99,8 +81,8 @@ struct BDaySupaFlipWidget: Widget {
         ) { entry in
             BDaySupaFlipWidgetView(entry: entry)
         }
-        .configurationDisplayName("Superbro")
-        .description("His years, can configure image orientation.")
+        .configurationDisplayName("Superbro Small")
+        .description("Small Superbro widget, image orientation configurable.")
         .supportedFamilies([.systemSmall])
     }
 }

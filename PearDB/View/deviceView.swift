@@ -110,7 +110,7 @@ struct DeviceDetailView: View {
             )
             peardbLogger.log(level: .error,"""
             📝 Device: \(device.name)
-                ↳ IDENTIFIER: \(device.identifier ?? ["⚠️ N/A"])
+                ↳ IDENTIFIER: \(device.identifier ?? "⚠️ N/A")
                 ↳ SOC: \(device.soc ?? "⚠️ N/A")
                 ↳ CPID: \(device.cpid ?? "⚠️ N/A")
                 ↳ ARCH: \(device.arch ?? "⚠️ N/A")
@@ -118,7 +118,7 @@ struct DeviceDetailView: View {
                 ↳ BOARD: \(device.board ?? ["⚠️ N/A"])
                 ↳ BDID: \(device.bdid ?? "⚠️ N/A")
                 ↳ MODEL: \(device.model ?? ["⚠️ N/A"])
-                ↳ INFO: \(device.info?.map { "\($0.type) (\($0.Storage ?? "⚠️ N/A") Storage, \($0.RAM ?? "⚠️ N/A") RAM)" }.joined(separator: ", ") ?? "⚠️ N/A")
+                ↳ INFO: \(device.info?.map { "\($0.type) (\($0.storage ?? "⚠️ N/A") Storage, \($0.ram ?? "⚠️ N/A") RAM)" }.joined(separator: ", ") ?? "⚠️ N/A")
                 ↳ KEY: \(device.key)
                 ↳ RELEASED: \(device.released ?? "⚠️ N/A")
             """)

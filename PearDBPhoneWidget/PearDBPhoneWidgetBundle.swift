@@ -7,28 +7,34 @@
 
 import WidgetKit
 import SwiftUI
+import AppIntents
 
 @main
 struct PearDBPhoneWidgetBundle: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
-        if #available(iOSApplicationExtension 16.1, *) {
-            LeftSupaWidget()
-            RightSupaWidget()
-            SupaYearsWidget()
-        }
+        SupaWidget()
+        SupaYearsWidget()
         BDaySupaFlipWidget()
     }
 }
 
-extension View {
-    func widgetBackground(_ backgroundView: some View) -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
-            return containerBackground(for: .widget) {
-                backgroundView
-            }
-        } else {
-            return backgroundView
-        }
-    }
+enum ImageOrientation: String, AppEnum {
+    case left = "Left"
+    case right = "Right"
+    
+    static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Image Orientation")
+    
+    static var caseDisplayRepresentations: [ImageOrientation: DisplayRepresentation] = [
+        .left: DisplayRepresentation(title: "Left Facing"),
+        .right: DisplayRepresentation(title: "Right Facing")
+    ]
+}
+
+struct FlipImageIntent: WidgetConfigurationIntent {
+    static var title: LocalizedStringResource = "Image Orientation"
+    static var description = IntentDescription("Choose whether the image should face left or right.")
+    
+    @Parameter(title: "Orientation", default: .right)
+    var orientation: ImageOrientation?
 }

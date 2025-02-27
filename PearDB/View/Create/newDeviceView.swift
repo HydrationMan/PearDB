@@ -22,8 +22,7 @@ struct newDeviceView: View {
                 TextField("Search for a device", text: $searchText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                    .onChange(of: searchText) { _ in filterDevices() }
-                // Replace with: .onChange(of: searchText) { filterDevices() } via if #available ?
+                    .onChange(of: searchText) { filterDevices() }
 
                 List(filteredDevices, id: \.key) { device in
                     Button(action: {
@@ -86,7 +85,7 @@ struct newDeviceDetailView: View {
         VStack(alignment: .leading) {
             Text("Device Name: \(device.name)")
                 .font(.headline)
-            if let identifier = device.identifier?.joined(separator: ", ") {
+            if let identifier = device.identifier {
                 Text("Identifier: \(identifier)")
             }
             if let board = device.board?.joined(separator: ", ") {
