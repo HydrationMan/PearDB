@@ -8,49 +8,52 @@
 import SwiftUI
 
 struct dbDetailView: View {
+    
+    let entry: Entry
+    
     var body: some View {
         Spacer()
         Image(systemName: "ipad.landscape.and.iphone")
             .font(.system(size: 120))
         List {
             LabeledContent {
-                Text("iPhone xx Pro Max")
+                Text(entry.name ?? "Unknown")
             } label: {
                 Text("Product Name")
             }
             Section("Product Details") {
                 LabeledContent {
-                    Text("Test")
+                    Text(entry.identifier?.joined(separator: ", ") ?? "Unknown")
                 } label: {
                     Text("Identifier")
                 }
                 LabeledContent {
-                    Text("Test")
+                    Text(entry.board?.joined(separator: ", ") ?? "Unknown")
                 } label: {
                     Text("Board")
                 }
                 LabeledContent {
-                    Text("Test")
+                    Text(entry.model?.joined(separator: ", ") ?? "Unknown")
                 } label: {
                     Text("Model")
                 }
                 LabeledContent {
-                    Text("Test")
+                    Text(entry.released ?? "Unknown")
                 } label: {
                     Text("Released")
                 }
             }
             LabeledContent {
-                Text("Test")
+                Text(entry.serial ?? "Unknown")
             } label: {
                 Text("Serial Number")
             }
-        }.navigationTitle("Device")
+        }.navigationTitle(entry.name ?? "Device")
     }
 }
 
-#Preview {
-    NavigationStack {
-        dbDetailView()
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        dbDetailView()
+//    }
+//}

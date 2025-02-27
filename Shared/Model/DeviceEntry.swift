@@ -23,10 +23,25 @@ final class Entry: NSManagedObject, Identifiable {
     @NSManaged var bdid: String?
     @NSManaged var arch: String?
     @NSManaged var serial: String?
+    @NSManaged var preferredIcon: String?
     
     override func awakeFromInsert() {
         super.awakeFromInsert()
         setPrimitiveValue(false, forKey: "isMain")
     }
     
+}
+
+extension Entry {
+    private static var entryFetchRequest: NSFetchRequest<Entry> {
+        NSFetchRequest(entityName: "Entry")
+    }
+    
+    static func all() -> NSFetchRequest<Entry> {
+        let request: NSFetchRequest<Entry> = entryFetchRequest
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Entry.name, ascending: true)
+        ]
+        return request
+    }
 }

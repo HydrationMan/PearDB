@@ -11,19 +11,21 @@ struct dbView: View {
     
     @State private var isShowingNewDevice = false
     
+    @FetchRequest(fetchRequest: Entry.all()) private var entry
+    
     var provider = DeviceEntryProvider.shared
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach((0...10), id: \.self) { item in
+                ForEach(entry) { entry in
                     ZStack(alignment: .leading) {
-                        NavigationLink(destination: dbDetailView()) {
+                        NavigationLink(destination: dbDetailView(entry: entry)) {
                             EmptyView()
                         }
                         .opacity(0)
                         
-                        dbRowView()
+                        dbRowView(entry: entry)
                     }
                 }
             }
@@ -39,7 +41,7 @@ struct dbView: View {
             }
             .sheet(isPresented: $isShowingNewDevice) {
                 NavigationStack {
-                    newDeviceView(vm: .init(provider: provider))
+                    newDeviceView(vm: .init(provider: .shared))
                 }
             }
             .navigationTitle("Database")
