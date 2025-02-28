@@ -9,7 +9,9 @@ import SwiftUI
 
 struct newDeviceView: View {
     
+    @State private var fwViewSwitch: Bool = false
     @State private var searchText = ""
+    @State private var fwSearchText = ""
     @State private var devices: [Device] = []
     @State private var filteredDevices: [Device] = []
     @State private var selectedDevice: Device?
@@ -26,45 +28,67 @@ struct newDeviceView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("Search for a device", text: $searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .onChange(of: searchText) { filterDevices() }
-                
-                Toggle(isOn: $showOtherDevices) {
-                    Text("Show other devices")
-                }
-                .onChange(of: showOtherDevices) { filterDevices() }
-                .padding(.horizontal)
-                
-                ScrollView {
-                    LazyVStack(spacing: 10) {
-                        ForEach(filteredDevices, id: \.key) { device in
-                            Button(action: {
-                                withAnimation {
-                                    selectedDevice = device
+            if !fwViewSwitch {
+                VStack {
+                    TextField("Search devices", text: $searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                        .onChange(of: searchText) { filterDevices() }
+                    
+                    Toggle(isOn: $showOtherDevices) {
+                        Text("Show other devices")
+                    }
+                    .onChange(of: showOtherDevices) { filterDevices() }
+                    .padding(.horizontal)
+                    
+                    ScrollView {
+                        LazyVStack(spacing: 10) {
+                            ForEach(filteredDevices, id: \.key) { device in
+                                Button(action: {
+                                    withAnimation {
+                                        selectedDevice = device
+                                    }
+                                }) {
+                                    DeviceCardView(device: device)
+                                        .transition(.move(edge: .bottom).combined(with: .opacity))
                                 }
-                            }) {
-                                DeviceCardView(device: device)
-                                    .transition(.move(edge: .bottom).combined(with: .opacity))
                             }
                         }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
+                    
+                    if let selected = selectedDevice {
+                        newDeviceDetailView(device: selected)
+                            .transition(.scale.combined(with: .opacity))
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
+                            .shadow(radius: 5)
+                    }
                 }
-
-                if let selected = selectedDevice {
-                    newDeviceDetailView(device: selected)
-                        .transition(.scale.combined(with: .opacity))
+                
+            } else {
+                VStack {
+                    TextField("Search firmwares", text: $fwSearchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
-                        .shadow(radius: 5)
+                        //.onChange(of: fwSearchText) { filterFirmwares() }
+                    
                 }
             }
-            .navigationTitle("Device Search")
-            .onAppear(perform: loadDeviceData)
         }
+        .toolbar {
+            ToolbarItem() {
+                Button() {
+                    withAnimation {
+                        fwViewSwitch.toggle()
+                    }
+                } label: {
+                    Text("Next")
+                }
+            }
+        }
+        .navigationTitle("Add device")
+        .onAppear(perform: loadDeviceData)
     }
 
     private func loadDeviceData() {
@@ -174,16 +198,6 @@ struct newDeviceDetailView: View {
                 Text("Released: \(released)")
                     .font(.body)
                     .foregroundColor(.secondary)
-            }
-            Button {
-                // Next button action
-            } label: {
-                Text("Next")
-                    .frame(maxWidth: 50, maxHeight: 30)
-                    .font(.headline)
-                    .background(Color.blue)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
         .padding()
