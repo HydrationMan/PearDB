@@ -8,15 +8,14 @@
 import Foundation
 import SwiftUICore
 @MainActor class DeviceViewModel: ObservableObject {
-    private let appDbDownloader: AppleDBDownloader
+    private let appDbDownloader: AppleDBDownloader = AppleDBDownloader.shared
     @Published var devices: [Device] = []
     @Published var selectedDeviceGroup: DeviceGroupType = DeviceGroupType.iOSDevices
     @Published var searchedDevices: [Device] = []
     @Published var filter: DeviceType = .accessories
     @Published var isLoading: Bool = true
     
-    init(appDbDownloader: AppleDBDownloader) {
-        self.appDbDownloader = appDbDownloader
+    init() {
         Task {
             await self.initializeDownload()
             self.isLoading = false

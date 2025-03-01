@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DeviceView: View {
+    let deviceTypes: [DeviceType] = DeviceType.allCases
     let columns = [GridItem(.adaptive(minimum: 300))]
     @State var selectedFilter: DeviceType = .iphone
     @EnvironmentObject var deviceViewModel: DeviceViewModel
@@ -17,10 +18,31 @@ struct DeviceView: View {
             Rectangle.semiOpaqueWindow().padding(-1)
             NavigationStack {
                 VStack {
-                    HeaderView(title: "Devices") { search in
+                    HeaderView(title: "Devices") {
+                        Menu {
+                            ForEach(Array(deviceTypes.enumerated()), id: \.offset) { offset, deviceType in
+                                Button(deviceType.rawValue) {
+                                    deviceViewModel.changeFilter(filter: deviceType)
+                                }
+                            }
+                        } label: {
+                            Label {
+                                Text(deviceViewModel.filter.rawValue)
+                            } icon: {
+                                Image(systemName: "line.3.horizontal.decrease.circle")
+                            }
+                            .containerShape(RoundedRectangle(cornerRadius: 99))
+                        }
+                        .frame(maxWidth: 128)
+                        .menuStyle(BorderlessButtonMenuStyle())
+                        .padding(16)
+                        .background(.thickMaterial)
+                        .cornerRadius(99)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 99).stroke(Color(NSColor.separatorColor), lineWidth: 1)
+                        }
+                    } searchable: { search in
                         deviceViewModel.search(searchString: search)
-                    } applyFilter: { filter in
-                        deviceViewModel.changeFilter(filter: filter)
                     }
                     
                     if deviceViewModel.isLoading {

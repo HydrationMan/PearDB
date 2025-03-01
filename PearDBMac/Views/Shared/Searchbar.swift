@@ -17,8 +17,10 @@ struct Searchbar: View {
         HStack {
             Image(systemName: "magnifyingglass")
             TextField("Search", text: $searchText)
-                .onChange(of: searchText) { searching in
-                    action(searching)
+                .onChange(of: searchText) { prev, current in
+                    if (prev != current) {
+                        action(current)
+                    }
                 }
                 .textFieldStyle(.plain)
             if hasCancel {

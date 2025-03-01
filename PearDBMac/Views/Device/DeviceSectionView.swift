@@ -10,7 +10,7 @@ import SwiftUI
 struct DeviceSectionView: View {
     let columns = [GridItem(.adaptive(minimum: 400))]
     
-    @StateObject var deviceViewModel: DeviceViewModel = .init(appDbDownloader: AppleDBDownloader.shared)
+    @StateObject var deviceViewModel: DeviceViewModel = .init()
     
     var body: some View {
         ZStack {

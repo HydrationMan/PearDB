@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DeviceFirmwaresView: View {
     var device: Device
-    @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init(appDbDownloader: AppleDBDownloader.shared)
+    @EnvironmentObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel
     
     var body: some View {
         ScrollView {
@@ -18,6 +18,7 @@ struct DeviceFirmwaresView: View {
                     DeviceFirmwareDetail(device: device, firmware: firmware, offset: offset)
                         .environmentObject(deviceFirmwaresViewModel)
                 }
+                Color.clear.padding()
             }
         }
         .onAppear {

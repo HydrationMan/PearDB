@@ -1,21 +1,22 @@
 //
-//  DeviceFirmwaresViewModel.swift
+//  DatabaseViewModel.swift
 //  PearDB
 //
-//  Created by Paras KCD on 24/2/25.
+//  Created by Paras KCD on 1/3/25.
 //
 
 import Foundation
-import SwiftUICore
-@MainActor class DeviceFirmwaresViewModel: ObservableObject {
+import SwiftUI
+import CoreData
+
+@MainActor class DatabaseViewModel: ObservableObject {
+    private let moc: NSManagedObjectContext = DeviceEntryProvider.shared.viewContext
     private let appDbDownloader: AppleDBDownloader = AppleDBDownloader.shared
-    
+    @Published var storedEntries: [Device?] = []
+    @Published var devices: [Device] = []
     @Published var firmwares: [Firmware] = []
-    @Published var selectedFirmwares: [Firmware] = []
-    @Published var betaFirmwares: [Firmware] = []
-    @Published var rcFirmwares: [Firmware] = []
+    @Published var searchedDevices: [Device] = []
     @Published var isLoading: Bool = true
-    @Published var isFirmwareLoading: [String] = []
     
     init() {
         Task {
@@ -24,39 +25,51 @@ import SwiftUICore
         }
     }
     
-    public func filterFirmwares(device: Device) {
-        let filteredFirmwares = self.firmwares.filter { $0.deviceMap.contains { $0 == device.key } }
-        if (!filteredFirmwares.isEmpty) {
-            self.selectedFirmwares = filteredFirmwares.filter({ $0.rc == false && $0.beta == false }).sorted(by: { $0.version.localizedStandardCompare($1.version) == .orderedDescending })
-            self.betaFirmwares = filteredFirmwares.filter({ $0.beta == true && $0.rc == false }).sorted(by: { $0.version.localizedStandardCompare($1.version) == .orderedDescending })
-            self.rcFirmwares = filteredFirmwares.filter({ $0.beta == false && $0.rc == true }).sorted(by: { $0.version.localizedStandardCompare($1.version) == .orderedDescending })
+    public func search(searchString: String) {
+        if (!searchString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+            self.searchedDevices = self.devices.filter {
+                $0.name.lowercased().contains(searchString.lowercased())
+            }
         } else {
-            print("⚠️ No Firmwares found")
+            self.searchedDevices = []
         }
     }
     
-    public func checkIfSigned(build: String, deviceKey: String) async -> Bool? {
+    public func saveToDB(device: Entry) {
+        try? moc.save()
+    }
+    
+    public func mapEntriesToDevices(entry: Entry) -> (Device?, Firmware?) {
+        let device = self.devices.first { device in
+            device.id == entry.key
+        }
+        let firmware = self.firmwares.first { firmware in
+            firmware.key == entry.firmware
+        }
+        return (device, firmware)
+    }
+    
+    private func initializeDownload() async {
         do {
-            try await self.appDbDownloader.downloadIPSWIfNeeded(buildid: build, identifier: deviceKey)
+            try await self.appDbDownloader.downloadAllIfNeeded()
             if (appDbDownloader.isDownloading) {
-                self.isFirmwareLoading.append(deviceKey)
+                self.isLoading = true
             }
         } catch {
             print("❌ Error downloading device data: \(error)")
-            return nil
         }
         
-        return loadIPSWData(build, deviceKey)
+        self.loadDeviceData()
+        self.loadFirmwareData()
     }
     
-    private func loadIPSWData(_ build: String, _ deviceKey: String) -> Bool? {
-        if let data = appDbDownloader.loadLocalJSON(named: "\(deviceKey)_\(build)") {
+    private func loadDeviceData() {
+        if let data = appDbDownloader.loadLocalJSON(named: "device_main") {
             do {
-                let decodedIPSWFirmware = try JSONDecoder().decode(IpswFirmware.self, from: data)
-                if (self.isFirmwareLoading.contains {$0 == deviceKey}) {
-                    self.isFirmwareLoading.remove(at: self.isFirmwareLoading.firstIndex(of: deviceKey)!)
+                let decodedDevices = try JSONDecoder().decode([Device].self, from: data)
+                DispatchQueue.main.async {
+                    self.devices = decodedDevices.filter { $0.deviceGroup == .iOSDevices || $0.deviceGroup == .macs || ($0.deviceGroup == .homeAndAccessories && !($0.deviceType == .accessories || $0.deviceType == .beddit || $0.deviceType == .cases || $0.deviceType == .adapters || $0.deviceType == .power)) || $0.deviceGroup == .audio || $0.deviceGroup == .iPods || $0.deviceGroup == .inputs}
                 }
-                return decodedIPSWFirmware.signed
             } catch let DecodingError.typeMismatch(_, context) {
                 print("❌ Type mismatch error: \(context.debugDescription)")
                 print("Coding Path: \(context.codingPath)")
@@ -73,21 +86,9 @@ import SwiftUICore
             } catch {
                 print("❌Error decoding devices: \(error)")
             }
+        } else {
+            print("⚠️ No local device data found.")
         }
-        
-        return nil
-    }
-    
-    private func initializeDownload() async {
-        do {
-            try await self.appDbDownloader.downloadAllIfNeeded()
-            if (appDbDownloader.isDownloading) {
-                self.isLoading = true
-            }
-        } catch {
-            print("❌ Error downloading device data: \(error)")
-        }
-        self.loadFirmwareData()
     }
     
     private func loadFirmwareData() {
