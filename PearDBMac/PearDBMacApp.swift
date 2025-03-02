@@ -19,6 +19,7 @@ struct PearDBMacApp: App {
 
 // MARK: NavigationSplitView
 struct MainView: View {
+    @FetchRequest(sortDescriptors: []) var storedData: FetchedResults<Entry>
     @State private var selected: Int? = 0
 
     var body: some View {
@@ -33,12 +34,13 @@ struct MainView: View {
                             Label("Firmware", systemImage: "terminal")
                         }
                         NavigationLink(value: 2) {
-                            Label("Database", systemImage: "tray.full")
+                            Label("My Devices", systemImage: "tray.full")
                         }
                         NavigationLink(value: 3) {
                             Label("Settings", systemImage: "gear")
                         }
                     }
+                    .frame(maxWidth: .infinity, alignment: Alignment.leading)
                 } header: {
                     Text("PearDB")
                 }
@@ -54,7 +56,7 @@ struct MainView: View {
                 case 1:
                     Text("Firmware - soon")
                 case 2:
-                    Text("Database - soon")
+                    DatabaseView()
                 case 3:
                     Text("Settings - soon")
                 default:
@@ -62,6 +64,13 @@ struct MainView: View {
                 }
             } else {
                 Text("Select an option from the sidebar")
+            }
+        }
+        .onAppear {
+            if storedData.count > 0 {
+                self.selected = 2
+            } else {
+                self.selected = 0
             }
         }
     }

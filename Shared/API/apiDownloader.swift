@@ -34,9 +34,22 @@ class AppleDBDownloader: ObservableObject {
     
     /// Checks if data should be redownloaded
     func shouldDownload() -> Bool {
-        if let lastDownload = UserDefaults.standard.object(forKey: lastDownloadKey) as? Date {
-            return Date().timeIntervalSince(lastDownload) > downloadInterval
+        var exists = false
+        
+        for url in urls {
+            let doesItExist = loadLocalJSON(named: url.key) != nil
+            exists = doesItExist
+            if (!doesItExist) {
+                break
+            }
         }
+        
+        if (exists) {
+            if let lastDownload = UserDefaults.standard.object(forKey: lastDownloadKey) as? Date {
+                return Date().timeIntervalSince(lastDownload) > downloadInterval
+            }
+        }
+        
         return true
     }
     

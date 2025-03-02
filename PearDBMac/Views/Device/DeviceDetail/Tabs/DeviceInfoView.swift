@@ -359,7 +359,7 @@ struct DeviceInfoView: View {
                         }
                     }
                 }
-                
+                Color.clear.padding()
             }
         }
     }

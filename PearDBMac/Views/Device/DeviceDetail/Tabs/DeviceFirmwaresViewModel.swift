@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUICore
 @MainActor class DeviceFirmwaresViewModel: ObservableObject {
-    private let appDbDownloader: AppleDBDownloader
+    private let appDbDownloader: AppleDBDownloader = AppleDBDownloader.shared
     
     @Published var firmwares: [Firmware] = []
     @Published var selectedFirmwares: [Firmware] = []
@@ -17,8 +17,7 @@ import SwiftUICore
     @Published var isLoading: Bool = true
     @Published var isFirmwareLoading: [String] = []
     
-    init(appDbDownloader: AppleDBDownloader) {
-        self.appDbDownloader = appDbDownloader
+    init() {
         Task {
             await self.initializeDownload()
             self.isLoading = false
