@@ -40,6 +40,7 @@ struct MainView: View {
                             Label("Settings", systemImage: "gear")
                         }
                     }
+                    .frame(maxWidth: .infinity, alignment: Alignment.leading)
                 } header: {
                     Text("PearDB")
                 }

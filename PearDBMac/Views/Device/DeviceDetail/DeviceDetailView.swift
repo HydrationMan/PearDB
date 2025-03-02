@@ -9,11 +9,13 @@ import SwiftUI
 import OSLog
 
 struct DeviceDetailView: View {
+    @FetchRequest(sortDescriptors: []) var storedData: FetchedResults<Entry>
     var device: Device
     var fromDB: Bool = false
-    var addDevice: ((_ device: Entry) -> Void)? = nil
     @State var selection = 0
     @State var isAddDeviceDialogOpened = false
+    @State var isDeviceAlreadySaved = false
+    @State var isLoading = true
     
     @Environment(\.dismiss) private var dismiss
     @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
@@ -42,14 +44,14 @@ struct DeviceDetailView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    VStack(alignment: .trailing) {
-                        HStack(alignment: .center) {
-                            if fromDB {
+                    if !isLoading {
+                        VStack(alignment: .trailing) {
+                            HStack(alignment: .center) {
                                 Button {
                                     isAddDeviceDialogOpened.toggle()
                                 } label: {
                                     Label {
-                                        Text("Add Device")
+                                        Text(isDeviceAlreadySaved ? "Edit Device" : "Add Device")
                                     } icon: {
                                         Image(systemName: "macbook.and.iphone")
                                     }
@@ -64,10 +66,12 @@ struct DeviceDetailView: View {
                                 }
                                 .buttonStyle(.plain)
                                 
-                                XMarkButtonView(action: { dismiss() })
+                                if fromDB {
+                                    XMarkButtonView(action: { dismiss() })
+                                }
                             }
+                            
                         }
-                        
                     }
                 }
                 .padding()
@@ -106,13 +110,22 @@ struct DeviceDetailView: View {
         .onAppear {
             Task {
                 deviceFirmwaresViewModel.filterFirmwares(device: device)
+                self.isDeviceAlreadySaved = storedData.contains(where: { data in
+                    data.key == device.key
+                })
+                self.isLoading = false
             }
         }
         .sheet(isPresented: $isAddDeviceDialogOpened) {
-            AddDeviceModalView(device: device) { entry in
-                addDevice!(entry)
+            if !isDeviceAlreadySaved {
+                AddDeviceModalView(device: device)
+                .environmentObject(deviceFirmwaresViewModel)
+            } else {
+                if let entry = storedData.first(where: {$0.key == device.key}) {
+                    AddDeviceModalView(device: device, storedEntry: entry)
+                    .environmentObject(deviceFirmwaresViewModel)
+                }
             }
-            .environmentObject(deviceFirmwaresViewModel)
         }
     }
 }
@@ -130,9 +143,8 @@ struct AddDeviceModalView: View {
     @State var firmware: String? = nil
     @State var isMain: Bool = false
     @State var serial: String = ""
-    @FocusState private var emailFieldIsFocused: Bool
-    
-    var addDevice: (_ device: Entry) -> Void
+    @FocusState private var serialFieldFocused: Bool
+    @State var storedEntry: Entry? = nil
     
     var body: some View {
         VStack {
@@ -145,7 +157,7 @@ struct AddDeviceModalView: View {
                 Toggle("Is it your main device?", isOn: $isMain)
                 
                 TextField("Serial", text: $serial)
-                    .focused($emailFieldIsFocused)
+                    .focused($serialFieldFocused)
                     .disableAutocorrection(true)
                 
                 Picker(selection: $firmwareType, label: Text("Firmware Type")) {
@@ -182,14 +194,22 @@ struct AddDeviceModalView: View {
                 GenericButtonView(label: "Cancel") {
                     dismiss()
                 }
-                GenericButtonView(label: "Add") {
-                    let entry = Entry(context: moc)
-                    entry.key = device.key
-                    entry.type = device.type
-                    entry.firmware = firmware
-                    entry.isMain = isMain
-                    entry.serial = serial
-                    addDevice(entry)
+                GenericButtonView(label: storedEntry != nil ? "Edit Device": "Add Device") {
+                    if storedEntry == nil {
+                        let entry = Entry(context: moc)
+                        entry.key = device.key
+                        entry.type = device.type
+                        entry.firmware = firmware
+                        entry.isMain = isMain
+                        entry.serial = serial
+                    } else {
+                        if let entry = storedEntry {
+                            entry.isMain = isMain
+                            entry.firmware = firmware
+                            entry.serial = serial
+                        }
+                    }
+                    try? moc.save()
                     dismiss()
                 }
             }
@@ -198,6 +218,27 @@ struct AddDeviceModalView: View {
             Task {
                 deviceFirmwaresViewModel.filterFirmwares(device: device)
                 selectedList = deviceFirmwaresViewModel.selectedFirmwares
+                
+                if let guardingStoredEntry = storedEntry {
+                    if let storedFirmware = deviceFirmwaresViewModel.firmwares.first(where: { $0.key == guardingStoredEntry.firmware }) {
+                        switch(true) {
+                        case storedFirmware.beta:
+                            self.firmwareType = .beta
+                            break
+                        case storedFirmware.rc:
+                            self.firmwareType = .rc
+                            break
+                        default:
+                            self.firmwareType = .release
+                            break
+                        }
+                        
+                        self.firmware = storedFirmware.key
+                    }
+                    
+                    self.isMain = guardingStoredEntry.isMain
+                    self.serial = guardingStoredEntry.serial ?? ""
+                }
             }
         }
     }

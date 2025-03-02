@@ -12,7 +12,7 @@ import CoreData
 @MainActor class DatabaseViewModel: ObservableObject {
     private let moc: NSManagedObjectContext = DeviceEntryProvider.shared.viewContext
     private let appDbDownloader: AppleDBDownloader = AppleDBDownloader.shared
-    @Published var storedEntries: [Device?] = []
+    @Published var storedEntries: [Entry] = []
     @Published var devices: [Device] = []
     @Published var firmwares: [Firmware] = []
     @Published var searchedDevices: [Device] = []
@@ -21,8 +21,15 @@ import CoreData
     init() {
         Task {
             await self.initializeDownload()
+            await self.loadCoreData()
             self.isLoading = false
         }
+    }
+    
+    public func reloadCoreData() async {
+        self.isLoading = true
+        await self.loadCoreData()
+        self.isLoading = false
     }
     
     public func search(searchString: String) {
@@ -33,10 +40,6 @@ import CoreData
         } else {
             self.searchedDevices = []
         }
-    }
-    
-    public func saveToDB(device: Entry) {
-        try? moc.save()
     }
     
     public func mapEntriesToDevices(entry: Entry) -> (Device?, Firmware?) {
@@ -116,6 +119,25 @@ import CoreData
             }
         } else {
             print("⚠️ No local firmware data found.")
+        }
+    }
+    
+    private func loadCoreData() async {
+        let fetchRequest = Entry.fetchRequest() as! NSFetchRequest<Entry>
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Entry.isMain, ascending: true)]
+        
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { fetchResult -> Void in
+            if let resutls = fetchResult.finalResult {
+                self.storedEntries = resutls
+            } else {
+                print("⚠️ No core data found.")
+            }
+        }
+        
+        do {
+            _ = try moc.execute(asyncFetchRequest)
+        } catch {
+            print("❌Error fetching core data: \(error)")
         }
     }
 }

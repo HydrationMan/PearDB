@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DatabaseView: View {
-    @FetchRequest(sortDescriptors: []) var storedData: FetchedResults<Entry>
     let columns = [GridItem(.adaptive(minimum: 300))]
     @State var search: String = ""
     @State private var isShowingNewDevice = false
@@ -43,23 +42,29 @@ struct DatabaseView: View {
                     } searchable: { searchString in
                         
                     }
-                    
-                    ScrollView {
-                        if !dbViewModel.devices.isEmpty {
-                            LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
-                                if (!storedData.isEmpty) {
-                                    ForEach(storedData, id: \.key) { entry in
-                                        let map = dbViewModel.mapEntriesToDevices(entry: entry)
-                                        let firmware = map.1
-                                        if let device = map.0 {
-                                            DeviceItemView(device: device, entry: entry, firmware: firmware)
+                    if dbViewModel.isLoading {
+                        ProgressView("Downloading your stored devices…")
+                            .progressViewStyle(.circular)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        ScrollView {
+                            if !dbViewModel.devices.isEmpty {
+                                LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
+                                    if (!dbViewModel.storedEntries.isEmpty) {
+                                        ForEach(dbViewModel.storedEntries, id: \.key) { entry in
+                                            let map = dbViewModel.mapEntriesToDevices(entry: entry)
+                                            let firmware = map.1
+                                            if let device = map.0 {
+                                                DeviceItemView(device: device, entry: entry, firmware: firmware)
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                        .padding(.horizontal, 16)
                     }
-                    .padding(.horizontal, 16)
                 }
             }
         }
@@ -67,6 +72,11 @@ struct DatabaseView: View {
             NewDeviceView()
                 .environmentObject(dbViewModel)
                 .frame(width: 768)
+        }
+        .onAppear {
+            Task {
+                await dbViewModel.reloadCoreData()
+            }
         }
     }
 }

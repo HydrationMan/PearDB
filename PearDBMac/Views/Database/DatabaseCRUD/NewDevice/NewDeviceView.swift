@@ -53,9 +53,7 @@ struct NewDeviceView: View {
         }
         .sheet(isPresented: $showSelectedDeviceDetailView) {
             if selectedDevice != nil {
-                DeviceDetailView(device: selectedDevice!, fromDB: true) { device in
-                    dbViewModel.saveToDB(device: device)
-                }
+                DeviceDetailView(device: selectedDevice!, fromDB: true)
                 .frame(width: 768)
             }
         }
