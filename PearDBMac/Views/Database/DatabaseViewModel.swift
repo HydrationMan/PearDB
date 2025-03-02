@@ -52,6 +52,12 @@ import CoreData
         return (device, firmware)
     }
     
+    public func deleteEntry(entry: Entry) async {
+        moc.delete(entry)
+        try? moc.save()
+        await self.reloadCoreData()
+    }
+    
     private func initializeDownload() async {
         do {
             try await self.appDbDownloader.downloadAllIfNeeded()
@@ -123,6 +129,7 @@ import CoreData
     }
     
     private func loadCoreData() async {
+        self.storedEntries = []
         let fetchRequest = Entry.fetchRequest() as! NSFetchRequest<Entry>
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Entry.isMain, ascending: true)]
         

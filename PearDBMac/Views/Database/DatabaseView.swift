@@ -57,6 +57,15 @@ struct DatabaseView: View {
                                             let firmware = map.1
                                             if let device = map.0 {
                                                 DeviceItemView(device: device, entry: entry, firmware: firmware)
+                                                    .contextMenu {
+                                                        Button(role: .destructive) {
+                                                            Task {
+                                                                await dbViewModel.deleteEntry(entry: entry)
+                                                            }
+                                                        } label: {
+                                                            Label("Delete", systemImage: "trash")
+                                                        }
+                                                    }
                                             }
                                         }
                                     }
@@ -72,11 +81,6 @@ struct DatabaseView: View {
             NewDeviceView()
                 .environmentObject(dbViewModel)
                 .frame(width: 768)
-        }
-        .onAppear {
-            Task {
-                await dbViewModel.reloadCoreData()
-            }
         }
     }
 }
