@@ -12,20 +12,37 @@ struct dbView: View {
     @State private var isShowingNewDevice = false
     
     @FetchRequest(fetchRequest: Entry.all()) private var entry
+    @StateObject var dbViewModel: DatabaseViewModel = .init()
     
     var provider = DeviceEntryProvider.shared
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(entry) { entry in
-                    ZStack(alignment: .leading) {
-                        NavigationLink(destination: dbDetailView(entry: entry)) {
-                            EmptyView()
-                        }
-                        .opacity(0)
-                        
-                        dbRowView(entry: entry)
+//                ForEach(entry) { entry in
+//                    ZStack(alignment: .leading) {
+//                        NavigationLink(destination: dbDetailView(entry: entry)) {
+//                            EmptyView()
+//                        }
+//                        .opacity(0)
+//                        
+//                        dbRowView(entry: entry)
+//                    }
+//                }
+                ForEach(dbViewModel.storedEntries, id: \.key) { entry in
+                    let map = dbViewModel.mapEntriesToDevices(entry: entry)
+                    let firmware = map.1
+                    if let device = map.0 {
+                        dbDetailView(entry: entry, device: device)
+                            .contextMenu {
+                                Button(role: .destructive) {
+                                    Task {
+                                        await dbViewModel.deleteEntry(entry: entry)
+                                    }
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                     }
                 }
             }

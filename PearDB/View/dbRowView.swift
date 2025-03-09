@@ -1,5 +1,5 @@
 //
-//  DeviceRowView.swift
+//  dbRowView.swift
 //  PearDB
 //
 //  Created by Kane Parkinson on 11/02/2025.
@@ -11,16 +11,16 @@ struct dbRowView: View {
     
     @Environment(\.managedObjectContext) private var moc
     
+    var device: Device
     @ObservedObject var entry: Entry
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(entry.name ?? "Unknown")
-                .font(.system(size: 26,
-                              design: .rounded).bold())
-            Text(entry.identifier?.joined(separator: ", ") ?? "Unknown")
+            Text(device.name)
+                .font(.system(size: 26, design: .rounded).bold())
+            Text(device.identifier?.map(String.init).joined(separator: ", ") ?? "Unknown")
                 .font(.callout.bold())
-            Text(entry.model?.joined(separator: ", ") ?? "Unnown")
+            Text(device.model?.joined(separator: ", ") ?? "Unknown")
                 .font(.callout.bold())
         }
         .frame(maxWidth: .infinity, alignment: .leading)

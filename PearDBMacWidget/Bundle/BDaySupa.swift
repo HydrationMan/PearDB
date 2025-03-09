@@ -67,7 +67,7 @@ struct BDaySupaFlipWidgetView: View {
         VStack {
             Image(nsImage: NSImage(named: isBirthdayToday ? "BDaySupa" : "NoBDaySupa") ?? NSImage())
                 .resizable()
-                .frame(width: 42, height: 42)
+                .frame(width: 50, height: 50)
                 .scaleEffect(x: entry.isRightFacing ? 1 : -1, y: 1) // Flip image horizontally
                 .widgetAccentable()
             

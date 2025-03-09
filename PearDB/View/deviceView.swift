@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  deviceView.swift
 //  PearDB
 //
 //  Created by Kane Parkinson on 04/02/2025.

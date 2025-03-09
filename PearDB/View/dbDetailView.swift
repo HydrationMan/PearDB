@@ -10,6 +10,7 @@ import SwiftUI
 struct dbDetailView: View {
     
     let entry: Entry
+    let device: Device
     
     var body: some View {
         Spacer()
@@ -17,23 +18,23 @@ struct dbDetailView: View {
             .font(.system(size: 120))
         List {
             LabeledContent {
-                Text(entry.name ?? "Unknown")
+                Text(device.name ?? "Unknown")
             } label: {
                 Text("Product Name")
             }
             Section("Product Details") {
                 LabeledContent {
-                    Text(entry.identifier?.joined(separator: ", ") ?? "Unknown")
+                    Text(device.identifier?.map(String.init).joined(separator: ", ") ?? "Unknown")
                 } label: {
                     Text("Identifier")
                 }
                 LabeledContent {
-                    Text(entry.board?.joined(separator: ", ") ?? "Unknown")
+                    Text(device.board?.map(String.init).joined(separator: ", ") ?? "Unknown")
                 } label: {
                     Text("Board")
                 }
                 LabeledContent {
-                    Text(entry.model?.joined(separator: ", ") ?? "Unknown")
+                    Text(device.model?.map(String.init).joined(separator: ", ") ?? "Unknown")
                 } label: {
                     Text("Model")
                 }
@@ -48,7 +49,7 @@ struct dbDetailView: View {
             } label: {
                 Text("Serial Number")
             }
-        }.navigationTitle(entry.name ?? "Device")
+        }.navigationTitle(device.name ?? "Device")
     }
 }
 
