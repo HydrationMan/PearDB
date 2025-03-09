@@ -40,6 +40,18 @@ struct DeviceFirmwareDetail: View {
             Spacer()
             Text(firmware.released ?? "")
                 .font(.title3)
+            Button {
+                Task {
+                    await deviceFirmwaresViewModel.downloadFirmware(deviceKey: device.key, firmware: firmware)
+                }
+            } label: {
+                Label {
+                    Text("Download")
+                } icon: {
+                    Image(systemName: "")
+                }
+
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()

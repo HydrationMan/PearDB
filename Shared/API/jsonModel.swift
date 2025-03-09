@@ -909,9 +909,28 @@ struct Firmware: Identifiable, Codable {
     let securityNotesUrl: String?
     let sources: [FirmwareSources]?
     let rc: Bool?
+    var state: State = .idle
+    private(set) var currentBytes: Int64 = 0
+    private(set) var totalBytes: Int64 = 0
 
     private enum CodingKeys: String, CodingKey {
         case osStr, version, build, key, releasedRaw = "released", appledburl, deviceMap, restoreVersion, beta, rsr, releaseNotesUrl = "releaseNotes", securityNotesUrl = "securityNotes", sources, rc
+    }
+    
+    enum State: Equatable {
+        case idle
+        case dowloading
+        case completed
+        case canceled(resumeData: Data)
+    }
+    
+    var progress: Double {
+        guard totalBytes > 0 else { return 0 }
+        return Double(currentBytes) / Double(totalBytes)
+    }
+
+    var isDownloadCompleted: Bool {
+        currentBytes == totalBytes && totalBytes > 0
     }
     
     var released: String? {
@@ -927,6 +946,11 @@ struct Firmware: Identifiable, Codable {
         } else {
             return nil
         }
+    }
+    
+    mutating func update(currentBytes: Int64, totalBytes: Int64) {
+        self.currentBytes = currentBytes
+        self.totalBytes = totalBytes
     }
 }
 
@@ -971,4 +995,12 @@ enum DeviceGroupType: String, Codable, CaseIterable {
     case audio = "Audio"
     case iPods = "iPods"
     case inputs = "Inputs"
+}
+
+extension Firmware {
+    var fileURL: URL {
+        URL.downloadsDirectory
+            .appending(path: "\(key)")
+            .appendingPathExtension("ipsw")
+    }
 }

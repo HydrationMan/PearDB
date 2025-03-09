@@ -32,13 +32,25 @@ struct DeviceItemView: View {
                                 .cornerRadius(99)
                             }
                         } else {
-                            Text(device.name)
+                            HStack(alignment: .center) {
+                                Text(device.name)
+                                Color.clear.padding(8)
+                            }
                         }
                         
                         if let firmware = self.firmware {
                             HStack(alignment: .center, spacing: 8) {
                                 Text("Installed \(firmware.osStr)")
                                 Text("\(firmware.version) - \(firmware.build ?? "")")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        
+                        if let serial = entry.serial {
+                            HStack(alignment: .center, spacing: 8) {
+                                Text("Serial")
+                                Text(serial)
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
