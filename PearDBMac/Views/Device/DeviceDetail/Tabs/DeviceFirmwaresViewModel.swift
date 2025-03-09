@@ -175,8 +175,9 @@ private extension DeviceFirmwaresViewModel {
         let filemanager = FileManager.default
         do {
             var downloadDirectory = filemanager.urls(for: .downloadsDirectory, in: .userDomainMask).first!
-            downloadDirectory = downloadDirectory.appendingPathComponent("AppleDB").appendingPathComponent("\(firmware.key).ipsw")
+            downloadDirectory = downloadDirectory.appendingPathComponent("PearDBDownloads")
             createDirectoryIfNeeded(downloadDirectory)
+            downloadDirectory = downloadDirectory.appendingPathComponent("\(firmware.key).ipsw")
             print("Downloaded \(url) \(downloadDirectory)")
             try? filemanager.moveItem(at: url, to: downloadDirectory)
         }
