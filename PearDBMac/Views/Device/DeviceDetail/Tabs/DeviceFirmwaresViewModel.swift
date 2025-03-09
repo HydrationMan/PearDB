@@ -176,21 +176,12 @@ private extension DeviceFirmwaresViewModel {
         do {
             var downloadDirectory = filemanager.urls(for: .downloadsDirectory, in: .userDomainMask).first!
             downloadDirectory = downloadDirectory.appendingPathComponent("PearDBDownloads")
-            createDirectoryIfNeeded(downloadDirectory)
-            downloadDirectory = downloadDirectory.appendingPathComponent("\(firmware.key).ipsw")
-            print("Downloaded \(url) \(downloadDirectory)")
-            try? filemanager.moveItem(at: url, to: downloadDirectory)
-        }
-    }
-    
-    private func createDirectoryIfNeeded(_ downloadDirectory: URL) {
-        let filemanager = FileManager.default
-        if !filemanager.fileExists(atPath: downloadDirectory.path) {
-            do {
-                try filemanager.createDirectory(at: downloadDirectory, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                print("❌ Error creating AppleDB directory: \(error.localizedDescription)")
+            if !filemanager.fileExists(atPath: downloadDirectory.path()) {
+                try? filemanager.createDirectory(at: downloadDirectory, withIntermediateDirectories: true)
             }
+            downloadDirectory = downloadDirectory.appendingPathComponent("\(firmware.key).ipsw")
+            try? filemanager.moveItem(at: url, to: downloadDirectory)
+            print("Downloaded temp file \(url) saved to \(downloadDirectory)")
         }
     }
 }
