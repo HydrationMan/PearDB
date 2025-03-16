@@ -160,6 +160,13 @@
 			);
 			target = A7EF130E2D6980730020715A /* PearDBMacWidgetExtension */;
 		};
+		A7F153F32D861C050096DF38 /* Exceptions for "PearDBMac" folder in "PearDB" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Views/Device/DeviceDetail/Tabs/DeviceFirmwaresViewModel.swift,
+			);
+			target = A74107CA2D5175EB00898B0C /* PearDB */;
+		};
 		A7F825792D62C9FB0030188F /* Exceptions for "PearDBMac" folder in "PearDBMac" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -229,6 +236,7 @@
 		E654315E2D6189E9008A3CC5 /* PearDBMac */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				A7F153F32D861C050096DF38 /* Exceptions for "PearDBMac" folder in "PearDB" target */,
 				A7F825792D62C9FB0030188F /* Exceptions for "PearDBMac" folder in "PearDBMac" target */,
 			);
 			path = PearDBMac;

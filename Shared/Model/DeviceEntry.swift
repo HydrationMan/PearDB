@@ -15,6 +15,9 @@ final class Entry: NSManagedObject, Identifiable {
     @NSManaged var serial: String?
     @NSManaged var preferredIcon: String?
     @NSManaged var type: String?
+    var id: String {
+        key ?? UUID().uuidString
+    }
     
     override func awakeFromInsert() {
         super.awakeFromInsert()
