@@ -1,8 +1,8 @@
 //
 //  FooterView.swift
-//  PearDB
+//  PearDBMac
 //
-//  Created by Kane Parkinson on 16/03/2025.
+//  Created by Paras KCD on 1/3/25.
 //
 
 import SwiftUI
@@ -21,6 +21,5 @@ struct FooterView<Content: View>: View {
         .frame(minWidth: 0, maxWidth: .infinity)
         .background(.ultraThickMaterial)
         .compositingGroup()
-        .border(width: 1, edges: [.top], color: Color(.gray))
     }
 }
