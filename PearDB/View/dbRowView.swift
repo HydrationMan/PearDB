@@ -11,7 +11,7 @@ struct dbRowView: View {
     
     @Environment(\.managedObjectContext) private var moc
     
-    var device: Device
+    @ObservedObject var device: Device
     @ObservedObject var entry: Entry
     
     var body: some View {
