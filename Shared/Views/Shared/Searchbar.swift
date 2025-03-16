@@ -1,8 +1,8 @@
 //
 //  Searchbar.swift
-//  PearDB
+//  PearDBMac
 //
-//  Created by Kane Parkinson on 16/03/2025.
+//  Created by Paras KCD on 16/2/25.
 //
 
 import SwiftUI
@@ -37,11 +37,15 @@ struct Searchbar: View {
                 .animation(.easeInOut(duration: 1.0), value: UUID())
             }
         }
-        .padding(16)
+        .padding(8)
         .background(.thickMaterial)
         .cornerRadius(99)
         .overlay {
+            #if os(macOS)
+            RoundedRectangle(cornerRadius: 99).stroke(Color(NSColor.separatorColor), lineWidth: 1)
+            #else
             RoundedRectangle(cornerRadius: 99).stroke(Color(UIColor.separator), lineWidth: 1)
+            #endif
         }
     }
 }

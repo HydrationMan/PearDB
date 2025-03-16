@@ -42,6 +42,7 @@ struct DeviceFirmwareDetail: View {
                 Spacer()
                 Text(firmware.released ?? "")
                     .font(.title3)
+                #if os(macOS)
                 Button {
                     onButtonPressed()
                 } label: {
@@ -61,6 +62,7 @@ struct DeviceFirmwareDetail: View {
                     }
                 }
                 .buttonStyle(.plain)
+                #endif
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()

@@ -17,6 +17,10 @@
 		A7EF13102D6980730020715A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FC6B72D51917F002E6B3B /* WidgetKit.framework */; };
 		A7EF13112D6980730020715A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FC6B92D51917F002E6B3B /* SwiftUI.framework */; };
 		A7EF131D2D6980750020715A /* PearDBMacWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7EF130F2D6980730020715A /* PearDBMacWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E612333B2D86E9CD001B030C /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612333A2D86E9CD001B030C /* DeviceView.swift */; };
+		E612333C2D86E9CD001B030C /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612333A2D86E9CD001B030C /* DeviceView.swift */; };
+		E612333D2D86E9CD001B030C /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612333A2D86E9CD001B030C /* DeviceView.swift */; };
+		E612333E2D86E9CD001B030C /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612333A2D86E9CD001B030C /* DeviceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,7 @@
 		A7B6FDA42D5E822F001E2DD6 /* PearDBTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B6FDB62D5E8253001E2DD6 /* PearDBVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7EF130F2D6980730020715A /* PearDBMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PearDBMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E612333A2D86E9CD001B030C /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
 		E654315D2D6189E9008A3CC5 /* PearDBMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -160,19 +165,23 @@
 			);
 			target = A7EF130E2D6980730020715A /* PearDBMacWidgetExtension */;
 		};
-		A7F153F32D861C050096DF38 /* Exceptions for "PearDBMac" folder in "PearDB" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Views/Device/DeviceDetail/Tabs/DeviceFirmwaresViewModel.swift,
-			);
-			target = A74107CA2D5175EB00898B0C /* PearDB */;
-		};
 		A7F825792D62C9FB0030188F /* Exceptions for "PearDBMac" folder in "PearDBMac" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = E654315C2D6189E9008A3CC5 /* PearDBMac */;
+		};
+		E612338A2D86F287001B030C /* Exceptions for "DeviceItem" folder in "PearDBWatch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DeviceDetail/DeviceDetailView.swift,
+				DeviceDetail/Tabs/DeviceFirmwaresView.swift,
+				DeviceDetail/Tabs/DeviceInfoView.swift,
+				DeviceFirmwareDetail/DeviceFirmwareDetail.swift,
+				DeviceItemView.swift,
+			);
+			target = A76FC6CE2D5191B5002E6B3B /* PearDBWatch */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -233,10 +242,22 @@
 			path = PearDBMacWidget;
 			sourceTree = "<group>";
 		};
+		E612334A2D86EBCB001B030C /* DeviceItem */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E612338A2D86F287001B030C /* Exceptions for "DeviceItem" folder in "PearDBWatch" target */,
+			);
+			path = DeviceItem;
+			sourceTree = "<group>";
+		};
+		E61233702D86F0F3001B030C /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		E654315E2D6189E9008A3CC5 /* PearDBMac */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A7F153F32D861C050096DF38 /* Exceptions for "PearDBMac" folder in "PearDB" target */,
 				A7F825792D62C9FB0030188F /* Exceptions for "PearDBMac" folder in "PearDBMac" target */,
 			);
 			path = PearDBMac;
@@ -369,9 +390,28 @@
 			path = Packages;
 			sourceTree = "<group>";
 		};
+		E61233392D86E98F001B030C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E61233482D86EB27001B030C /* Device */,
+				E61233702D86F0F3001B030C /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E61233482D86EB27001B030C /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				E612333A2D86E9CD001B030C /* DeviceView.swift */,
+				E612334A2D86EBCB001B030C /* DeviceItem */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
 		E654316C2D619525008A3CC5 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E61233392D86E98F001B030C /* Views */,
 				E654317A2D619722008A3CC5 /* Model */,
 				E65431B02D619814008A3CC5 /* API */,
 			);
@@ -399,6 +439,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				A74107CD2D5175EB00898B0C /* PearDB */,
+				E612334A2D86EBCB001B030C /* DeviceItem */,
+				E61233702D86F0F3001B030C /* Shared */,
 				E654317A2D619722008A3CC5 /* Model */,
 				E65431B02D619814008A3CC5 /* API */,
 			);
@@ -447,6 +489,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				A76FC6D02D5191B5002E6B3B /* PearDBWatch */,
+				E612334A2D86EBCB001B030C /* DeviceItem */,
 				E654317A2D619722008A3CC5 /* Model */,
 				E65431B02D619814008A3CC5 /* API */,
 			);
@@ -493,6 +536,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				A7B6FDA52D5E822F001E2DD6 /* PearDBTV */,
+				E612334A2D86EBCB001B030C /* DeviceItem */,
+				E61233702D86F0F3001B030C /* Shared */,
 				E654317A2D619722008A3CC5 /* Model */,
 				E65431B02D619814008A3CC5 /* API */,
 			);
@@ -517,6 +562,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				A7B6FDB72D5E8253001E2DD6 /* PearDBVision */,
+				E612334A2D86EBCB001B030C /* DeviceItem */,
+				E61233702D86F0F3001B030C /* Shared */,
 				E654317A2D619722008A3CC5 /* Model */,
 				E65431B02D619814008A3CC5 /* API */,
 			);
@@ -564,6 +611,8 @@
 				A7EF131C2D6980750020715A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				E612334A2D86EBCB001B030C /* DeviceItem */,
+				E61233702D86F0F3001B030C /* Shared */,
 				E654315E2D6189E9008A3CC5 /* PearDBMac */,
 				E654317A2D619722008A3CC5 /* Model */,
 				E65431B02D619814008A3CC5 /* API */,
@@ -703,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E612333E2D86E9CD001B030C /* DeviceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +781,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E612333B2D86E9CD001B030C /* DeviceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E612333C2D86E9CD001B030C /* DeviceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +804,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E612333D2D86E9CD001B030C /* DeviceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,10 +956,7 @@
 		A74107DA2D5175ED00898B0C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PearDB/PearDB.entitlements;
@@ -945,10 +995,7 @@
 		A74107DB2D5175ED00898B0C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PearDB/PearDB.entitlements;
@@ -987,10 +1034,7 @@
 		A76FC6C82D519181002E6B3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
@@ -1024,10 +1068,7 @@
 		A76FC6C92D519181002E6B3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
@@ -1061,10 +1102,7 @@
 		A76FC6DE2D5191B7002E6B3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1096,10 +1134,7 @@
 		A76FC6DF2D5191B7002E6B3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1131,10 +1166,7 @@
 		A76FC6F32D5191D3002E6B3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
@@ -1165,10 +1197,7 @@
 		A76FC6F42D5191D3002E6B3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
@@ -1263,10 +1292,7 @@
 		A7B6FDC82D5E8255001E2DD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1296,10 +1322,7 @@
 		A7B6FDC92D5E8255001E2DD6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					arm64e,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
