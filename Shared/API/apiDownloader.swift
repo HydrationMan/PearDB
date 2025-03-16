@@ -15,7 +15,8 @@ class AppleDBDownloader: ObservableObject {
         "ios_main": "https://api.appledb.dev/ios/main.json",
         "ios_index": "https://api.appledb.dev/ios/index.json",
         "device_main": "https://api.appledb.dev/device/main.json",
-        "device_index": "https://api.appledb.dev/device/index.json"
+        "device_index": "https://api.appledb.dev/device/index.json",
+        "device_images": "https://img.appledb.dev/main.json"
     ]
     
     private let fileManager = FileManager.default

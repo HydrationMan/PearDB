@@ -27,8 +27,17 @@ struct DeviceDetailView: View {
             VStack {
                 HStack(alignment: .top) {
                     HStack(alignment: .center) {
-                        AsyncImageView(url: "https://img.appledb.dev/device@256/\(device.key)/0.png")
-                            .frame(width: 128, height: 256)
+                        if !device.imageUrl.isEmpty {
+                            ZStack {
+                                ForEach(Array(device.imageUrl.enumerated()), id: \.offset) { offset, imageUrl in
+                                    AsyncImageView(url: imageUrl)
+                                        .frame(width: 128, height: 256)
+                                        .offset(x: 100 * CGFloat(offset))
+                                        .shadow(radius: 8)
+                                }
+                            }
+                            .padding(.trailing, 90 * CGFloat(device.imageUrl.count))
+                        }
                         VStack(alignment: .leading) {
                             Text(device.name)
                                 .font(.largeTitle)

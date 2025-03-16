@@ -15,8 +15,11 @@ struct DeviceItemView: View {
     var body: some View {
         NavigationLink(destination: DeviceDetailView(device: device)) {
             HStack {
-                AsyncImageView(url: "https://img.appledb.dev/device@64/\(device.key)/0.png")
-                    .frame(width: 32, height: 64)
+                if !device.imageUrl.isEmpty {
+                    AsyncImageView(url: device.imageUrl[0])
+                        .frame(width: 32, height: 64)
+                }
+                
                 VStack(alignment: .leading) {
                     if let entry = self.entry {
                         if entry.isMain {
@@ -32,13 +35,25 @@ struct DeviceItemView: View {
                                 .cornerRadius(99)
                             }
                         } else {
-                            Text(device.name)
+                            HStack(alignment: .center) {
+                                Text(device.name)
+                                Color.clear.padding(8)
+                            }
                         }
                         
                         if let firmware = self.firmware {
                             HStack(alignment: .center, spacing: 8) {
                                 Text("Installed \(firmware.osStr)")
                                 Text("\(firmware.version) - \(firmware.build ?? "")")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        
+                        if let serial = entry.serial {
+                            HStack(alignment: .center, spacing: 8) {
+                                Text("Serial")
+                                Text(serial)
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }

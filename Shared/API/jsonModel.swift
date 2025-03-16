@@ -23,6 +23,7 @@ class Device: ObservableObject, Codable, Identifiable {
     @Published private(set) var info: [DeviceInfo]?
     @Published private(set) var key: String
     @Published private(set) var releasedRaw: ReleasedType?
+    @Published var imageUrl: [String] = []
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -944,11 +945,30 @@ class Firmware: ObservableObject, Identifiable, Codable {
     @Published private(set) var securityNotesUrl: String?
     @Published private(set) var sources: [FirmwareSources]?
     @Published private(set) var rc: Bool?
+    @Published var state: State = .idle
+    private(set) var currentBytes: Int64 = 0
+    private(set) var totalBytes: Int64 = 0
 
     enum CodingKeys: String, CodingKey {
         case osStr, version, build, key, releasedRaw = "released", appledburl, deviceMap
         case restoreVersion, beta, rsr, releaseNotesUrl = "releaseNotes"
         case securityNotesUrl = "securityNotes", sources, rc
+    }
+    
+    enum State: Equatable {
+        case idle
+        case dowloading
+        case completed
+        case canceled(resumeData: Data)
+    }
+    
+    var progress: Double {
+        guard totalBytes > 0 else { return 0 }
+        return Double(currentBytes) / Double(totalBytes)
+    }
+
+    var isDownloadCompleted: Bool {
+        currentBytes == totalBytes && totalBytes > 0
     }
     
     var released: String? {
@@ -1000,6 +1020,11 @@ class Firmware: ObservableObject, Identifiable, Codable {
         } else {
             return nil
         }
+    }
+    
+    func update(currentBytes: Int64, totalBytes: Int64) {
+        self.currentBytes = currentBytes
+        self.totalBytes = totalBytes
     }
 }
 
@@ -1096,4 +1121,58 @@ enum DeviceGroupType: String, Codable, CaseIterable {
     case audio = "Audio"
     case iPods = "iPods"
     case inputs = "Inputs"
+}
+
+extension Firmware {
+    var fileURL: URL {
+        URL.downloadsDirectory
+            .appending(path: "\(key)")
+            .appendingPathExtension("ipsw")
+    }
+}
+
+struct DeviceImages: Codable {
+    var id: String { key }
+    let key: String
+    let count: Int
+    let dark: Bool
+    let index: [DeviceImageIndex]
+}
+
+struct DeviceImageIndex: Codable {
+    let id: IdType
+    let dark: Bool
+    
+    var idText: String {
+        switch id {
+        case .int(let int): return int.description
+        case .string(let string): return string
+        }
+    }
+    
+    enum IdType: Codable {
+        case string(String)
+        case int(Int)
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let string = try? container.decode(String.self) {
+                self = .string(string)
+            } else if let int = try? container.decode(Int.self) {
+                self = .int(int)
+            } else {
+                throw DecodingError.typeMismatch(IdType.self,
+                    DecodingError.Context(codingPath: decoder.codingPath,
+                    debugDescription: "❌ Invalid type for IdType"))
+            }
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .string(let string): try container.encode(string)
+            case .int(let int): try container.encode(int)
+            }
+        }
+    }
 }
