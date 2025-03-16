@@ -50,7 +50,15 @@ final class Download: NSObject {
 
 extension Download: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        continuation.yield(.completed(url: location))
+        let filemanager = FileManager.default
+        var downloadDirectory = filemanager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        downloadDirectory = downloadDirectory.appendingPathComponent("PearDBTempDownloads")
+        if !filemanager.fileExists(atPath: downloadDirectory.path()) {
+            try? filemanager.createDirectory(at: downloadDirectory, withIntermediateDirectories: true)
+        }
+        downloadDirectory = downloadDirectory.appendingPathComponent("file.ipsw")
+        try? filemanager.moveItem(at: location, to: downloadDirectory)
+        continuation.yield(.completed(url: downloadDirectory))
         continuation.finish()
     }
 

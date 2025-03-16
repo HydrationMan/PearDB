@@ -49,7 +49,7 @@ import SwiftUICore
         return loadIPSWData(build, deviceKey)?.signed
     }
     
-    public func downloadFirmware(deviceKey: String, firmware: Firmware) async {
+    public func downloadFirmware(deviceKey: String, firmware: Firmware) async throws {
         guard let build = firmware.build else { return }
         do {
             try await self.appDbDownloader.downloadIPSWIfNeeded(buildid: build, identifier: deviceKey)
@@ -61,12 +61,7 @@ import SwiftUICore
             return
         }
         if let ipswFirmware = loadIPSWData(build, deviceKey) {
-            guard let urlString = ipswFirmware.url
-            else {
-                print("⚠️ No IPSW URL found")
-                return
-            }
-            guard let url = URL(string: urlString)
+            guard let url = getIPSWDownloadUrl(urlString: ipswFirmware.url)
             else {
                 print("❌ Error parsing url to URL Object")
                 return
@@ -79,14 +74,48 @@ import SwiftUICore
             }
             downloads[url] = download
             download.start()
-            
+            changeFirmwareDownloadState(for: firmware, state: .dowloading)
             for await event in download.events {
                 process(event, for: firmware)
             }
             
             downloads[url] = nil
         }
+    }
+    
+    public func cancelDownload(for firmware: Firmware, deviceKey: String) {
+        guard let build = firmware.build else { return }
+        if let ipswFirmware = loadIPSWData(build, deviceKey) {
+            guard let url = getIPSWDownloadUrl(urlString: ipswFirmware.url)
+            else {
+                print("❌ Error parsing url to URL Object")
+                return
+            }
+            downloads[url]?.cancel()
+            changeFirmwareDownloadState(for: firmware, state: .idle)
+        }
+    }
+    
+    private func changeFirmwareDownloadState(for firmware: Firmware, state: Firmware.State) {
+        self.selectedFirmwares = self.selectedFirmwares.map({ f in
+            if f.key == firmware.key {
+                var newFirmware = f
+                newFirmware.state = state
+                return newFirmware
+            }
+            
+            return f
+        })
+    }
+    
+    private func getIPSWDownloadUrl(urlString: String?) -> URL? {
+        guard let urlString = urlString
+        else {
+            print("⚠️ No IPSW URL found")
+            return nil
+        }
         
+        return URL(string: urlString)
     }
     
     private func loadIPSWData(_ build: String, _ deviceKey: String) -> IpswFirmware? {
@@ -163,12 +192,24 @@ private extension DeviceFirmwaresViewModel {
     func process(_ event: Download.Event, for firmware: Firmware) {
         switch event {
         case let .progress(current, total):
-            print(current, total)
+            updateFirmware(firmware, currentBytes: current, totalBytes: total)
         case let .completed(url):
             saveFile(for: firmware, at: url)
         default:
             return
         }
+    }
+    
+    func updateFirmware(_ firmware: Firmware, currentBytes: Int64, totalBytes: Int64) {
+        self.selectedFirmwares = self.selectedFirmwares.map({ f in
+            if f.key == firmware.key {
+                var newFirmware = f
+                newFirmware.update(currentBytes: currentBytes, totalBytes: totalBytes)
+                return newFirmware
+            }
+            
+            return f
+        })
     }
     
     func saveFile(for firmware: Firmware, at url: URL) {
@@ -181,7 +222,7 @@ private extension DeviceFirmwaresViewModel {
             }
             downloadDirectory = downloadDirectory.appendingPathComponent("\(firmware.key).ipsw")
             try? filemanager.moveItem(at: url, to: downloadDirectory)
-            print("Downloaded temp file \(url) saved to \(downloadDirectory)")
+            print("✅ Successfully downloaded temp file: \(url) saved to: \(downloadDirectory)")
         }
     }
 }
