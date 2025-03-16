@@ -21,7 +21,7 @@ struct DeviceSectionView: View {
                         LazyVGrid(columns: columns, alignment: .center) {
                             NavigationLink(destination: DeviceView(selectedFilter: DeviceType.iphone).environmentObject(deviceViewModel)) {
                                 VStack(alignment: .center) {
-                                    AsyncImageView(url: "https://img.appledb.dev/device@preview/iPhone17,1/0.png")
+                                    AsyncImageView(url: "https://img.appledb.dev/device@preview/iPhone17,5/Black.png")
                                         .frame(width: 128, height: 256)
                                     Text(DeviceType.iphone.rawValue)
                                 }

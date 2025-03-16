@@ -23,6 +23,7 @@ class Device: ObservableObject, Codable, Identifiable {
     @Published private(set) var info: [DeviceInfo]?
     @Published private(set) var key: String
     @Published private(set) var releasedRaw: ReleasedType?
+    @Published var imageUrl: [String] = []
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -928,23 +929,23 @@ enum DeviceType: String, Codable, CaseIterable {
     case ipodTouch = "iPod touch"
 }
 
-struct Firmware: Identifiable, Codable {
-    var id = UUID()
-    let osStr: String
-    let version: String
-    let restoreVersion: String?
-    let beta: Bool?
-    let rsr: Bool?
-    let build: String?
-    let key: String
-    let releasedRaw: String?
-    let appledburl: String
-    let deviceMap: [String]
-    let releaseNotesUrl: String?
-    let securityNotesUrl: String?
-    let sources: [FirmwareSources]?
-    let rc: Bool?
-    var state: State = .idle
+class Firmware: ObservableObject, Identifiable, Codable {
+    var id: String { key }
+    @Published private(set) var osStr: String
+    @Published private(set) var version: String
+    @Published private(set) var restoreVersion: String?
+    @Published private(set) var beta: Bool?
+    @Published private(set) var rsr: Bool?
+    @Published private(set) var build: String?
+    @Published private(set) var key: String
+    @Published private(set) var releasedRaw: String?
+    @Published private(set) var appledburl: String
+    @Published private(set) var deviceMap: [String]
+    @Published private(set) var releaseNotesUrl: String?
+    @Published private(set) var securityNotesUrl: String?
+    @Published private(set) var sources: [FirmwareSources]?
+    @Published private(set) var rc: Bool?
+    @Published var state: State = .idle
     private(set) var currentBytes: Int64 = 0
     private(set) var totalBytes: Int64 = 0
 
@@ -974,7 +975,7 @@ struct Firmware: Identifiable, Codable {
         return releasedRaw
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         osStr = try container.decode(String.self, forKey: .osStr)
         version = try container.decode(String.self, forKey: .version)
@@ -1021,7 +1022,7 @@ struct Firmware: Identifiable, Codable {
         }
     }
     
-    mutating func update(currentBytes: Int64, totalBytes: Int64) {
+    func update(currentBytes: Int64, totalBytes: Int64) {
         self.currentBytes = currentBytes
         self.totalBytes = totalBytes
     }
@@ -1127,5 +1128,51 @@ extension Firmware {
         URL.downloadsDirectory
             .appending(path: "\(key)")
             .appendingPathExtension("ipsw")
+    }
+}
+
+struct DeviceImages: Codable {
+    var id: String { key }
+    let key: String
+    let count: Int
+    let dark: Bool
+    let index: [DeviceImageIndex]
+}
+
+struct DeviceImageIndex: Codable {
+    let id: IdType
+    let dark: Bool
+    
+    var idText: String {
+        switch id {
+        case .int(let int): return int.description
+        case .string(let string): return string
+        }
+    }
+    
+    enum IdType: Codable {
+        case string(String)
+        case int(Int)
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let string = try? container.decode(String.self) {
+                self = .string(string)
+            } else if let int = try? container.decode(Int.self) {
+                self = .int(int)
+            } else {
+                throw DecodingError.typeMismatch(IdType.self,
+                    DecodingError.Context(codingPath: decoder.codingPath,
+                    debugDescription: "❌ Invalid type for IdType"))
+            }
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .string(let string): try container.encode(string)
+            case .int(let int): try container.encode(int)
+            }
+        }
     }
 }

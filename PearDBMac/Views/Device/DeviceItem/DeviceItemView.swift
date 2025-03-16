@@ -15,8 +15,11 @@ struct DeviceItemView: View {
     var body: some View {
         NavigationLink(destination: DeviceDetailView(device: device)) {
             HStack {
-                AsyncImageView(url: "https://img.appledb.dev/device@64/\(device.key)/0.png")
-                    .frame(width: 32, height: 64)
+                if !device.imageUrl.isEmpty {
+                    AsyncImageView(url: device.imageUrl[0])
+                        .frame(width: 32, height: 64)
+                }
+                
                 VStack(alignment: .leading) {
                     if let entry = self.entry {
                         if entry.isMain {
