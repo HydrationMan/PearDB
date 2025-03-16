@@ -14,6 +14,7 @@ import CoreData
     private let appDbDownloader: AppleDBDownloader = AppleDBDownloader.shared
     @Published var storedEntries: [Entry] = []
     @Published var devices: [Device] = []
+    @Published var images: [DeviceImages] = []
     @Published var firmwares: [Firmware] = []
     @Published var searchedDevices: [Device] = []
     @Published var isLoading: Bool = true
@@ -67,7 +68,7 @@ import CoreData
         } catch {
             print("❌ Error downloading device data: \(error)")
         }
-        
+        self.loadDeviceImages()
         self.loadDeviceData()
         self.loadFirmwareData()
     }
@@ -77,7 +78,19 @@ import CoreData
             do {
                 let decodedDevices = try JSONDecoder().decode([Device].self, from: data)
                 DispatchQueue.main.async {
-                    self.devices = decodedDevices.filter { $0.deviceGroup == .iOSDevices || $0.deviceGroup == .macs || ($0.deviceGroup == .homeAndAccessories && !($0.deviceType == .accessories || $0.deviceType == .beddit || $0.deviceType == .cases || $0.deviceType == .adapters || $0.deviceType == .power)) || $0.deviceGroup == .audio || $0.deviceGroup == .iPods || $0.deviceGroup == .inputs}
+                    self.devices = decodedDevices.filter({ $0.deviceGroup == .iOSDevices || $0.deviceGroup == .macs || ($0.deviceGroup == .homeAndAccessories && !($0.deviceType == .accessories || $0.deviceType == .beddit || $0.deviceType == .cases || $0.deviceType == .adapters || $0.deviceType == .power)) || $0.deviceGroup == .audio || $0.deviceGroup == .iPods || $0.deviceGroup == .inputs}).map({ device in
+                        if let image = self.images.first(where: {$0.key == device.key}) {
+                            if image.count > 0 {
+                                let newDevice = device
+                                image.index.forEach { imageIndex in
+                                    let imageUrl = "https://img.appledb.dev/device@256/\(device.key)/\(imageIndex.idText).png"
+                                    newDevice.imageUrl.append(imageUrl)
+                                }
+                                return newDevice
+                            }
+                        }
+                        return device
+                    })
                 }
             } catch let DecodingError.typeMismatch(_, context) {
                 print("❌ Type mismatch error: \(context.debugDescription)")
@@ -145,6 +158,34 @@ import CoreData
             _ = try moc.execute(asyncFetchRequest)
         } catch {
             print("❌Error fetching core data: \(error)")
+        }
+    }
+    
+    private func loadDeviceImages() {
+        if let data = appDbDownloader.loadLocalJSON(named: "device_images") {
+            do {
+                let decodedDeviceImages = try JSONDecoder().decode([DeviceImages].self, from: data)
+                DispatchQueue.main.async {
+                    self.images = decodedDeviceImages
+                }
+            } catch let DecodingError.typeMismatch(_, context) {
+                print("❌ Type mismatch error: \(context.debugDescription)")
+                print("Coding Path: \(context.codingPath)")
+
+                // Attempt to print the offending JSON section
+                if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+                   let jsonArray = jsonObject as? [[String: Any]] {
+
+                    // Print the specific object at the reported index
+                    if let index = context.codingPath.first?.intValue, index < jsonArray.count {
+                        print("❌ Offending JSON entry: \(jsonArray[index])")
+                    }
+                }
+            } catch {
+                print("❌Error decoding device images: \(error)")
+            }
+        } else {
+            print("⚠️ No local device images data found.")
         }
     }
 }

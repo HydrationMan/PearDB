@@ -32,7 +32,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Firmware", systemImage: "terminal")
                 }
-            dbView()
+            DatabaseView()
                 .tabItem {
                     Label("Database", systemImage: "tray.full")
                 }
