@@ -62,14 +62,15 @@ struct DeviceFirmwareDetail: View {
                 }
                 .buttonStyle(.plain)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(.regularMaterial)
+            .cornerRadius(8)
             if firmware.progress > 0 && !firmware.isDownloadCompleted {
                 ProgressView(value: firmware.progress)
+                    .padding(.horizontal, 16)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(.regularMaterial)
-        .cornerRadius(8)
         .onAppear {
             Task {
                 if (firmware.build != nil) {

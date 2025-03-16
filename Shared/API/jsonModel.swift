@@ -974,7 +974,7 @@ struct Firmware: Identifiable, Codable {
         return releasedRaw
     }
     
-    required init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         osStr = try container.decode(String.self, forKey: .osStr)
         version = try container.decode(String.self, forKey: .version)

@@ -76,7 +76,7 @@ import SwiftUICore
             download.start()
             changeFirmwareDownloadState(for: firmware, state: .dowloading)
             for await event in download.events {
-                process(event, for: firmware)
+                process(event, for: firmware, deviceKey: deviceKey)
             }
             
             downloads[url] = nil
@@ -189,12 +189,12 @@ import SwiftUICore
 }
 
 private extension DeviceFirmwaresViewModel {
-    func process(_ event: Download.Event, for firmware: Firmware) {
+    func process(_ event: Download.Event, for firmware: Firmware, deviceKey: String) {
         switch event {
         case let .progress(current, total):
             updateFirmware(firmware, currentBytes: current, totalBytes: total)
         case let .completed(url):
-            saveFile(for: firmware, at: url)
+            saveFile(for: firmware, at: url, deviceKey: deviceKey)
         default:
             return
         }
@@ -212,7 +212,7 @@ private extension DeviceFirmwaresViewModel {
         })
     }
     
-    func saveFile(for firmware: Firmware, at url: URL) {
+    func saveFile(for firmware: Firmware, at url: URL, deviceKey: String) {
         let filemanager = FileManager.default
         do {
             var downloadDirectory = filemanager.urls(for: .downloadsDirectory, in: .userDomainMask).first!
@@ -220,7 +220,7 @@ private extension DeviceFirmwaresViewModel {
             if !filemanager.fileExists(atPath: downloadDirectory.path()) {
                 try? filemanager.createDirectory(at: downloadDirectory, withIntermediateDirectories: true)
             }
-            downloadDirectory = downloadDirectory.appendingPathComponent("\(firmware.key).ipsw")
+            downloadDirectory = downloadDirectory.appendingPathComponent("\(deviceKey)_\(firmware.version)\(firmware.build != nil ? "_\(firmware.build!)" : "")\(firmware.restoreVersion != nil ? "_Restore" : "").ipsw")
             try? filemanager.moveItem(at: url, to: downloadDirectory)
             print("✅ Successfully downloaded temp file: \(url) saved to: \(downloadDirectory)")
         }
