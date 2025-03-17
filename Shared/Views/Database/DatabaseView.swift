@@ -27,37 +27,35 @@ struct DatabaseView: View {
                         }
                     }
                     
-                    #if os(iOS)
-                        Searchbar(searchText: $search, hasCancel: !search.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) { search in
-                            
-                        } onCancel: {
-                            search = ""
-                            
-                        }
-                        .padding(.horizontal)
-                        
-                        DatabaseScrollView()
-                            .environmentObject(dbViewModel)
-                            .navigationTitle("My Devices")
-                            .toolbar {
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    AddDeviceButtonView(isLoading: dbViewModel.isLoading, isDeviceAlreadySaved: false, fromDB: false) {
-                                        isShowingNewDevice.toggle()
-                                    }
-                                }
-                            }
-                    #else
-                        DatabaseScrollView()
-                            .environmentObject(dbViewModel)
-                    #endif
-                    
                     if dbViewModel.isLoading {
                         ProgressView("Downloading your stored devices…")
                             .progressViewStyle(.circular)
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
-                        
+                        #if os(iOS)
+                            Searchbar(searchText: $search, hasCancel: !search.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) { search in
+                                
+                            } onCancel: {
+                                search = ""
+                                
+                            }
+                            .padding(.horizontal)
+                            
+                            DatabaseScrollView()
+                                .environmentObject(dbViewModel)
+                                .navigationTitle("My Devices")
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarTrailing) {
+                                        AddDeviceButtonView(isLoading: dbViewModel.isLoading, isDeviceAlreadySaved: false, fromDB: false) {
+                                            isShowingNewDevice.toggle()
+                                        }
+                                    }
+                                }
+                        #else
+                            DatabaseScrollView()
+                                .environmentObject(dbViewModel)
+                        #endif
                     }
                 }
             }
@@ -67,9 +65,19 @@ struct DatabaseView: View {
                 NewDeviceView()
                     .environmentObject(dbViewModel)
                     .frame(width: 768)
+                    .onDisappear {
+                        Task {
+                            await dbViewModel.reloadCoreData()
+                        }
+                    }
             #else
                 NewDeviceView()
                     .environmentObject(dbViewModel)
+                    .onDisappear {
+                        Task {
+                            await dbViewModel.reloadCoreData()
+                        }
+                    }
             #endif
         }
     }
@@ -105,5 +113,10 @@ struct DatabaseScrollView: View {
             }
         }
         .padding(.horizontal, 16)
+        .onAppear {
+            Task {
+                await dbViewModel.reloadCoreData()
+            }
+        }
     }
 }
