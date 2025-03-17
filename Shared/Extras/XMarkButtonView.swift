@@ -17,7 +17,7 @@ struct XMarkButtonView: View {
             Image(systemName: "xmark")
                 .font(.headline)
                 .containerShape(RoundedRectangle(cornerRadius: 99))
-                .padding(16)
+                .padding(8)
                 .background(.thickMaterial)
                 .cornerRadius(99)
                 .overlay {
