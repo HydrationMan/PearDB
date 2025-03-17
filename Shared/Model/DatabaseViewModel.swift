@@ -147,8 +147,8 @@ import CoreData
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Entry.isMain, ascending: true)]
         
         let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { fetchResult -> Void in
-            if let resutls = fetchResult.finalResult {
-                self.storedEntries = resutls
+            if let results = fetchResult.finalResult {
+                self.storedEntries = results
             } else {
                 print("⚠️ No core data found.")
             }
