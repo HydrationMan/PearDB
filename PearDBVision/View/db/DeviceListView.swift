@@ -1,12 +1,11 @@
 //
-//  ContentView.swift
+//  DeviceListView.swift
 //  PearDB
 //
-//  Created by Kane Parkinson on 04/02/2025.
+//  Created by Kane Parkinson on 16/03/2025.
 //
 
 import SwiftUI
-import OSLog
 
 struct DeviceListView: View {
     @State private var devices: [Device] = []
@@ -22,7 +21,7 @@ struct DeviceListView: View {
                         .padding()
                 } else {
                     List(devices) { device in
-                        NavigationLink(destination: DeviceDetailView(device: device)) {
+                        NavigationLink(destination: DeviceDetailView(device: device, fromDB: false)) {
                             VStack(alignment: .leading) {
                                 Text(device.name)
                                     .font(.headline)
@@ -83,47 +82,3 @@ struct DeviceListView: View {
         }
     }
 }
-
-struct DeviceDetailView: View {
-    let device: Device
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(device.name)
-                .font(.largeTitle)
-                .bold()
-            if let type = device.type {
-                Text("Type: \(type)")
-                    .font(.title2)
-            }
-            if let released = device.released {
-                Text("Released: \(released)")
-                    .foregroundColor(.secondary)
-            }
-            AsyncImageView(url: "https://img.appledb.dev/device@main/\(device.key)/0.png")
-            Spacer()
-        }
-        .padding()
-        .navigationTitle(device.name)
-        .onAppear() {
-            let peardbLogger = Logger.init(
-                subsystem: "com.hydrate.PearDB.device", category: "com.hydrate.PearDB.debug"
-            )
-            peardbLogger.log(level: .error,"""
-            📝 Device: \(device.name)
-                ↳ IDENTIFIER: \(device.identifier ?? ["⚠️ N/A"])
-                ↳ SOC: \(device.soc ?? "⚠️ N/A")
-                ↳ CPID: \(device.cpid ?? "⚠️ N/A")
-                ↳ ARCH: \(device.arch ?? "⚠️ N/A")
-                ↳ TYPE: \(device.type ?? "⚠️ N/A")
-                ↳ BOARD: \(device.board ?? ["⚠️ N/A"])
-                ↳ BDID: \(device.bdid ?? "⚠️ N/A")
-                ↳ MODEL: \(device.model ?? ["⚠️ N/A"])
-                ↳ INFO: \(device.info?.map { "\($0.type) (\($0.storage ?? "⚠️ N/A") Storage, \($0.ram ?? "⚠️ N/A") RAM)" }.joined(separator: ", ") ?? "⚠️ N/A")
-                ↳ KEY: \(device.key)
-                ↳ RELEASED: \(device.released ?? "⚠️ N/A")
-            """)
-        }
-    }
-}
-

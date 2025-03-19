@@ -11,7 +11,7 @@ import CoreData
 final class DeviceEntryProvider {
     static let shared = DeviceEntryProvider()
     
-    private let persistentContainer: NSPersistentContainer
+    private let persistentContainer: NSPersistentCloudKitContainer
     
     var viewContext: NSManagedObjectContext {
         persistentContainer.viewContext
@@ -23,7 +23,7 @@ final class DeviceEntryProvider {
     
     private init(){
         
-        persistentContainer = NSPersistentContainer(name: "DeviceDataModel")
+        persistentContainer = NSPersistentCloudKitContainer(name: "DeviceDataModel")
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         persistentContainer.loadPersistentStores {_, error in
             if let error {

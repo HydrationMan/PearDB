@@ -40,8 +40,7 @@ struct dbView: View {
                         }
                         .buttonStyle(.plain)
                     } searchable: { searchString in
-                        
-                    }
+                        }
                     if dbViewModel.isLoading {
                         ProgressView("Downloading your stored devices…")
                             .progressViewStyle(.circular)

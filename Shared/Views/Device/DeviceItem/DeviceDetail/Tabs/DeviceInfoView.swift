@@ -317,6 +317,22 @@ struct DeviceInfoView: View {
                             .cornerRadius(8)
                             
                         case .display:
+                            VStack(alignment: .leading) {
+                                Text("Screen Size: \(deviceInfo.screenSize ?? "N/A")")
+                                    .foregroundStyle(.secondary)
+                                Text("Refresh Rate: \(deviceInfo.refreshRate ?? "N/A")")
+                                    .foregroundStyle(.secondary)
+                                Text("Peak Brightness: \(deviceInfo.peakBrightness ?? "N/A")")
+                                    .foregroundStyle(.secondary)
+                                Text("Color Gamut: \(deviceInfo.colorGamut ?? "N/A")")
+                                    .foregroundStyle(.secondary)
+                                Text("True Tone: \(deviceInfo.trueTone ?? "N/A")")
+                                    .foregroundStyle(.secondary)
+                                Text("Pro Motion: \(deviceInfo.proMotion ?? "N/A")")
+                                    .foregroundStyle(.secondary)
+                                Text("Pixels Per Inch: \(deviceInfo.ppi ?? "N/A")")
+                                    .foregroundStyle(.secondary)
+                            }
                             DisclosureGroup(isExpanded: $isExpanded.displayExpanded) {
                                 VStack(alignment: .leading) {
                                     Text("Screen Size: \(deviceInfo.screenSize ?? "N/A")")

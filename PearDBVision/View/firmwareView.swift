@@ -82,23 +82,13 @@ struct FirmwareDetailView: View {
                 Text("Released: \(released)")
                     .foregroundColor(.secondary)
             }
-            
-            if !firmware.deviceMap.isEmpty {
-                Text("Compatible Devices:")
-                    .font(.headline)
-                    .padding(.top, 5)
-                List(firmware.deviceMap, id: \.self) { device in
-                    Text(device)
-                }
-            }
-            
-            Link("View online at AppleDB", destination: URL(string: firmware.appledburl)!)
+            Link("More Info", destination: URL(string: firmware.appledburl)!)
                 .font(.headline)
                 .padding(.top, 10)
             Spacer()
         }
         .padding()
-        .navigationTitle("\(firmware.osStr) \(firmware.version) (\(firmware.build ?? ""))")
+        .navigationTitle(firmware.version)
     }
 }
 

@@ -9,100 +9,102 @@ import SwiftUI
 
 struct newDeviceView: View {
     
-    @State private var searchText = ""
-    @State private var devices: [Device] = []
-    @State private var filteredDevices: [Device] = []
+    @EnvironmentObject private var dbViewModel: DatabaseViewModel
+    @Environment(\.dismiss) private var dismiss
+    @State private var fwViewSwitch: Bool = false
+    @State private var fwSearchText = ""
     @State private var selectedDevice: Device?
+    @State private var showOtherDevices: Bool = false
+    @State private var showSelectedDeviceDetailView: Bool = false
+    @State private var searchText = ""
     @ObservedObject private var downloader = AppleDBDownloader.shared
-    @ObservedObject var vm: editDeviceViewModel
+    
+    private let normalDeviceTypes: Set<String> = [
+        "iPhone", "iPod", "iPod mini", "iPod nano", "iPod shuffle", "iPod touch",
+        "iPad", "iPad Air", "iPad Pro", "iPad mini",
+        "iMac", "MacBook Pro", "MacBook Air", "MacBook", "Mac mini", "Mac Studio", "Mac Pro",
+        "HomePod", "headset", "Apple Watch", "AppleTV"
+    ]
 
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("Search for a device", text: $searchText)
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Add Device")
+                        .font(.title)
+                        .bold()
+                    Spacer()
+                    Button(action: {
+                        dismiss()
+                        dbViewModel.search(searchString: "")
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.secondary)
+                            .imageScale(.large)
+                    }
+                }
+                .padding()
+
+                TextField("Search devices", text: $searchText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                    .onChange(of: searchText) { filterDevices() }
-
-                List(filteredDevices, id: \.key) { device in
-                    Button(action: {
-                        selectedDevice = device
-                    }) {
-                        Text(device.name)
+                    .onChange(of: searchText, initial: true) { oldValue, newValue in
+                        dbViewModel.search(searchString: newValue)
                     }
+                    .searchable(text: $searchText, prompt: "Search devices")
+
+                Toggle(isOn: $showOtherDevices) {
+                    Text("Show other devices")
                 }
-
-                if let selected = selectedDevice {
-                    newDeviceDetailView(device: selected)
+                .padding(.horizontal)
+                .onChange(of: showOtherDevices) {
+                    dbViewModel.search(searchString: searchText)
                 }
-            }
-            .navigationTitle("Device Search")
-            .onAppear(perform: loadDeviceData)
-        }
-    }
-
-    private func loadDeviceData() {
-        DispatchQueue.global(qos: .background).async {
-            Task {
-                if let data = await downloader.loadLocalJSON(named: "device_main") {
-                    do {
-                        let decodedDevices = try JSONDecoder().decode([Device].self, from: data)
-                        DispatchQueue.main.async {
-                            self.devices = decodedDevices
-                            self.filteredDevices = decodedDevices
-                        }
-                    } catch let DecodingError.typeMismatch(_, context) {
-                        print("❌ Type mismatch error: \(context.debugDescription)")
-                        print("Coding Path: \(context.codingPath)")
-
-                        if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
-                           let jsonArray = jsonObject as? [[String: Any]] {
-                            if let index = context.codingPath.first?.intValue, index < jsonArray.count {
-                                print("❌ Offending JSON entry: \(jsonArray[index])")
+                
+                ScrollView {
+                    if !dbViewModel.searchedDevices.isEmpty {
+                        LazyVStack(alignment: .leading) {
+                            ForEach(dbViewModel.searchedDevices.lazy, id: \.key) { device in
+                                Button {
+                                    selectedDevice = device
+                                    showSelectedDeviceDetailView.toggle()
+                                } label: {
+                                    HStack {
+                                        AsyncImageView(url: "https://img.appledb.dev/device@64/\(device.key)/0.png")
+                                            .frame(width: 32, height: 64)
+                                        Text(device.name)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                                    .background(.regularMaterial)
+                                    .cornerRadius(8)
+                                }
+                                .buttonStyle(.plain)
+                                .padding(.horizontal)
                             }
+                            Color.clear.padding()
                         }
-                    } catch {
-                        print("❌ Error decoding devices: \(error)")
                     }
-                } else {
-                    print("⚠️ No local device data found.")
                 }
             }
         }
-    }
-
-    private func filterDevices() {
-        filteredDevices = searchText.isEmpty
-            ? devices
-            : devices.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-    }
-}
-
-struct newDeviceDetailView: View {
-    let device: Device
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Device Name: \(device.name)")
-                .font(.headline)
-            if let identifier = device.identifier?.joined(separator: ", ") {
-                Text("Identifier: \(identifier)")
-            }
-            if let board = device.board?.joined(separator: ", ") {
-                Text("Board: \(board)")
-            }
-            if let model = device.model?.joined(separator: ", ") {
-                Text("Model: \(model)")
-            }
-            if let released = device.released {
-                Text("Released: \(released)")
+        .sheet(isPresented: $showSelectedDeviceDetailView) {
+            if let selected = selectedDevice {
+                DeviceDetailView(device: selected, fromDB: true)
+                    .frame(width: 768)
             }
         }
-        .padding()
+        .navigationTitle("Add Device")
+        .onAppear {
+            dbViewModel.search(searchString: "")
+        }
     }
 }
+
 #Preview {
     NavigationStack {
-        newDeviceView(vm: .init(provider: .shared))
+        newDeviceView()
+            .environmentObject(DatabaseViewModel())
     }
 }
+

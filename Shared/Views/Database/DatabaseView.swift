@@ -41,6 +41,7 @@ struct DatabaseView: View {
                                 
                             }
                             .padding(.horizontal)
+                            .padding(.vertical, 8)
                             
                             DatabaseScrollView()
                                 .environmentObject(dbViewModel)
