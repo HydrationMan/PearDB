@@ -9,10 +9,17 @@ import SwiftUI
 
 @main
 struct PearDBMacApp: App {
+    @StateObject var deviceViewModel: DeviceViewModel = .init()
+    @StateObject var dbViewModel: DatabaseViewModel = .init()
+    @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
+    
     var body: some Scene {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, DeviceEntryProvider.shared.viewContext)
+                .environmentObject(deviceViewModel)
+                .environmentObject(dbViewModel)
+                .environmentObject(deviceFirmwaresViewModel)
         }
     }
 }

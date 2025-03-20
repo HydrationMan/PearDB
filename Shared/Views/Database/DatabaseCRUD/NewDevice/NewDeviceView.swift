@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewDeviceView: View {
     @EnvironmentObject private var dbViewModel: DatabaseViewModel
+    @Environment(\.presentations) private var presentations
     @Environment(\.dismiss) private var dismiss
     @State var search: String = ""
     @State var selectedDevice: Device? = nil
@@ -67,9 +68,11 @@ struct NewDeviceView: View {
             if selectedDevice != nil {
                 #if os(macOS)
                     DeviceDetailView(device: selectedDevice!, fromDB: true)
+                    .environment(\.presentations, presentations + [$showSelectedDeviceDetailView])
                     .frame(width: 768)
                 #else
-                    DeviceDetailView(device: selectedDevice!, fromDB: false)
+                    DeviceDetailView(device: selectedDevice!, fromDB: true)
+                    .environment(\.presentations, presentations + [$showSelectedDeviceDetailView])
                 #endif
             }
         }

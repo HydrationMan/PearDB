@@ -9,15 +9,13 @@ import Foundation
 import CoreData
 
 final class Entry: NSManagedObject, Identifiable {
+    @NSManaged var id: UUID
     @NSManaged var key: String?
     @NSManaged var isMain: Bool
     @NSManaged var firmware: String?
     @NSManaged var serial: String?
     @NSManaged var preferredIcon: String?
     @NSManaged var type: String?
-    var id: String {
-        key ?? UUID().uuidString
-    }
     
     override func awakeFromInsert() {
         super.awakeFromInsert()

@@ -18,6 +18,7 @@ import CoreData
     @Published var firmwares: [Firmware] = []
     @Published var searchedDevices: [Device] = []
     @Published var isLoading: Bool = true
+    @Published var selectedEntry: Entry? = nil
     
     init() {
         Task {
