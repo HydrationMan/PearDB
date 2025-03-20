@@ -41,12 +41,14 @@ struct AddDeviceButtonView: View {
                     }
                     .buttonStyle(.plain)
                     
-                    if fromDB {
-                        XMarkButtonView(action: { dismiss() })
-                    }
+//                    if fromDB {
+//                        XMarkButtonView(action: { dismiss() })
+//                    }
                 }
                 
             }
+        } else {
+            ProgressView()
         }
     }
 }

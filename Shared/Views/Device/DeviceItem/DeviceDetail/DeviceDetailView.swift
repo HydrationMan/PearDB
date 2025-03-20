@@ -142,10 +142,13 @@ struct DeviceDetailView: View {
         }
         .onAppear {
             Task {
-                deviceFirmwaresViewModel.filterFirmwares(device: device)
-                self.isDeviceAlreadySaved = storedData.contains(where: { data in
-                    data.key == device.key
-                })
+//                deviceFirmwaresViewModel.filterFirmwares(device: device)
+//                self.isDeviceAlreadySaved = storedData.contains(where: { data in
+//                    data.key == device.key
+//                })
+                if fromDB {
+                    isDeviceAlreadySaved = true
+                }
                 self.isLoading = false
             }
         }

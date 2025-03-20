@@ -97,7 +97,7 @@ struct DatabaseScrollView: View {
                             let map = dbViewModel.mapEntriesToDevices(entry: entry)
                             let firmware = map.1
                             if let device = map.0 {
-                                DeviceItemView(device: device, entry: entry, firmware: firmware)
+                                DeviceItemView(device: device, entry: entry, firmware: firmware, fromDB: true)
                                     .contextMenu {
                                         Button(role: .destructive) {
                                             Task {

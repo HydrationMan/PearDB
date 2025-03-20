@@ -80,7 +80,7 @@ struct DeviceScrollView: View {
                             .sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending }),
                         id: \.id
                     ) { device in
-                        DeviceItemView(device: device)
+                        DeviceItemView(device: device, fromDB: false)
                     }
                 } else if (!deviceViewModel.devices.isEmpty) {
                     ForEach(
@@ -89,7 +89,7 @@ struct DeviceScrollView: View {
                             .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending },
                         id: \.id
                     ) { device in
-                        DeviceItemView(device: device)
+                        DeviceItemView(device: device, fromDB: false)
                     }
                 }
                 #if os(iOS)

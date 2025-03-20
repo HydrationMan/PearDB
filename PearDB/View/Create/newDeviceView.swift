@@ -90,7 +90,7 @@ struct newDeviceView: View {
         }
         .sheet(isPresented: $showSelectedDeviceDetailView) {
             if let selected = selectedDevice {
-                DeviceDetailView(device: selected, fromDB: true)
+                DeviceDetailView(device: selected, fromDB: false)
                     .frame(width: 768)
             }
         }

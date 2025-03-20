@@ -11,9 +11,10 @@ struct DeviceItemView: View {
     var device: Device
     var entry: Entry?
     var firmware: Firmware?
+    var fromDB: Bool
     
     var body: some View {
-        NavigationLink(destination: DeviceDetailView(device: device)) {
+        NavigationLink(destination: DeviceDetailView(device: device, fromDB: fromDB)) {
             HStack {
                 if !device.imageUrl.isEmpty {
                     AsyncImageView(url: device.imageUrl[0])

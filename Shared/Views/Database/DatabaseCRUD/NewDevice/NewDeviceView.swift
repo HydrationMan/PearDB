@@ -69,7 +69,7 @@ struct NewDeviceView: View {
                     DeviceDetailView(device: selectedDevice!, fromDB: true)
                     .frame(width: 768)
                 #else
-                    DeviceDetailView(device: selectedDevice!, fromDB: true)
+                    DeviceDetailView(device: selectedDevice!, fromDB: false)
                 #endif
             }
         }
