@@ -20,6 +20,8 @@ struct PearDBApp: App {
 // MARK: Tab View
 struct MainView: View {
     @StateObject var deviceViewModel: DeviceViewModel = .init()
+    @StateObject var dbViewModel: DatabaseViewModel = .init()
+    @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
     
     var body: some View {
         TabView {
@@ -27,7 +29,6 @@ struct MainView: View {
                 .tabItem {
                     Label("Devices", systemImage: "internaldrive")
                 }
-                .environmentObject(deviceViewModel)
             FirmwareView()
                 .tabItem {
                     Label("Firmware", systemImage: "terminal")
@@ -41,5 +42,8 @@ struct MainView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .environmentObject(deviceViewModel)
+        .environmentObject(dbViewModel)
+        .environmentObject(deviceFirmwaresViewModel)
     }
 }

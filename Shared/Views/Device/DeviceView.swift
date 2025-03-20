@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DeviceView: View {
-    
-    
     @State var selectedFilter: DeviceType = .iphone
     @EnvironmentObject var deviceViewModel: DeviceViewModel
     @State var search: String = ""
@@ -42,6 +40,7 @@ struct DeviceView: View {
                             deviceViewModel.search(searchString: "")
                         }
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
 
                         DeviceScrollView()
                             .environmentObject(deviceViewModel)
@@ -80,7 +79,7 @@ struct DeviceScrollView: View {
                             .sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending }),
                         id: \.id
                     ) { device in
-                        DeviceItemView(device: device, fromDB: false)
+                        DeviceItemView(device: device)
                     }
                 } else if (!deviceViewModel.devices.isEmpty) {
                     ForEach(
@@ -89,7 +88,7 @@ struct DeviceScrollView: View {
                             .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending },
                         id: \.id
                     ) { device in
-                        DeviceItemView(device: device, fromDB: false)
+                        DeviceItemView(device: device)
                     }
                 }
                 #if os(iOS)

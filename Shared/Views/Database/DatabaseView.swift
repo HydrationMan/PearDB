@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct DatabaseView: View {
+    @Environment(\.presentations) private var presentations
     @State var search: String = ""
     @State private var isShowingNewDevice = false
     
-    @StateObject var dbViewModel: DatabaseViewModel = .init()
+    @EnvironmentObject var dbViewModel: DatabaseViewModel
     
     var body: some View {
         ZStack {
@@ -64,6 +65,7 @@ struct DatabaseView: View {
         .sheet(isPresented: $isShowingNewDevice) {
             #if os(macOS)
                 NewDeviceView()
+                    .environment(\.presentations, presentations + [$isShowingNewDevice])
                     .environmentObject(dbViewModel)
                     .frame(width: 768)
                     .onDisappear {
@@ -73,6 +75,7 @@ struct DatabaseView: View {
                     }
             #else
                 NewDeviceView()
+                    .environment(\.presentations, presentations + [$isShowingNewDevice])
                     .environmentObject(dbViewModel)
                     .onDisappear {
                         Task {
@@ -93,11 +96,11 @@ struct DatabaseScrollView: View {
             if !dbViewModel.devices.isEmpty {
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
                     if (!dbViewModel.storedEntries.isEmpty) {
-                        ForEach(dbViewModel.storedEntries, id: \.key) { entry in
+                        ForEach(dbViewModel.storedEntries, id: \.id) { entry in
                             let map = dbViewModel.mapEntriesToDevices(entry: entry)
                             let firmware = map.1
                             if let device = map.0 {
-                                DeviceItemView(device: device, entry: entry, firmware: firmware, fromDB: true)
+                                DeviceItemView(device: device, entry: entry, firmware: firmware)
                                     .contextMenu {
                                         Button(role: .destructive) {
                                             Task {

@@ -50,6 +50,18 @@
 		E612339E2D87929A001B030C /* AddDeviceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612339C2D87929A001B030C /* AddDeviceButtonView.swift */; };
 		E612339F2D87929A001B030C /* AddDeviceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612339C2D87929A001B030C /* AddDeviceButtonView.swift */; };
 		E61233A02D87929A001B030C /* AddDeviceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612339C2D87929A001B030C /* AddDeviceButtonView.swift */; };
+		E65337BE2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337BD2D8BB1EB00CCA049 /* AddDeviceModalView.swift */; };
+		E65337BF2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337BD2D8BB1EB00CCA049 /* AddDeviceModalView.swift */; };
+		E65337C02D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337BD2D8BB1EB00CCA049 /* AddDeviceModalView.swift */; };
+		E65337C12D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337BD2D8BB1EB00CCA049 /* AddDeviceModalView.swift */; };
+		E65337C32D8BCBFC00CCA049 /* PresentationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */; };
+		E65337C42D8BCBFC00CCA049 /* PresentationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */; };
+		E65337C52D8BCBFC00CCA049 /* PresentationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */; };
+		E65337C62D8BCBFC00CCA049 /* PresentationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */; };
+		E65337C82D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
+		E65337C92D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
+		E65337CA2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
+		E65337CB2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +161,9 @@
 		E612336E2D86F0F3001B030C /* Searchbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
 		E612336F2D86F0F3001B030C /* XMarkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMarkButtonView.swift; sourceTree = "<group>"; };
 		E612339C2D87929A001B030C /* AddDeviceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceButtonView.swift; sourceTree = "<group>"; };
+		E65337BD2D8BB1EB00CCA049 /* AddDeviceModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceModalView.swift; sourceTree = "<group>"; };
+		E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationKey.swift; sourceTree = "<group>"; };
+		E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSavedDevicesToEditView.swift; sourceTree = "<group>"; };
 		E654315D2D6189E9008A3CC5 /* PearDBMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -456,6 +471,9 @@
 		E61233982D879183001B030C /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */,
+				E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */,
+				E65337BD2D8BB1EB00CCA049 /* AddDeviceModalView.swift */,
 				E612336B2D86F0F3001B030C /* FooterView.swift */,
 				E612336C2D86F0F3001B030C /* GenericButtonView.swift */,
 				E612336D2D86F0F3001B030C /* HeaderView.swift */,
@@ -815,10 +833,13 @@
 			files = (
 				E61233992D8791DC001B030C /* BorderEdges.swift in Sources */,
 				E612333E2D86E9CD001B030C /* DeviceView.swift in Sources */,
+				E65337CA2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E61233762D86F0FA001B030C /* Searchbar.swift in Sources */,
 				E61233772D86F0FA001B030C /* FooterView.swift in Sources */,
+				E65337C12D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
 				E61233782D86F0FA001B030C /* HeaderView.swift in Sources */,
 				E61233792D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
+				E65337C32D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 				E612339F2D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
 				E612337A2D86F0FA001B030C /* GenericButtonView.swift in Sources */,
 			);
@@ -856,7 +877,10 @@
 				E612337D2D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
 				E612337E2D86F0FA001B030C /* HeaderView.swift in Sources */,
 				E612337F2D86F0FA001B030C /* FooterView.swift in Sources */,
+				E65337CB2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E612333B2D86E9CD001B030C /* DeviceView.swift in Sources */,
+				E65337BE2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
+				E65337C62D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,12 +889,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E612339B2D8791DC001B030C /* BorderEdges.swift in Sources */,
+				E65337C52D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 				E61233A02D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
 				E61233802D86F0FA001B030C /* HeaderView.swift in Sources */,
 				E61233812D86F0FA001B030C /* FooterView.swift in Sources */,
 				E61233822D86F0FA001B030C /* GenericButtonView.swift in Sources */,
 				E61233832D86F0FA001B030C /* Searchbar.swift in Sources */,
+				E65337C82D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E61233842D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
+				E65337BF2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
 				E612333C2D86E9CD001B030C /* DeviceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -886,12 +913,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E65337C92D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E61233752D86F0F3001B030C /* XMarkButtonView.swift in Sources */,
 				E61233182D8693A2001B030C /* BorderEdges.swift in Sources */,
 				E61233722D86F0F3001B030C /* GenericButtonView.swift in Sources */,
 				E61233192D8693A2001B030C /* SemiOpaqueWindow.swift in Sources */,
 				E61233732D86F0F3001B030C /* HeaderView.swift in Sources */,
 				E61233742D86F0F3001B030C /* Searchbar.swift in Sources */,
+				E65337C02D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
+				E65337C42D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 				E612339E2D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
 				E61233712D86F0F3001B030C /* FooterView.swift in Sources */,
 				E612333D2D86E9CD001B030C /* DeviceView.swift in Sources */,
