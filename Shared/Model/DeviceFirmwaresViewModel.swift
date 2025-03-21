@@ -27,9 +27,9 @@ import SwiftUICore
     public func filterFirmwares(device: Device) {
         let filteredFirmwares = self.firmwares.filter { $0.deviceMap.contains { $0 == device.key } }
         if (!filteredFirmwares.isEmpty) {
-            self.selectedFirmwares = filteredFirmwares.filter({ $0.rc == false && $0.beta == false }).sorted(by: { $0.version.localizedStandardCompare($1.version) == .orderedDescending })
-            self.betaFirmwares = filteredFirmwares.filter({ $0.beta == true && $0.rc == false }).sorted(by: { $0.version.localizedStandardCompare($1.version) == .orderedDescending })
-            self.rcFirmwares = filteredFirmwares.filter({ $0.beta == false && $0.rc == true }).sorted(by: { $0.version.localizedStandardCompare($1.version) == .orderedDescending })
+            self.selectedFirmwares = filteredFirmwares.filter({ $0.rc == false && $0.beta == false }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
+            self.betaFirmwares = filteredFirmwares.filter({ $0.beta == true && $0.rc == false }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
+            self.rcFirmwares = filteredFirmwares.filter({ $0.beta == false && $0.rc == true }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
         } else {
             print("⚠️ No Firmwares found")
         }
