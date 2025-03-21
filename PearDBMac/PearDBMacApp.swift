@@ -28,7 +28,7 @@ struct PearDBMacApp: App {
 struct MainView: View {
     @FetchRequest(sortDescriptors: []) var storedData: FetchedResults<Entry>
     @State private var selected: Int? = 0
-
+    
     var body: some View {
         NavigationSplitView {
             List(selection: $selected) {
@@ -56,21 +56,24 @@ struct MainView: View {
             .navigationTitle("PearDB")
             .frame(minWidth: 150, idealWidth: 250, maxWidth: 300)
         } detail: {
-            if let selected = selected {
-                switch selected {
-                case 0:
-                    DeviceSectionView()
-                case 1:
-                    Text("Firmware - soon")
-                case 2:
-                    DatabaseView()
-                case 3:
-                    Text("Settings - soon")
-                default:
+            VStack {
+                if let selected = selected {
+                    switch selected {
+                    case 0:
+                        DeviceSectionView()
+                    case 1:
+                        Text("Firmware - soon")
+                    case 2:
+                        DatabaseView()
+                            
+                    case 3:
+                        Text("Settings - soon")
+                    default:
+                        Text("Select an option from the sidebar")
+                    }
+                } else {
                     Text("Select an option from the sidebar")
                 }
-            } else {
-                Text("Select an option from the sidebar")
             }
         }
         .onAppear {
