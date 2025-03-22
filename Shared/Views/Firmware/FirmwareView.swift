@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FirmwareView: View {
     @EnvironmentObject var firmwaresViewModel: FirmwaresViewModel
+    @EnvironmentObject var deviceViewModel: DeviceViewModel
     @State var search: String = ""
     
     var body: some View {
@@ -52,6 +53,7 @@ struct FirmwareView: View {
                     #else
                     FirmwareScrollView()
                         .environmentObject(firmwaresViewModel)
+                        .environmentObject(deviceViewModel)
                     #endif
                 }
             }
@@ -65,6 +67,7 @@ struct FirmwareView: View {
 struct FirmwareScrollView: View {
     let columns = [GridItem(.adaptive(minimum: 500))]
     @EnvironmentObject var firmwaresViewModel: FirmwaresViewModel
+    @EnvironmentObject var deviceViewModel: DeviceViewModel
     
     var body: some View {
         ScrollView {
@@ -72,10 +75,12 @@ struct FirmwareScrollView: View {
                 if !firmwaresViewModel.searchedFirmwares.isEmpty {
                     ForEach(firmwaresViewModel.searchedFirmwares.lazy, id: \.id) { firmware in
                         FirmwareItemView(firmware: firmware)
+                            .environmentObject(deviceViewModel)
                     }
                 } else if !firmwaresViewModel.paginatedFirmwares.isEmpty {
                     ForEach(firmwaresViewModel.paginatedFirmwares.lazy, id: \.id) { firmware in
                         FirmwareItemView(firmware: firmware)
+                            .environmentObject(deviceViewModel)
                             .onAppear {
                                 firmwaresViewModel.loadMoreIfNeeded(currentItem: firmware)
                             }

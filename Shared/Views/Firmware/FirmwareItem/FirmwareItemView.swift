@@ -9,9 +9,15 @@ import SwiftUI
 
 struct FirmwareItemView: View {
     var firmware: Firmware
+    @EnvironmentObject var deviceViewModel: DeviceViewModel
+    @EnvironmentObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel
+    @EnvironmentObject var dbViewModel: DatabaseViewModel
     
     var body: some View {
-        NavigationLink(destination: FirmwareDetailView(firmware: firmware)) {
+        NavigationLink(destination: FirmwareDetailView(firmware: firmware)
+            .environmentObject(deviceViewModel)
+            .environmentObject(deviceFirmwaresViewModel)
+            .environmentObject(dbViewModel)) {
             FirmwareItemLabelView(firmware: firmware)
         }
         .buttonStyle(.plain)

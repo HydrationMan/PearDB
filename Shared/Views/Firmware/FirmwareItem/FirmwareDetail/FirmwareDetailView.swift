@@ -67,16 +67,15 @@ struct FirmwareDetailView: View {
                 .background(.ultraThickMaterial)
                 .compositingGroup()
                 .shadow(radius: 5)
-                .padding(.bottom)
                 
                 ScrollView {
                     LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
                         ForEach(filterDevices(), id: \.id) { device in
                             DeviceItemView(device: device)
-                                .padding(.horizontal)
                         }
                     }
                 }
+                .padding(.horizontal)
             }
         }
     }

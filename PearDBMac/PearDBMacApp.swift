@@ -62,6 +62,9 @@ struct MainView: View {
                             .environmentObject(deviceFirmwaresViewModel)
                     case 1:
                         FirmwareView()
+                            .environmentObject(deviceViewModel)
+                            .environmentObject(dbViewModel)
+                            .environmentObject(deviceFirmwaresViewModel)
                             .environmentObject(firmwaresViewModel)
                     case 2:
                         DatabaseView()
