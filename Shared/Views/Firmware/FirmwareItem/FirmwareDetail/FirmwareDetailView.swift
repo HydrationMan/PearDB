@@ -70,6 +70,9 @@ struct FirmwareDetailView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
+                        #if os(iOS)
+                        Color.clear.frame(height: 1)
+                        #endif
                         ForEach(filterDevices(), id: \.id) { device in
                             DeviceItemView(device: device)
                         }
