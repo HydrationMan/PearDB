@@ -13,8 +13,13 @@ struct DeviceItemView: View {
     var firmware: Firmware?
     var fromSheet: Bool?
     
+    @EnvironmentObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel
+    @EnvironmentObject var dbViewModel: DatabaseViewModel
+    
     var body: some View {
-        NavigationLink(destination: DeviceDetailView(device: device)) {
+        NavigationLink(destination: DeviceDetailView(device: device)
+            .environmentObject(deviceFirmwaresViewModel)
+            .environmentObject(dbViewModel)) {
             DeviceItemLabelView(device: device, entry: entry, firmware: firmware)
         }
         .buttonStyle(.plain)

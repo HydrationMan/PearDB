@@ -9,26 +9,22 @@ import SwiftUI
 
 @main
 struct PearDBMacApp: App {
-    @StateObject var deviceViewModel: DeviceViewModel = .init()
-    @StateObject var dbViewModel: DatabaseViewModel = .init()
-    @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
-    
     var body: some Scene {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, DeviceEntryProvider.shared.viewContext)
-                .environmentObject(deviceViewModel)
-                .environmentObject(dbViewModel)
-                .environmentObject(deviceFirmwaresViewModel)
         }
     }
 }
 
 // MARK: NavigationSplitView
 struct MainView: View {
-    @FetchRequest(sortDescriptors: []) var storedData: FetchedResults<Entry>
     @State private var selected: Int? = 0
-
+    @StateObject var deviceViewModel: DeviceViewModel = .init()
+    @StateObject var dbViewModel: DatabaseViewModel = .init()
+    @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
+    @StateObject var firmwaresViewModel: FirmwaresViewModel = .init()
+    
     var body: some View {
         NavigationSplitView {
             List(selection: $selected) {
@@ -56,29 +52,37 @@ struct MainView: View {
             .navigationTitle("PearDB")
             .frame(minWidth: 150, idealWidth: 250, maxWidth: 300)
         } detail: {
-            if let selected = selected {
-                switch selected {
-                case 0:
-                    DeviceSectionView()
-                case 1:
-                    Text("Firmware - soon")
-                case 2:
-                    DatabaseView()
-                case 3:
-                    Text("Settings - soon")
-                default:
+            VStack {
+                if let selected = selected {
+                    switch selected {
+                    case 0:
+                        DeviceSectionView()
+                            .environmentObject(deviceViewModel)
+                            .environmentObject(dbViewModel)
+                            .environmentObject(deviceFirmwaresViewModel)
+                    case 1:
+                        FirmwareView()
+                            .environmentObject(deviceViewModel)
+                            .environmentObject(dbViewModel)
+                            .environmentObject(deviceFirmwaresViewModel)
+                            .environmentObject(firmwaresViewModel)
+                    case 2:
+                        DatabaseView()
+                            .environmentObject(deviceViewModel)
+                            .environmentObject(dbViewModel)
+                            .environmentObject(deviceFirmwaresViewModel)
+                    case 3:
+                        Text("Settings - soon")
+                    default:
+                        Text("Select an option from the sidebar")
+                    }
+                } else {
                     Text("Select an option from the sidebar")
                 }
-            } else {
-                Text("Select an option from the sidebar")
             }
         }
         .onAppear {
-            if storedData.count > 0 {
-                self.selected = 2
-            } else {
-                self.selected = 0
-            }
+            self.selected = 0
         }
     }
 }

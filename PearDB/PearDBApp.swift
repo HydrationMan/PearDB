@@ -22,6 +22,7 @@ struct MainView: View {
     @StateObject var deviceViewModel: DeviceViewModel = .init()
     @StateObject var dbViewModel: DatabaseViewModel = .init()
     @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
+    @StateObject var firmwaresViewModel: FirmwaresViewModel = .init()
     
     var body: some View {
         TabView {
@@ -45,5 +46,6 @@ struct MainView: View {
         .environmentObject(deviceViewModel)
         .environmentObject(dbViewModel)
         .environmentObject(deviceFirmwaresViewModel)
+        .environmentObject(firmwaresViewModel)
     }
 }

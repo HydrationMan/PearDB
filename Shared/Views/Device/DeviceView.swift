@@ -76,7 +76,7 @@ struct DeviceScrollView: View {
                     ForEach(
                         deviceViewModel.searchedDevices.lazy
                             .filter { $0.deviceType == deviceViewModel.filter }
-                            .sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending }),
+                            .sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedAscending }),
                         id: \.id
                     ) { device in
                         DeviceItemView(device: device)
@@ -85,14 +85,13 @@ struct DeviceScrollView: View {
                     ForEach(
                         deviceViewModel.devices.lazy
                             .filter { $0.deviceType == deviceViewModel.filter }
-                            .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending },
+                            .sorted { $0.key.localizedStandardCompare($1.key) == .orderedAscending },
                         id: \.id
                     ) { device in
                         DeviceItemView(device: device)
                     }
                 }
-                #if os(iOS)
-                #else
+                #if os(macOS)
                 Color.clear.padding(16)
                 Color.clear.padding(16)
                 Color.clear.padding(16)

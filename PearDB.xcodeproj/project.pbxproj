@@ -62,6 +62,18 @@
 		E65337C92D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
 		E65337CA2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
 		E65337CB2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
+		E6A74E9E2D8E682B008F353A /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74E9D2D8E682B008F353A /* FirmwareView.swift */; };
+		E6A74E9F2D8E682B008F353A /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74E9D2D8E682B008F353A /* FirmwareView.swift */; };
+		E6A74EA02D8E682B008F353A /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74E9D2D8E682B008F353A /* FirmwareView.swift */; };
+		E6A74EA12D8E682B008F353A /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74E9D2D8E682B008F353A /* FirmwareView.swift */; };
+		E6A74EAF2D8E725C008F353A /* FirmwareItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EAE2D8E725C008F353A /* FirmwareItemView.swift */; };
+		E6A74EB02D8E725C008F353A /* FirmwareItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EAE2D8E725C008F353A /* FirmwareItemView.swift */; };
+		E6A74EB12D8E725C008F353A /* FirmwareItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EAE2D8E725C008F353A /* FirmwareItemView.swift */; };
+		E6A74EB22D8E725C008F353A /* FirmwareItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EAE2D8E725C008F353A /* FirmwareItemView.swift */; };
+		E6A74EB52D8E72DB008F353A /* FirmwareDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */; };
+		E6A74EB62D8E72DB008F353A /* FirmwareDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */; };
+		E6A74EB72D8E72DB008F353A /* FirmwareDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */; };
+		E6A74EB82D8E72DB008F353A /* FirmwareDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +177,9 @@
 		E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationKey.swift; sourceTree = "<group>"; };
 		E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSavedDevicesToEditView.swift; sourceTree = "<group>"; };
 		E654315D2D6189E9008A3CC5 /* PearDBMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6A74E9D2D8E682B008F353A /* FirmwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareView.swift; sourceTree = "<group>"; };
+		E6A74EAE2D8E725C008F353A /* FirmwareItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareItemView.swift; sourceTree = "<group>"; };
+		E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -453,6 +468,7 @@
 		E61233392D86E98F001B030C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E6A74E972D8E67DB008F353A /* Firmware */,
 				E61233482D86EB27001B030C /* Device */,
 				E612338F2D8790E8001B030C /* Database */,
 			);
@@ -495,6 +511,32 @@
 				E65431B02D619814008A3CC5 /* API */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		E6A74E972D8E67DB008F353A /* Firmware */ = {
+			isa = PBXGroup;
+			children = (
+				E6A74EAD2D8E7231008F353A /* FirmwareItem */,
+				E6A74E9D2D8E682B008F353A /* FirmwareView.swift */,
+			);
+			path = Firmware;
+			sourceTree = "<group>";
+		};
+		E6A74EAD2D8E7231008F353A /* FirmwareItem */ = {
+			isa = PBXGroup;
+			children = (
+				E6A74EB32D8E72C8008F353A /* FirmwareDetail */,
+				E6A74EAE2D8E725C008F353A /* FirmwareItemView.swift */,
+			);
+			path = FirmwareItem;
+			sourceTree = "<group>";
+		};
+		E6A74EB32D8E72C8008F353A /* FirmwareDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */,
+			);
+			path = FirmwareDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -837,6 +879,9 @@
 				E61233762D86F0FA001B030C /* Searchbar.swift in Sources */,
 				E61233772D86F0FA001B030C /* FooterView.swift in Sources */,
 				E65337C12D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
+				E6A74EB22D8E725C008F353A /* FirmwareItemView.swift in Sources */,
+				E6A74E9E2D8E682B008F353A /* FirmwareView.swift in Sources */,
+				E6A74EB72D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
 				E61233782D86F0FA001B030C /* HeaderView.swift in Sources */,
 				E61233792D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
 				E65337C32D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
@@ -870,6 +915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6A74EA02D8E682B008F353A /* FirmwareView.swift in Sources */,
 				E612339A2D8791DC001B030C /* BorderEdges.swift in Sources */,
 				E612339D2D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
 				E612337B2D86F0FA001B030C /* Searchbar.swift in Sources */,
@@ -878,8 +924,10 @@
 				E612337E2D86F0FA001B030C /* HeaderView.swift in Sources */,
 				E612337F2D86F0FA001B030C /* FooterView.swift in Sources */,
 				E65337CB2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
+				E6A74EB82D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
 				E612333B2D86E9CD001B030C /* DeviceView.swift in Sources */,
 				E65337BE2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
+				E6A74EAF2D8E725C008F353A /* FirmwareItemView.swift in Sources */,
 				E65337C62D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -888,12 +936,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6A74EB02D8E725C008F353A /* FirmwareItemView.swift in Sources */,
 				E612339B2D8791DC001B030C /* BorderEdges.swift in Sources */,
 				E65337C52D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 				E61233A02D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
 				E61233802D86F0FA001B030C /* HeaderView.swift in Sources */,
 				E61233812D86F0FA001B030C /* FooterView.swift in Sources */,
 				E61233822D86F0FA001B030C /* GenericButtonView.swift in Sources */,
+				E6A74E9F2D8E682B008F353A /* FirmwareView.swift in Sources */,
+				E6A74EB62D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
 				E61233832D86F0FA001B030C /* Searchbar.swift in Sources */,
 				E65337C82D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E61233842D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
@@ -914,12 +965,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E65337C92D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
+				E6A74EA12D8E682B008F353A /* FirmwareView.swift in Sources */,
 				E61233752D86F0F3001B030C /* XMarkButtonView.swift in Sources */,
 				E61233182D8693A2001B030C /* BorderEdges.swift in Sources */,
+				E6A74EB52D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
 				E61233722D86F0F3001B030C /* GenericButtonView.swift in Sources */,
 				E61233192D8693A2001B030C /* SemiOpaqueWindow.swift in Sources */,
 				E61233732D86F0F3001B030C /* HeaderView.swift in Sources */,
 				E61233742D86F0F3001B030C /* Searchbar.swift in Sources */,
+				E6A74EB12D8E725C008F353A /* FirmwareItemView.swift in Sources */,
 				E65337C02D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
 				E65337C42D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 				E612339E2D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
@@ -1481,10 +1535,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PearDBMacWidget/PearDBMacWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMacWidget/Info.plist;
@@ -1512,10 +1566,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PearDBMacWidget/PearDBMacWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMacWidget/Info.plist;
@@ -1545,12 +1599,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PearDBMac/PearDBMac.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBMac/Preview Content\"";
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMac/Info.plist;
@@ -1580,12 +1634,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PearDBMac/PearDBMac.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBMac/Preview Content\"";
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMac/Info.plist;
