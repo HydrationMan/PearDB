@@ -8,7 +8,83 @@
 import SwiftUI
 
 struct FirmwareDetailView: View {
+    var firmware: Firmware
+    let columns = [GridItem(.adaptive(minimum: 300))]
+    
+    @EnvironmentObject var firmwaresViewModel: FirmwaresViewModel
+    @EnvironmentObject var deviceViewModel: DeviceViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            #if os(macOS)
+                Rectangle.semiOpaqueWindow().padding(-1)
+            #endif
+            VStack {
+                VStack {
+                    HStack {
+                        if let image = firmware.appledbWebImage?.id {
+                            AsyncImageView(url: "https://img.appledb.dev/images@preview/\(image)/0.png")
+                                .frame(width: 64, height: 64)
+                        }
+                        VStack {
+                            Text("\(firmware.osStr) \(firmware.version) ")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.title)
+                            if let build = firmware.build {
+                                Text("Build: \(build)")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        HStack(alignment: .center) {
+                            switch(true) {
+                            case firmware.rc:
+                                Text("RC")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            case firmware.beta:
+                                Text("Beta")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            default:
+                                Text("Release")
+                                    .font(.subheadline)
+                            }
+                        }
+                        .padding(8)
+                        .background(.thickMaterial)
+                        .cornerRadius(99)
+                    }
+                    Text("Devices")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding()
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .background(.ultraThickMaterial)
+                .compositingGroup()
+                .shadow(radius: 5)
+                .padding(.bottom)
+                
+                ScrollView {
+                    LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
+                        ForEach(filterDevices(), id: \.id) { device in
+                            DeviceItemView(device: device)
+                                .padding(.horizontal)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func filterDevices() -> [Device] {
+        let devices = deviceViewModel.devices.filter { device in
+            self.firmware.deviceMap.contains(device.key)
+        }
+        return devices.sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedAscending } )
     }
 }

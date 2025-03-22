@@ -11,7 +11,7 @@ struct FirmwareItemView: View {
     var firmware: Firmware
     
     var body: some View {
-        NavigationLink(destination: FirmwareDetailView()) {
+        NavigationLink(destination: FirmwareDetailView(firmware: firmware)) {
             FirmwareItemLabelView(firmware: firmware)
         }
         .buttonStyle(.plain)
@@ -52,6 +52,7 @@ struct FirmwareItemLabelView: View {
                             .foregroundColor(.secondary)
                     default:
                         Text("Release")
+                            .font(.subheadline)
                     }
                 }
                 .padding(8)
