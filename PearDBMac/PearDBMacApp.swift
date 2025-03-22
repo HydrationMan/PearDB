@@ -9,25 +9,21 @@ import SwiftUI
 
 @main
 struct PearDBMacApp: App {
-    @StateObject var deviceViewModel: DeviceViewModel = .init()
-    @StateObject var dbViewModel: DatabaseViewModel = .init()
-    @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
-    
     var body: some Scene {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, DeviceEntryProvider.shared.viewContext)
-                .environmentObject(deviceViewModel)
-                .environmentObject(dbViewModel)
-                .environmentObject(deviceFirmwaresViewModel)
         }
     }
 }
 
 // MARK: NavigationSplitView
 struct MainView: View {
-    @FetchRequest(sortDescriptors: []) var storedData: FetchedResults<Entry>
     @State private var selected: Int? = 0
+    @StateObject var deviceViewModel: DeviceViewModel = .init()
+    @StateObject var dbViewModel: DatabaseViewModel = .init()
+    @StateObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel = .init()
+    @StateObject var firmwaresViewModel: FirmwaresViewModel = .init()
     
     var body: some View {
         NavigationSplitView {
@@ -61,11 +57,17 @@ struct MainView: View {
                     switch selected {
                     case 0:
                         DeviceSectionView()
+                            .environmentObject(deviceViewModel)
+                            .environmentObject(dbViewModel)
+                            .environmentObject(deviceFirmwaresViewModel)
                     case 1:
-                        Text("Firmware - soon")
+                        FirmwareView()
+                            .environmentObject(firmwaresViewModel)
                     case 2:
                         DatabaseView()
-                            
+                            .environmentObject(deviceViewModel)
+                            .environmentObject(dbViewModel)
+                            .environmentObject(deviceFirmwaresViewModel)
                     case 3:
                         Text("Settings - soon")
                     default:
@@ -77,11 +79,7 @@ struct MainView: View {
             }
         }
         .onAppear {
-            if storedData.count > 0 {
-                self.selected = 2
-            } else {
-                self.selected = 0
-            }
+            self.selected = 0
         }
     }
 }

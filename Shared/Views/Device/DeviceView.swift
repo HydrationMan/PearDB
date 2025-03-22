@@ -91,8 +91,7 @@ struct DeviceScrollView: View {
                         DeviceItemView(device: device)
                     }
                 }
-                #if os(iOS)
-                #else
+                #if os(macOS)
                 Color.clear.padding(16)
                 Color.clear.padding(16)
                 Color.clear.padding(16)

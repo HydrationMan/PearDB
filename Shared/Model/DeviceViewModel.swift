@@ -7,8 +7,11 @@
 
 import Foundation
 import SwiftUICore
-@MainActor class DeviceViewModel: ObservableObject {
+
+@MainActor
+class DeviceViewModel: ObservableObject {
     private let appDbDownloader: AppleDBDownloader = AppleDBDownloader.shared
+    
     @Published var devices: [Device] = []
     @Published var deviceImages: [DeviceImages] = []
     @Published var selectedDeviceGroup: DeviceGroupType = DeviceGroupType.iOSDevices

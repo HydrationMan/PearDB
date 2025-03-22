@@ -866,6 +866,141 @@ enum DeviceInfoType: String, Codable, CaseIterable {
     case input = "Input"
 }
 
+enum OSStrings: String, Codable, CaseIterable {
+    case software = "Software"
+    
+    case accessoryFirmware = "Accessory Firmware"
+    
+    case usbCDigitalAVMultiportAdapterFirmware = "USB-C Digital AV Multiport Adapter Firmware"
+    case vgaAdapterFirmware = "VGA Adapter Firmware"
+    case usbcToLightningAdapterFirmware = "USB-C to Lightning Adapter Firmware"
+    case appleUSBCameraAdapterFirmware = "Apple USB Camera Adapter Firmware"
+    case sdCardReaderFirmware = "SD Card Reader Firmware"
+    
+    
+    case bedditOS = "Beddit OS"
+    
+    case bluetoothHeadsetFirmware = "Bluetooth Headset Firmware"
+    case powerbeats2WirelessFirmware = "Powerbeats² Wireless Firmware"
+    case beatsSolo2WirelessFirmware = "Beats Solo² Wireless Firmware"
+    case b0501Firmware = "B0501 Firmware"
+    case beatsStudioBudsFirmware = "Beats Studio Buds Firmware"
+    case beatsPillPlusFirmware = "Beats Pill+ Firmware"
+    case beatsStudioProFirmware = "Beats Studio Pro Firmware"
+    case beatsStudioBudsPlusFirmware = "Beats Studio Buds + Firmware"
+    case beatsPillFirmware = "Beats Pill Firmware"
+    case airpodsFirmware = "AirPods Firmware"
+    case beatsSoloBudsFirmware = "Beats Solo Buds Firmware"
+    
+    case durianFirmware = "Durian Firmware"
+    
+    case appleKeyboardSoftware = "Apple Keyboard Software"
+    case aluminiumKeyboardFirmware = "Aluminum Keyboard Firmware"
+    case aluminiumKeyboardFirmware2009 = "2009 Aluminum Keyboard Firmware"
+    case keyboardFirmware5 = "Keyboard Firmware 5"
+    case keyboardFirmware6 = "Keyboard Firmware 6"
+    case keyboardFirmware8 = "Keyboard Firmware 8"
+    case keyboardFirmware10 = "Keyboard Firmware 10"
+    case keyboardFirmware11 = "Keyboard Firmware 11"
+    case keyboardFirmware12 = "Keyboard Firmware 12"
+    case keyboardFirmware13 = "Keyboard Firmware 13"
+    case externalKeyboardFirmware = "External Keyboard Firmware"
+    case keyboardCoverFirmware = "Keyboard Cover Firmware"
+    
+    case mouseFirmware1 = "Mouse Firmware 1"
+    case wirelessMouseFirmware = "Wireless Mouse Software"
+    
+    case magsafeChargerModuleFirmware = "MagSafe Charger Module Firmware"
+    case a2290Firmware = "A2290 Firmware"
+    case a2452Firmware = "A2452 Firmware"
+    case batteryPuckFirmware = "Battery Puck Firmware"
+    case magsafeChargerMfiModuleFirmware = "MagSafe Charger (MFi Module) Firmware"
+    case a2458Firmware = "A2458 Firmware"
+    case magsafeChargerFirmware = "MagSafe Charger Firmware"
+    case magsafeBatteryPackFirmware = "MagSafe Battery Pack Firmware"
+    case usbCToMagSafe3Cable2mFirmware = "USB-C to MagSafe 3 Cable (2m) Firmware"
+    case appleWatchMagneticChargingCableFirmware = "Apple Watch Magnetic Charging Cable Firmware"
+    case a2676Firmware = "A2676 Firmware"
+    case a2571Firmware = "A2571 Firmware"
+    case smartBatteryCaseFirmware = "Smart Battery Case Firmware"
+    
+    case proDisplayXDRFirmware = "Pro Display XDR Firmware"
+    
+    case studioDisplayFirmware = "Studio Display Firmware"
+    case thunderboltDisplayFirmware = "Thunderbolt Display Firmware"
+    
+    case magicTrackpadAndMultiTouchUpdate = "Magic Trackpad and Multi-Touch Update"
+    case trackpadFirmware6 = "Trackpad Firmware 6"
+    case trackpadFirmware7 = "Trackpad Firmware 7"
+    
+    case wirelessRemoteFirmware = "Wireless Remote Firmware"
+    case wirelessRemoteFirmware2 = "Wireless Remote Firmware 2"
+    case wirelessRemoteFirmware3 = "Wireless Remote Firmware 3"
+    case wirelessRemoteFirmware4 = "Wireless Remote Firmware 4"
+    
+    case applePencilGen3Firmware = "Apple Pencil Gen 3 Firmware"
+    case a2538Firmware = "A2538 Firmware"
+    case wirelessStylusFirmware = "Wireless Stylus Firmware"
+    case wirelessStylusFirmware2 = "Wireless Stylus Firmware 2"
+    
+    case homepodSoftware = "HomePod Software"
+    case audioOS = "audioOS"
+    
+    case bridgeOS = "bridgeOS"
+    
+    case cloudOS = "cloudOS"
+    
+    case embeddedOS = "embeddedOS"
+    
+    case iPhoneOS = "iPhoneOS"
+    case iOS = "iOS"
+    
+    case iPadOS = "iPadOS"
+    
+    case pixo = "Pixo"
+    
+    case system = "System"
+    case macOSX = "Mac OS X"
+    case osX = "OS X"
+    case macOS = "macOS"
+    
+    case appleTvSoftware = "Apple TV Software"
+    case tvOS = "tvOS"
+    
+    case visionOS = "visionOS"
+    
+    case watchOS = "watchOS"
+}
+
+enum FirmwareTypes: String, Codable, CaseIterable {
+    case accessoryFirmwares = "Accessory Firmwares"
+    case adapterFirmwares = "Adapter Firmwares"
+    case bedditOS = "Beddit OS"
+    case bluetoothHeadsetFirmwares = "Bluetooth Headset Firmwares"
+    case durianFirmwares = "Durian Firmwares"
+    case keyboardFirmwares = "Keyboard Firmwares"
+    case mouseFirmwares = "Mouse Firmwares"
+    case powerFirmwares = "Power Firmwares"
+    case proXDRFirmwares = "Pro Display XDR Firmwares"
+    case softwares = "Softwares"
+    case studioDisplayFirmwares = "Studio Display Firmwares"
+    case thunderboltDisplayFirmwares = "Thunderbolt Display Firmwares"
+    case trackpadFirmwares = "Trackpad Firmwares"
+    case wirelessRemoteFirmwares = "Wireless Remote Firmwares"
+    case wirelessStylusFirmwares = "Wiress Stylus Firmwares"
+    case audioOS = "audioOS"
+    case bridgeOS = "bridgeOS"
+    case cloudOS = "cloudOS"
+    case embeddedOS = "embeddedOS"
+    case iOS = "iOS"
+    case iPadOS = "iPadOS"
+    case iPodOS = "iPodOS"
+    case macOS = "macOS"
+    case tvOS = "tvOS"
+    case visionOS = "visionOS"
+    case watchOS = "watchOS"
+}
+
 enum DeviceType: String, Codable, CaseIterable {
     case accessories = "Accessories"
     case adapters = "Adapters"
@@ -945,6 +1080,7 @@ class Firmware: ObservableObject, Identifiable, Codable {
     @Published private(set) var securityNotesUrl: String?
     @Published private(set) var sources: [FirmwareSources]?
     @Published private(set) var rc: Bool?
+    @Published private(set) var appledbWebImage: AppleDbWebImage?
     @Published var state: State = .idle
     private(set) var currentBytes: Int64 = 0
     private(set) var totalBytes: Int64 = 0
@@ -953,6 +1089,7 @@ class Firmware: ObservableObject, Identifiable, Codable {
         case osStr, version, build, key, releasedRaw = "released", appledburl, deviceMap
         case restoreVersion, beta, rsr, releaseNotesUrl = "releaseNotes"
         case securityNotesUrl = "securityNotes", sources, rc
+        case appledbWebImage
     }
     
     enum State: Equatable {
@@ -991,6 +1128,7 @@ class Firmware: ObservableObject, Identifiable, Codable {
         securityNotesUrl = try container.decodeIfPresent(String.self, forKey: .securityNotesUrl)
         sources = try container.decodeIfPresent([FirmwareSources].self, forKey: .sources)
         rc = try container.decodeIfPresent(Bool.self, forKey: .rc)
+        appledbWebImage = try container.decodeIfPresent(AppleDbWebImage.self, forKey: .appledbWebImage)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -1009,6 +1147,253 @@ class Firmware: ObservableObject, Identifiable, Codable {
         try container.encodeIfPresent(securityNotesUrl, forKey: .securityNotesUrl)
         try container.encodeIfPresent(sources, forKey: .sources)
         try container.encodeIfPresent(rc, forKey: .rc)
+        try container.encodeIfPresent(appledbWebImage, forKey: .appledbWebImage)
+    }
+    
+    var firmwareOSType: OSStrings? {
+        switch osStr {
+        case "Accessory Firmware": return .accessoryFirmware
+        case "USB-C Digital AV Multiport Adapter Firmware": return .usbCDigitalAVMultiportAdapterFirmware
+        case "VGA Adapter Firmware": return .vgaAdapterFirmware
+        case "USB-C to Lightning Adapter Firmware": return .usbcToLightningAdapterFirmware
+        case "Apple USB Camera Adapter Firmware": return .appleUSBCameraAdapterFirmware
+        case "SD Card Reader Firmware": return .sdCardReaderFirmware
+        case "Beddit OS": return .bedditOS
+        case "Bluetooth Headset Firmware": return .bluetoothHeadsetFirmware
+        case "Powerbeats² Wireless Firmware": return .powerbeats2WirelessFirmware
+        case "Beats Solo² Wireless Firmware": return .beatsSolo2WirelessFirmware
+        case "B0501 Firmware": return .b0501Firmware
+        case "Beats Studio Buds Firmware": return .beatsStudioBudsFirmware
+        case "Beats Pill+ Firmware": return .beatsPillPlusFirmware
+        case "Beats Studio Pro Firmware": return .beatsStudioProFirmware
+        case "Beats Studio Buds + Firmware": return .beatsStudioBudsPlusFirmware
+        case "Beats Pill Firmware": return .beatsPillFirmware
+        case "AirPods Firmware": return .airpodsFirmware
+        case "Beats Solo Buds Firmware": return .beatsSoloBudsFirmware
+        case "Durian Firmware": return .durianFirmware
+        case "Apple Keyboard Software": return .appleKeyboardSoftware
+        case "Aluminum Keyboard Firmware": return .aluminiumKeyboardFirmware
+        case "2009 Aluminum Keyboard Firmware": return .aluminiumKeyboardFirmware2009
+        case "Keyboard Firmware 5": return .keyboardFirmware5
+        case "Keyboard Firmware 6": return .keyboardFirmware6
+        case "Keyboard Firmware 8": return .keyboardFirmware8
+        case "Keyboard Firmware 10": return .keyboardFirmware10
+        case "Keyboard Firmware 11": return .keyboardFirmware11
+        case "Keyboard Firmware 12": return .keyboardFirmware12
+        case "Keyboard Firmware 13": return .keyboardFirmware13
+        case "External Keyboard Firmware": return .externalKeyboardFirmware
+        case "Keyboard Cover Firmware": return .keyboardCoverFirmware
+        case "Mouse Firmware 1": return .mouseFirmware1
+        case "Wireless Mouse Software": return .wirelessMouseFirmware
+        case "MagSafe Charger Module Firmware": return .magsafeChargerModuleFirmware
+        case "A2290 Firmware": return .a2290Firmware
+        case "A2452 Firmware": return .a2452Firmware
+        case "Battery Puck Firmware": return .batteryPuckFirmware
+        case "MagSafe Charger (MFi Module) Firmware": return .magsafeChargerMfiModuleFirmware
+        case "A2458 Firmware": return .a2458Firmware
+        case "MagSafe Charger Firmware": return .magsafeChargerFirmware
+        case "MagSafe Battery Pack Firmware": return .magsafeBatteryPackFirmware
+        case "USB-C to MagSafe 3 Cable (2m) Firmware": return .usbCToMagSafe3Cable2mFirmware
+        case "Apple Watch Magnetic Charging Cable Firmware": return .appleWatchMagneticChargingCableFirmware
+        case "A2676 Firmware": return .a2676Firmware
+        case "A2571 Firmware": return .a2571Firmware
+        case "Smart Battery Case Firmware": return .smartBatteryCaseFirmware
+        case "Pro Display XDR Firmware": return .proDisplayXDRFirmware
+        case "Studio Display Firmware": return .studioDisplayFirmware
+        case "Thunderbolt Display Firmware": return .thunderboltDisplayFirmware
+        case "Magic Trackpad and Multi-Touch Update": return .magicTrackpadAndMultiTouchUpdate
+        case "Trackpad Firmware 6": return .trackpadFirmware6
+        case "Trackpad Firmware 7": return .trackpadFirmware7
+        case "Wireless Remote Firmware": return .wirelessRemoteFirmware
+        case "Wireless Remote Firmware 2": return .wirelessRemoteFirmware2
+        case "Wireless Remote Firmware 3": return .wirelessRemoteFirmware3
+        case "Wireless Remote Firmware 4": return .wirelessRemoteFirmware4
+        case "Apple Pencil Gen 3 Firmware": return .applePencilGen3Firmware
+        case "A2538 Firmware": return .a2538Firmware
+        case "Wireless Stylus Firmware": return .wirelessStylusFirmware
+        case "Wireless Stylus Firmware 2": return .wirelessStylusFirmware2
+        case "HomePod Software": return .homepodSoftware
+        case "audioOS": return .audioOS
+        case "bridgeOS": return .bridgeOS
+        case "cloudOS": return .cloudOS
+        case "embeddedOS": return .embeddedOS
+        case "iPhoneOS": return .iPhoneOS
+        case "iOS": return .iOS
+        case "iPadOS": return .iPadOS
+        case "Pixo": return .pixo
+        case "System": return .system
+        case "Mac OS X": return .macOSX
+        case "OS X": return .osX
+        case "macOS": return .macOS
+        case "Apple TV Software": return .appleTvSoftware
+        case "tvOS": return .tvOS
+        case "visionOS": return .visionOS
+        case "watchOS": return .watchOS
+        default: return .software
+        }
+    }
+    
+    var firmwareType: FirmwareTypes? {
+        switch firmwareOSType {
+        case .software:
+            return .softwares
+        case .accessoryFirmware:
+            return .accessoryFirmwares
+        case .usbCDigitalAVMultiportAdapterFirmware:
+            return .adapterFirmwares
+        case .vgaAdapterFirmware:
+            return .adapterFirmwares
+        case .usbcToLightningAdapterFirmware:
+            return .adapterFirmwares
+        case .appleUSBCameraAdapterFirmware:
+            return .adapterFirmwares
+        case .sdCardReaderFirmware:
+            return .adapterFirmwares
+        case .bedditOS:
+            return .bedditOS
+        case .bluetoothHeadsetFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .powerbeats2WirelessFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .beatsSolo2WirelessFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .b0501Firmware:
+            return .bluetoothHeadsetFirmwares
+        case .beatsStudioBudsFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .beatsPillPlusFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .beatsStudioProFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .beatsStudioBudsPlusFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .beatsPillFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .airpodsFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .beatsSoloBudsFirmware:
+            return .bluetoothHeadsetFirmwares
+        case .durianFirmware:
+            return .durianFirmwares
+        case .appleKeyboardSoftware:
+            return .keyboardFirmwares
+        case .aluminiumKeyboardFirmware:
+            return .keyboardFirmwares
+        case .aluminiumKeyboardFirmware2009:
+            return .keyboardFirmwares
+        case .keyboardFirmware5:
+            return .keyboardFirmwares
+        case .keyboardFirmware6:
+            return .keyboardFirmwares
+        case .keyboardFirmware8:
+            return .keyboardFirmwares
+        case .keyboardFirmware10:
+            return .keyboardFirmwares
+        case .keyboardFirmware11:
+            return .keyboardFirmwares
+        case .keyboardFirmware12:
+            return .keyboardFirmwares
+        case .keyboardFirmware13:
+            return .keyboardFirmwares
+        case .externalKeyboardFirmware:
+            return .keyboardFirmwares
+        case .keyboardCoverFirmware:
+            return .keyboardFirmwares
+        case .mouseFirmware1:
+            return .mouseFirmwares
+        case .wirelessMouseFirmware:
+            return .mouseFirmwares
+        case .magsafeChargerModuleFirmware:
+            return .powerFirmwares
+        case .a2290Firmware:
+            return .powerFirmwares
+        case .a2452Firmware:
+            return .powerFirmwares
+        case .batteryPuckFirmware:
+            return .powerFirmwares
+        case .magsafeChargerMfiModuleFirmware:
+            return .powerFirmwares
+        case .a2458Firmware:
+            return .powerFirmwares
+        case .magsafeChargerFirmware:
+            return .powerFirmwares
+        case .magsafeBatteryPackFirmware:
+            return .powerFirmwares
+        case .usbCToMagSafe3Cable2mFirmware:
+            return .powerFirmwares
+        case .appleWatchMagneticChargingCableFirmware:
+            return .powerFirmwares
+        case .a2676Firmware:
+            return .powerFirmwares
+        case .a2571Firmware:
+            return .powerFirmwares
+        case .smartBatteryCaseFirmware:
+            return .powerFirmwares
+        case .proDisplayXDRFirmware:
+            return .proXDRFirmwares
+        case .studioDisplayFirmware:
+            return .studioDisplayFirmwares
+        case .thunderboltDisplayFirmware:
+            return .studioDisplayFirmwares
+        case .magicTrackpadAndMultiTouchUpdate:
+            return .trackpadFirmwares
+        case .trackpadFirmware6:
+            return .trackpadFirmwares
+        case .trackpadFirmware7:
+            return .trackpadFirmwares
+        case .wirelessRemoteFirmware:
+            return .wirelessRemoteFirmwares
+        case .wirelessRemoteFirmware2:
+            return .wirelessRemoteFirmwares
+        case .wirelessRemoteFirmware3:
+            return .wirelessRemoteFirmwares
+        case .wirelessRemoteFirmware4:
+            return .wirelessRemoteFirmwares
+        case .applePencilGen3Firmware:
+            return .wirelessStylusFirmwares
+        case .a2538Firmware:
+            return .wirelessStylusFirmwares
+        case .wirelessStylusFirmware:
+            return .wirelessStylusFirmwares
+        case .wirelessStylusFirmware2:
+            return .wirelessStylusFirmwares
+        case .homepodSoftware:
+            return .audioOS
+        case .audioOS:
+            return .audioOS
+        case .bridgeOS:
+            return .bridgeOS
+        case .cloudOS:
+            return .cloudOS
+        case .embeddedOS:
+            return .embeddedOS
+        case .iPhoneOS:
+            return .iOS
+        case .iOS:
+            return .iOS
+        case .iPadOS:
+            return .iPadOS
+        case .pixo:
+            return .iPodOS
+        case .system:
+            return .macOS
+        case .macOSX:
+            return .macOS
+        case .osX:
+            return .macOS
+        case .macOS:
+            return .macOS
+        case .appleTvSoftware:
+            return .tvOS
+        case .tvOS:
+            return .tvOS
+        case .visionOS:
+            return .visionOS
+        case .watchOS:
+            return .watchOS
+        default:
+            return .softwares
+        }
     }
     
     var releasedDateType: Date? {
@@ -1066,6 +1451,24 @@ class FirmwareSources: ObservableObject, Codable {
         try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(hashes, forKey: .hashes)
+    }
+}
+
+class AppleDbWebImage: ObservableObject, Codable {
+    @Published var id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
     }
 }
 
