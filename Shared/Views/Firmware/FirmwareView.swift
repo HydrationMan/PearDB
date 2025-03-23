@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FirmwareView: View {
+    @FocusState private var isReleaseTypeMenuFocus: Bool
+    @FocusState private var isFirmwareTypeMenuFocus: Bool
     @EnvironmentObject var firmwaresViewModel: FirmwaresViewModel
     @EnvironmentObject var deviceViewModel: DeviceViewModel
     @State var search: String = ""
@@ -20,9 +22,11 @@ struct FirmwareView: View {
             NavigationStack {
                 HeaderView(title: "Firmwares") {
                     HStack {
-                        FirmwareReleaseTypeMenu()
+                        FirmwareReleaseTypeMenu(focus: $isReleaseTypeMenuFocus)
+                            .focused($isReleaseTypeMenuFocus)
                             .environmentObject(firmwaresViewModel)
-                        FirmwareTypeMenu()
+                        FirmwareTypeMenu(focus: $isFirmwareTypeMenuFocus)
+                            .focused($isFirmwareTypeMenuFocus)
                             .environmentObject(firmwaresViewModel)
                     }
                 } searchable: { search in
@@ -66,7 +70,8 @@ struct FirmwareView: View {
                         .navigationTitle("Firmwares")
                         .toolbar {
                             ToolbarItem(placement: .topBarTrailing) {
-                                FirmwareTypeMenu()
+                                FirmwareTypeMenu(focus: $isFirmwareTypeMenuFocus)
+                                    .focused($isFirmwareTypeMenuFocus)
                                     .environmentObject(firmwaresViewModel)
                             }
                         }
@@ -93,12 +98,20 @@ struct FirmwareScrollView: View {
         ScrollView {
             FirmwareGridListView()
         }
+        #if os(tvOS)
+        .padding(0)
+        #else
         .padding(.horizontal, 16)
+        #endif
     }
 }
 
 struct FirmwareGridListView: View {
+    #if os(tvOS)
+    let columns = [GridItem(.adaptive(minimum: 800))]
+    #else
     let columns = [GridItem(.adaptive(minimum: 500))]
+    #endif
     @EnvironmentObject var firmwaresViewModel: FirmwaresViewModel
     @EnvironmentObject var deviceViewModel: DeviceViewModel
     
@@ -108,11 +121,17 @@ struct FirmwareGridListView: View {
                 ForEach(firmwaresViewModel.searchedFirmwares.lazy, id: \.id) { firmware in
                     FirmwareItemView(firmware: firmware)
                         .environmentObject(deviceViewModel)
+                    #if os(tvOS)
+                        .frame(width: 800, height: 150)
+                    #endif
                 }
             } else if !firmwaresViewModel.paginatedFirmwares.isEmpty {
                 ForEach(firmwaresViewModel.paginatedFirmwares.lazy, id: \.id) { firmware in
                     FirmwareItemView(firmware: firmware)
                         .environmentObject(deviceViewModel)
+                    #if os(tvOS)
+                        .frame(width: 800, height: 150)
+                    #endif
                         .onAppear {
                             firmwaresViewModel.loadMoreIfNeeded(currentItem: firmware)
                         }
@@ -136,6 +155,7 @@ struct FirmwareGridListView: View {
 }
 
 struct FirmwareReleaseTypeMenu: View {
+    @FocusState.Binding var focus: Bool
     let firmwareTypes: [FirmwareType] = FirmwareType.allCases
     @EnvironmentObject var firmwaresViewModel: FirmwaresViewModel
     
@@ -156,10 +176,18 @@ struct FirmwareReleaseTypeMenu: View {
             }
             .containerShape(RoundedRectangle(cornerRadius: 99))
         }
+        #if os(tvOS)
+        .frame(maxWidth: 180)
+        #else
         .frame(maxWidth: 128)
+        #endif
         .menuStyle(BorderlessButtonMenuStyle())
         .padding(8)
+        #if os(tvOS)
+        .background(focus ? Color.blue : Color.gray)
+        #else
         .background(.thickMaterial)
+        #endif
         .cornerRadius(99)
         .overlay {
             #if os(macOS)
@@ -172,6 +200,7 @@ struct FirmwareReleaseTypeMenu: View {
 }
 
 struct FirmwareTypeMenu: View {
+    @FocusState.Binding var focus: Bool
     let firmwareTypes: [FirmwareTypes] = FirmwareTypes.allCases
     @EnvironmentObject var firmwaresViewModel: FirmwaresViewModel
     
@@ -192,10 +221,18 @@ struct FirmwareTypeMenu: View {
             }
             .containerShape(RoundedRectangle(cornerRadius: 99))
         }
+        #if os(tvOS)
+        .frame(maxWidth: 180)
+        #else
         .frame(maxWidth: 128)
+        #endif
         .menuStyle(BorderlessButtonMenuStyle())
         .padding(8)
+        #if os(tvOS)
+        .background(focus ? Color.blue : Color.gray)
+        #else
         .background(.thickMaterial)
+        #endif
         .cornerRadius(99)
         .overlay {
             #if os(macOS)

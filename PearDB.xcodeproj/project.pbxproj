@@ -204,13 +204,6 @@
 			);
 			target = A76FC6B42D51917F002E6B3B /* PearDBPhoneWidgetExtension */;
 		};
-		A778FF6C2D881EF200B03FF5 /* Exceptions for "DeviceItem" folder in "PearDBTV" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				DeviceDetail/Tabs/DeviceInfoView.swift,
-			);
-			target = A7B6FDA32D5E822F001E2DD6 /* PearDBTV */;
-		};
 		A7877EE12D58A13300D33B85 /* Exceptions for "PearDB" folder in "PearDB" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -231,6 +224,13 @@
 				Info.plist,
 			);
 			target = A7B6FDB52D5E8253001E2DD6 /* PearDBVision */;
+		};
+		A7C0105C2D8FB81C00DF10DE /* Exceptions for "DeviceItem" folder in "PearDBTV" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DeviceDetail/Tabs/DeviceInfoView.swift,
+			);
+			target = A7B6FDA32D5E822F001E2DD6 /* PearDBTV */;
 		};
 		A7EF13222D6980750020715A /* Exceptions for "PearDBMacWidget" folder in "PearDBMacWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -319,7 +319,7 @@
 		E612334A2D86EBCB001B030C /* DeviceItem */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A778FF6C2D881EF200B03FF5 /* Exceptions for "DeviceItem" folder in "PearDBTV" target */,
+				A7C0105C2D8FB81C00DF10DE /* Exceptions for "DeviceItem" folder in "PearDBTV" target */,
 				E612338A2D86F287001B030C /* Exceptions for "DeviceItem" folder in "PearDBWatch" target */,
 			);
 			path = DeviceItem;
@@ -429,7 +429,6 @@
 				E654315E2D6189E9008A3CC5 /* PearDBMac */,
 				A7EF13122D6980730020715A /* PearDBMacWidget */,
 				A76FC6B62D51917F002E6B3B /* Frameworks */,
-				A7B6FDB82D5E8254001E2DD6 /* Packages */,
 				A74107CC2D5175EB00898B0C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -456,13 +455,6 @@
 				A76FC6B92D51917F002E6B3B /* SwiftUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A7B6FDB82D5E8254001E2DD6 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 		E61233392D86E98F001B030C /* Views */ = {

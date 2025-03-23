@@ -24,7 +24,11 @@ struct FirmwareDetailView: View {
                     HStack {
                         if let image = firmware.appledbWebImage?.id {
                             AsyncImageView(url: "https://img.appledb.dev/images@preview/\(image)/0.png")
+                            #if os(tvOS)
                                 .frame(width: 64, height: 64)
+                            #else
+                                .frame(width: 32, height: 32)
+                            #endif
                         }
                         VStack {
                             Text("\(firmware.osStr) \(firmware.version) ")
@@ -34,6 +38,7 @@ struct FirmwareDetailView: View {
                                 Text("Build: \(build)")
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .foregroundStyle(.secondary)
+                                    .font(.system(size: 20))
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
