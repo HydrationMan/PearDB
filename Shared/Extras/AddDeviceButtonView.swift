@@ -29,6 +29,7 @@ struct AddDeviceButtonView: View {
                         .containerShape(RoundedRectangle(cornerRadius: 99))
                         .frame(maxWidth: 128)
                         .padding(8)
+                        .visionOSMods.padding(8)
                         .background(.thickMaterial)
                         .cornerRadius(99)
                         .overlay {

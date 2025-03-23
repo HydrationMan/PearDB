@@ -29,6 +29,7 @@ struct DeviceInfoView: View {
                     .padding()
                     .background(.regularMaterial)
                     .cornerRadius(8)
+                    .visionOSMods.padding3D("depth")
                 }
                 
                 if (device.arch != nil) {
@@ -45,6 +46,7 @@ struct DeviceInfoView: View {
                     .padding()
                     .background(.regularMaterial)
                     .cornerRadius(8)
+                    .visionOSMods.padding3D("depth")
                 }
                 
                 if (device.info?.isEmpty == false) {
@@ -81,7 +83,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
-
+                            .visionOSMods.padding3D("depth")
                         case .cores:
                             DisclosureGroup(isExpanded: $isExpanded.coresExpanded) {
                                 VStack(alignment: .leading) {
@@ -111,7 +113,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
-                            
+                            .visionOSMods.padding3D("depth")
                         case .power:
                             DisclosureGroup(isExpanded: $isExpanded.powerExpanded) {
                                 VStack(alignment: .leading) {
@@ -141,7 +143,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
-                            
+                            .visionOSMods.padding3D("depth")
                         case .sensors:
                             DisclosureGroup(isExpanded: $isExpanded.sensorsExpanded) {
                                 VStack(alignment: .leading) {
@@ -183,7 +185,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
-                            
+                            .visionOSMods.padding3D("depth")
                         case .memory:
                             DisclosureGroup(isExpanded: $isExpanded.memoryExpanded) {
                                 VStack(alignment: .leading) {
@@ -211,7 +213,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
-                            
+                            .visionOSMods.padding3D("depth")
                         case .audio:
                             DisclosureGroup(isExpanded: $isExpanded.audioExpanded) {
                                 VStack(alignment: .leading) {
@@ -245,7 +247,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
-                            
+                            .visionOSMods.padding3D("depth")
                         case .input:
                             DisclosureGroup(isExpanded: $isExpanded.inputExpanded) {
                                 VStack(alignment: .leading) {
@@ -277,7 +279,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
-                            
+                            .visionOSMods.padding3D("depth")
                         case .connectivity:
                             DisclosureGroup(isExpanded: $isExpanded.connectivityExpanded) {
                                 VStack(alignment: .leading) {
@@ -315,6 +317,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
+                            .visionOSMods.padding3D("depth")
                             
                         case .display:
                             DisclosureGroup(isExpanded: $isExpanded.displayExpanded) {
@@ -353,6 +356,7 @@ struct DeviceInfoView: View {
                             .padding()
                             .background(.regularMaterial)
                             .cornerRadius(8)
+                            .visionOSMods.padding3D("depth")
                             
                         default:
                             EmptyView()

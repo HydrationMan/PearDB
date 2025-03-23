@@ -19,6 +19,7 @@ struct DeviceFirmwaresView: View {
                         toggleDownload(for: firmware)
                     }
                     .environmentObject(deviceFirmwaresViewModel)
+                    .visionOSMods.padding3D("depth")
                 }
                 Color.clear.padding()
             }

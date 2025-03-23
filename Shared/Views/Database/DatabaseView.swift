@@ -26,6 +26,7 @@ struct DatabaseView: View {
                         AddDeviceButtonView(isLoading: dbViewModel.isLoading, isDeviceAlreadySaved: false, fromDB: false) {
                             isShowingNewDevice.toggle()
                         }
+                        .visionOSMods.padding3D("depth")
                     }
                     
                     if dbViewModel.isLoading {
@@ -88,7 +89,7 @@ struct DatabaseView: View {
 }
 
 struct DatabaseScrollView: View {
-    let columns = [GridItem(.adaptive(minimum: 300))]
+    let columns = [GridItem(.adaptive(minimum: 500))]
     @EnvironmentObject var dbViewModel: DatabaseViewModel
     
     var body: some View {

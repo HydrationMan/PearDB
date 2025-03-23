@@ -78,6 +78,7 @@ struct DeviceDetailView: View {
                             AddDeviceButtonView(isLoading: isLoading, isDeviceAlreadySaved: isDeviceAlreadySaved, fromDB: fromDB) {
                                 isAddDeviceDialogOpened.toggle()
                             }
+                            .visionOSMods.padding3D("depth")
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         HStack {
@@ -86,6 +87,7 @@ struct DeviceDetailView: View {
                                     AsyncImageView(url: imageUrl)
                                         .frame(width: 64, height: 128)
                                         .offset(x: 48 * CGFloat(offset))
+                                        .visionOSMods.padding3D("depth", CGFloat(offset) * 2)
                                         .shadow(radius: 8)
                                 }
                             }
@@ -132,6 +134,7 @@ struct DeviceDetailView: View {
                     }
                     .padding(.horizontal, 16)
                     .pickerStyle(.segmented)
+                    .visionOSMods.padding3D("depth")
                     
                     if selection == 0 {
                         DeviceInfoView(device: device)
