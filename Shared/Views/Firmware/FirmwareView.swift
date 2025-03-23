@@ -66,7 +66,7 @@ struct FirmwareView: View {
                         .navigationTitle("Firmwares")
                         .toolbar {
                             ToolbarItem(placement: .topBarTrailing) {
-                                HeaderFirmwareMenu()
+                                FirmwareTypeMenu()
                                     .environmentObject(firmwaresViewModel)
                             }
                         }
