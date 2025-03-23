@@ -11,6 +11,8 @@ struct DeviceSectionView: View {
     let columns = [GridItem(.adaptive(minimum: 400))]
     
     @EnvironmentObject var deviceViewModel: DeviceViewModel
+    @EnvironmentObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel
+    @EnvironmentObject var dbViewModel: DatabaseViewModel
     
     var body: some View {
         ZStack {
@@ -19,32 +21,13 @@ struct DeviceSectionView: View {
                 ScrollView {
                     TabView(selection: $deviceViewModel.selectedDeviceGroup) {
                         LazyVGrid(columns: columns, alignment: .center) {
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.iphone)) {
-                                DeviceSectionItemView(deviceType: .iphone)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipad)) {
-                                DeviceSectionItemView(deviceType: .ipad)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipadAir)) {
-                                DeviceSectionItemView(deviceType: .ipadAir)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipadPro)) {
-                                DeviceSectionItemView(deviceType: .ipadPro)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipadMini)) {
-                                DeviceSectionItemView(deviceType: .ipadMini)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .ipodTouch)) {
-                                DeviceSectionItemView(deviceType: .ipodTouch)
-                            }
-                            .buttonStyle(.plain)
+                            DeviceSectionItemView(deviceType: .iphone)
+                            DeviceSectionItemView(deviceType: .ipad)
+                            DeviceSectionItemView(deviceType: .ipadAir)
+                            DeviceSectionItemView(deviceType: .ipadPro)
+                            DeviceSectionItemView(deviceType: .ipadMini)
+                            DeviceSectionItemView(deviceType: .ipodTouch)
                         }
-                        
                         .tabItem {
                             Text(DeviceGroupType.iOSDevices.rawValue)
                         }
@@ -52,48 +35,17 @@ struct DeviceSectionView: View {
                         .padding(.horizontal)
                         
                         LazyVGrid(columns: columns, alignment: .center) {
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.macBookAir)) {
-                                DeviceSectionItemView(deviceType: .macBookAir)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.macBookPro)) {
-                                DeviceSectionItemView(deviceType: .macBookPro)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.macBook)) {
-                                DeviceSectionItemView(deviceType: .macBook)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.imac)) {
-                                DeviceSectionItemView(deviceType: .imac)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.macMini)) {
-                                DeviceSectionItemView(deviceType: .macMini)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .macStudio)) {
-                                DeviceSectionItemView(deviceType: .macStudio)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .macPro)) {
-                                DeviceSectionItemView(deviceType: .macPro)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .powerBook)) {
-                                DeviceSectionItemView(deviceType: .powerBook)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .powerMac)) {
-                                DeviceSectionItemView(deviceType: .powerMac)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .powerBook)) {
-                                DeviceSectionItemView(deviceType: .powerBook)
-                            }
-                            .buttonStyle(.plain)
+                            DeviceSectionItemView(deviceType: .macBookAir)
+                            DeviceSectionItemView(deviceType: .macBookPro)
+                            DeviceSectionItemView(deviceType: .macBook)
+                            DeviceSectionItemView(deviceType: .imac)
+                            DeviceSectionItemView(deviceType: .macMini)
+                            DeviceSectionItemView(deviceType: .macStudio)
+                            DeviceSectionItemView(deviceType: .macPro)
+                            DeviceSectionItemView(deviceType: .powerBook)
+                            DeviceSectionItemView(deviceType: .powerMac)
+                            DeviceSectionItemView(deviceType: .powerBook)
                         }
-                        
                         .tabItem {
                             Text(DeviceGroupType.macs.rawValue)
                         }
@@ -101,54 +53,18 @@ struct DeviceSectionView: View {
                         .padding(.horizontal)
                         
                         LazyVGrid(columns: columns, alignment: .center) {
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.appleWatch)) {
-                                DeviceSectionItemView(deviceType: .appleWatch)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.appleTV)) {
-                                DeviceSectionItemView(deviceType: .appleTV)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.homePod)) {
-                                DeviceSectionItemView(deviceType: .homePod)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.headset)) {
-                                DeviceSectionItemView(deviceType: .headset)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.display)) {
-                                DeviceSectionItemView(deviceType: .display)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .airTag)) {
-                                DeviceSectionItemView(deviceType: .airTag)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .airPort)) {
-                                DeviceSectionItemView(deviceType: .airPort)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .power)) {
-                                DeviceSectionItemView(deviceType: .power)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .adapters)) {
-                                DeviceSectionItemView(deviceType: .adapters)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .cases)) {
-                                DeviceSectionItemView(deviceType: .cases)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .beddit)) {
-                                DeviceSectionItemView(deviceType: .beddit)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: .accessories)) {
-                                DeviceSectionItemView(deviceType: .accessories)
-                            }
-                            .buttonStyle(.plain)
+                            DeviceSectionItemView(deviceType: .appleWatch)
+                            DeviceSectionItemView(deviceType: .appleTV)
+                            DeviceSectionItemView(deviceType: .homePod)
+                            DeviceSectionItemView(deviceType: .headset)
+                            DeviceSectionItemView(deviceType: .display)
+                            DeviceSectionItemView(deviceType: .airTag)
+                            DeviceSectionItemView(deviceType: .airPort)
+                            DeviceSectionItemView(deviceType: .power)
+                            DeviceSectionItemView(deviceType: .adapters)
+                            DeviceSectionItemView(deviceType: .cases)
+                            DeviceSectionItemView(deviceType: .beddit)
+                            DeviceSectionItemView(deviceType: .accessories)
                         }
                         .tabItem {
                             Text(DeviceGroupType.homeAndAccessories.rawValue)
@@ -157,26 +73,11 @@ struct DeviceSectionView: View {
                         .padding(.horizontal)
                         
                         LazyVGrid(columns: columns, alignment: .center) {
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.airPods)) {
-                                DeviceSectionItemView(deviceType: .airPods)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.audio)) {
-                                DeviceSectionItemView(deviceType: .audio)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.beatsEarbuds)) {
-                                DeviceSectionItemView(deviceType: .beatsEarbuds)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.beatsHeadphones)) {
-                                DeviceSectionItemView(deviceType: .beatsHeadphones)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.beatsSpeakers)) {
-                                DeviceSectionItemView(deviceType: .beatsSpeakers)
-                            }
-                            .buttonStyle(.plain)
+                            DeviceSectionItemView(deviceType: .airPods)
+                            DeviceSectionItemView(deviceType: .audio)
+                            DeviceSectionItemView(deviceType: .beatsEarbuds)
+                            DeviceSectionItemView(deviceType: .beatsHeadphones)
+                            DeviceSectionItemView(deviceType: .beatsSpeakers)
                         }
                         .tabItem {
                             Text(DeviceGroupType.audio.rawValue)
@@ -185,26 +86,11 @@ struct DeviceSectionView: View {
                         .padding(.horizontal)
                         
                         LazyVGrid(columns: columns, alignment: .center) {
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipodTouch)) {
-                                DeviceSectionItemView(deviceType: .ipodTouch)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipodNano)) {
-                                DeviceSectionItemView(deviceType: .ipodNano)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipodShuffle)) {
-                                DeviceSectionItemView(deviceType: .ipodShuffle)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipodMini)) {
-                                DeviceSectionItemView(deviceType: .ipodMini)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.ipod)) {
-                                DeviceSectionItemView(deviceType: .ipod)
-                            }
-                            .buttonStyle(.plain)
+                            DeviceSectionItemView(deviceType: .ipodTouch)
+                            DeviceSectionItemView(deviceType: .ipodNano)
+                            DeviceSectionItemView(deviceType: .ipodShuffle)
+                            DeviceSectionItemView(deviceType: .ipodMini)
+                            DeviceSectionItemView(deviceType: .ipod)
                         }
                         .tabItem {
                             Text(DeviceGroupType.iPods.rawValue)
@@ -213,26 +99,11 @@ struct DeviceSectionView: View {
                         .padding(.horizontal)
                         
                         LazyVGrid(columns: columns, alignment: .center) {
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.applePencil)) {
-                                DeviceSectionItemView(deviceType: .applePencil)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.mouse)) {
-                                DeviceSectionItemView(deviceType: .mouse)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.trackpad)) {
-                                DeviceSectionItemView(deviceType: .trackpad)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.keyboard)) {
-                                DeviceSectionItemView(deviceType: .keyboard)
-                            }
-                            .buttonStyle(.plain)
-                            NavigationLink(destination: DeviceView(selectedFilter: DeviceType.remote)) {
-                                DeviceSectionItemView(deviceType: .remote)
-                            }
-                            .buttonStyle(.plain)
+                            DeviceSectionItemView(deviceType: .applePencil)
+                            DeviceSectionItemView(deviceType: .mouse)
+                            DeviceSectionItemView(deviceType: .trackpad)
+                            DeviceSectionItemView(deviceType: .keyboard)
+                            DeviceSectionItemView(deviceType: .remote)
                         }
                         .tabItem {
                             Text(DeviceGroupType.inputs.rawValue)
@@ -249,28 +120,37 @@ struct DeviceSectionView: View {
 
 struct DeviceSectionItemView: View {
     @EnvironmentObject var deviceViewModel: DeviceViewModel
+    @EnvironmentObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel
+    @EnvironmentObject var dbViewModel: DatabaseViewModel
+    
     var deviceType: DeviceType
     
     var body: some View {
-        VStack(alignment: .center) {
-            if let deviceImage = deviceViewModel.devices.filter({ $0.deviceType == deviceType }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedAscending }).last(where: { $0.imageUrl.count > 0 })?.imageUrl[0] {
-                AsyncImageView(url: deviceImage)
-                    .frame(width: 128, height: 256)
-            } else if deviceViewModel.isLoading {
-                VStack {
-                    ProgressView()
+        NavigationLink(destination: DeviceView(selectedFilter: deviceType)
+            .environmentObject(deviceViewModel)
+            .environmentObject(deviceFirmwaresViewModel)
+            .environmentObject(dbViewModel)) {
+            VStack(alignment: .center) {
+                if let deviceImage = deviceViewModel.devices.filter({ $0.deviceType == deviceType }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedAscending }).last(where: { $0.imageUrl.count > 0 })?.imageUrl[0] {
+                    AsyncImageView(url: deviceImage)
+                        .frame(width: 128, height: 256)
+                } else if deviceViewModel.isLoading {
+                    VStack {
+                        ProgressView()
+                    }
+                    .frame(width:128, height: 256)
+                } else {
+                    Color.clear.frame(width:128, height: 256)
                 }
-                .frame(width:128, height: 256)
-            } else {
-                Color.clear.frame(width:128, height: 256)
+                
+                Text(deviceType.rawValue)
             }
-            
-            Text(deviceType.rawValue)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
+            .background(.regularMaterial)
+            .contentShape(Rectangle())
+            .cornerRadius(8)
         }
-        .frame(maxWidth: .infinity, alignment: .center)
-        .padding()
-        .background(.regularMaterial)
-        .contentShape(Rectangle())
-        .cornerRadius(8)
+        .buttonStyle(.plain)
     }
 }
