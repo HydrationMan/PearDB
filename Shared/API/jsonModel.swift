@@ -1001,6 +1001,14 @@ enum FirmwareTypes: String, Codable, CaseIterable {
     case watchOS = "watchOS"
 }
 
+enum FirmwareType: String, Codable, CaseIterable {
+    case release = "Release"
+    case beta = "Beta"
+    case rc = "RC"
+    case simulator = "Simulator"
+    case sdk = "SDK"
+}
+
 enum DeviceType: String, Codable, CaseIterable {
     case accessories = "Accessories"
     case adapters = "Adapters"
@@ -1230,6 +1238,21 @@ class Firmware: ObservableObject, Identifiable, Codable {
         case "visionOS": return .visionOS
         case "watchOS": return .watchOS
         default: return .software
+        }
+    }
+    
+    var firmwareReleaseType: FirmwareType {
+        switch true {
+        case self.version.lowercased().contains("simulator"):
+            return .simulator
+        case self.version.lowercased().contains("sdk"):
+            return .sdk
+        case self.beta:
+            return .beta
+        case self.rc:
+            return .rc
+        default:
+            return .release
         }
     }
     

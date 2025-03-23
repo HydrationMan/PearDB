@@ -52,7 +52,7 @@ struct AddDeviceModalView: View {
                     case .rc:
                         selectedList = deviceFirmwaresViewModel.rcFirmwares
                         break
-                    case .release:
+                    default:
                         selectedList = deviceFirmwaresViewModel.selectedFirmwares
                         break
                     }
@@ -120,10 +120,4 @@ struct AddDeviceModalView: View {
             }
         }
     }
-}
-
-enum FirmwareType {
-    case release
-    case beta
-    case rc
 }

@@ -23,6 +23,7 @@ class FirmwaresViewModel: ObservableObject {
     @Published var searchedFirmwares: [Firmware] = []
     @Published var isLoadMore = true
     @Published var filter: FirmwareTypes = .iOS
+    @Published var selectedFirmwareType: FirmwareType = .release
     
     init() {
         Task {
@@ -34,13 +35,10 @@ class FirmwaresViewModel: ObservableObject {
     public func search(searchString: String) {
         if (!searchString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
             self.searchedFirmwares = self.filteredFirmwares.filter {
-                $0.key.lowercased()
-                    .contains(searchString.lowercased()) ||
                 $0.version.lowercased()
-                    .contains(searchString.lowercased()) ||
-                (($0.build?.lowercased()
-                    .contains(searchString.lowercased())) != nil)
+                    .contains(searchString.lowercased())
             }
+            
         } else {
             self.searchedFirmwares = []
         }
@@ -50,7 +48,7 @@ class FirmwaresViewModel: ObservableObject {
         if currentItem == nil {
             self.isLoadMore = true
             DispatchQueue.main.async {
-                self.filteredFirmwares = self.firmwares.filter({ $0.releasedDateType != nil && $0.firmwareType == self.filter }).sorted(by: { self.sortByDescendingDate($0, $1) })
+                self.filteredFirmwares = self.firmwares.filter({ $0.releasedDateType != nil && $0.firmwareType == self.filter && $0.firmwareReleaseType == self.selectedFirmwareType }).sorted(by: { self.sortByDescendingDate($0, $1) })
                 self.loadMore()
             }
         }
@@ -61,9 +59,14 @@ class FirmwaresViewModel: ObservableObject {
     public func changeFilter(filter: FirmwareTypes) {
         self.page = 0
         self.filter = filter
-        self.isLoadMore = true
-        self.paginatedFirmwares = []
-        self.filteredFirmwares = self.firmwares.filter({ $0.releasedDateType != nil && $0.firmwareType == self.filter }).sorted(by: { self.sortByDescendingDate($0, $1) })
+        self.filteredFirmwares = self.firmwares.filter({ $0.releasedDateType != nil && $0.firmwareType == self.filter && $0.firmwareReleaseType == self.selectedFirmwareType }).sorted(by: { self.sortByDescendingDate($0, $1) })
+        self.loadMore()
+    }
+    
+    public func changeFirmwareReleaseType(releaseType: FirmwareType) {
+        self.page = 0
+        self.selectedFirmwareType = releaseType
+        self.filteredFirmwares = self.firmwares.filter({ $0.releasedDateType != nil && $0.firmwareType == self.filter && $0.firmwareReleaseType == releaseType }).sorted(by: { self.sortByDescendingDate($0, $1) })
         self.loadMore()
     }
     
@@ -125,7 +128,7 @@ class FirmwaresViewModel: ObservableObject {
     private func sortByDescendingDate(_ a: Firmware, _ b: Firmware) -> Bool {
         guard let aReleaseDate = a.releasedDateType else { return false }
         guard let bReleaseDate = b.releasedDateType else { return false }
-        return aReleaseDate.compare(bReleaseDate) == .orderedDescending
+        return bReleaseDate < aReleaseDate
     }
     
     private func sortByName(_ a: Firmware, _ b: Firmware) -> Bool {
