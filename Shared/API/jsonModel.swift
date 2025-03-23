@@ -1475,6 +1475,21 @@ class FirmwareSources: ObservableObject, Codable {
         try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(hashes, forKey: .hashes)
     }
+    
+    var sourceType: FirmwareSourcesType? {
+        switch(type) {
+        case "installassistant": return .installassistant
+        case "ipsw": return .ipsw
+        case "ota": return .ota
+        default: return nil
+        }
+    }
+}
+
+enum FirmwareSourcesType: String, Codable, CaseIterable {
+    case installassistant = "installassistant"
+    case ipsw = "ipsw"
+    case ota = "ota"
 }
 
 class AppleDbWebImage: ObservableObject, Codable {

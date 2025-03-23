@@ -43,25 +43,27 @@ struct DeviceFirmwareDetail: View {
                 Text(firmware.released ?? "")
                     .font(.title3)
                 #if os(macOS)
-                Button {
-                    onButtonPressed()
-                } label: {
-                    Label {
-                        Text(buttonLabel)
-                    } icon: {
-                        Image(systemName: buttonImageName)
+                if firmware.firmwareType == .iOS || firmware.firmwareType == .iPadOS || firmware.firmwareType == .macOS {
+                    Button {
+                        onButtonPressed()
+                    } label: {
+                        Label {
+                            Text(buttonLabel)
+                        } icon: {
+                            Image(systemName: buttonImageName)
+                        }
+                        .frame(minWidth: 72)
+                        .font(.headline)
+                        .containerShape(RoundedRectangle(cornerRadius: 99))
+                        .padding(8)
+                        .background(.thinMaterial)
+                        .cornerRadius(99)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 99).stroke(Color(NSColor.separatorColor), lineWidth: 1)
+                        }
                     }
-                    .frame(minWidth: 72)
-                    .font(.headline)
-                    .containerShape(RoundedRectangle(cornerRadius: 99))
-                    .padding(16)
-                    .background(.thinMaterial)
-                    .cornerRadius(99)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 99).stroke(Color(NSColor.separatorColor), lineWidth: 1)
-                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
                 #endif
             }
             .frame(maxWidth: .infinity, alignment: .leading)

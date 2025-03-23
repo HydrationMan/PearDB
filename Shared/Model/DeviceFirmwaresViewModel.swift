@@ -27,9 +27,9 @@ import SwiftUICore
     public func filterFirmwares(device: Device) {
         let filteredFirmwares = self.firmwares.filter { $0.deviceMap.contains { $0 == device.key } }
         if (!filteredFirmwares.isEmpty) {
-            self.selectedFirmwares = filteredFirmwares.filter({ $0.rc == false && $0.beta == false }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
-            self.betaFirmwares = filteredFirmwares.filter({ $0.beta == true && $0.rc == false }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
-            self.rcFirmwares = filteredFirmwares.filter({ $0.beta == false && $0.rc == true }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
+            self.selectedFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .release && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
+            self.betaFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .beta && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
+            self.rcFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .rc && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
         } else {
             print("⚠️ No Firmwares found")
         }
@@ -99,7 +99,7 @@ import SwiftUICore
     private func changeFirmwareDownloadState(for firmware: Firmware, state: Firmware.State) {
         self.selectedFirmwares = self.selectedFirmwares.map({ f in
             if f.key == firmware.key {
-                var newFirmware = f
+                let newFirmware = f
                 newFirmware.state = state
                 return newFirmware
             }
@@ -186,6 +186,26 @@ import SwiftUICore
             print("⚠️ No local firmware data found.")
         }
     }
+    
+    private func sortByDescendingDateFirmware(_ a: Firmware, _ b: Firmware) -> Bool {
+        guard let aReleaseDate = a.releasedDateType else { return false }
+        guard let bReleaseDate = b.releasedDateType else { return false }
+        return bReleaseDate < aReleaseDate
+    }
+    
+    private func sortByNameFirmware(_ a: Firmware, _ b: Firmware) -> Bool {
+        return a.key.localizedStandardCompare(b.key) == .orderedAscending
+    }
+    
+    private func sortByDescendingDateDevice(_ a: Device, _ b: Device) -> Bool {
+        guard let aReleaseDate = a.releasedDateType else { return false }
+        guard let bReleaseDate = b.releasedDateType else { return false }
+        return bReleaseDate < aReleaseDate
+    }
+    
+    private func sortByNameDevice(_ a: Device, _ b: Device) -> Bool {
+        return a.key.localizedStandardCompare(b.key) == .orderedAscending
+    }
 }
 
 private extension DeviceFirmwaresViewModel {
@@ -203,7 +223,7 @@ private extension DeviceFirmwaresViewModel {
     func updateFirmware(_ firmware: Firmware, currentBytes: Int64, totalBytes: Int64) {
         self.selectedFirmwares = self.selectedFirmwares.map({ f in
             if f.key == firmware.key {
-                var newFirmware = f
+                let newFirmware = f
                 newFirmware.update(currentBytes: currentBytes, totalBytes: totalBytes)
                 return newFirmware
             }
