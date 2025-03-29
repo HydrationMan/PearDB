@@ -27,9 +27,9 @@ import SwiftUICore
     public func filterFirmwares(device: Device) {
         let filteredFirmwares = self.firmwares.filter { $0.deviceMap.contains { $0 == device.key } }
         if (!filteredFirmwares.isEmpty) {
-            self.selectedFirmwares = filteredFirmwares.filter({ $0.rc == false && $0.beta == false }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
-            self.betaFirmwares = filteredFirmwares.filter({ $0.beta == true && $0.rc == false }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
-            self.rcFirmwares = filteredFirmwares.filter({ $0.beta == false && $0.rc == true }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedDescending })
+            self.selectedFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .release && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
+            self.betaFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .beta && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
+            self.rcFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .rc && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
         } else {
             print("⚠️ No Firmwares found")
         }
@@ -60,26 +60,22 @@ import SwiftUICore
             print("❌ Error downloading device data: \(error)")
             return
         }
-        if let ipswFirmware = loadIPSWData(build, deviceKey) {
-            guard let url = getIPSWDownloadUrl(urlString: ipswFirmware.url)
-            else {
-                print("❌ Error parsing url to URL Object")
+        if firmware.firmwareType == .iOS || firmware.firmwareType == .iPadOS {
+            guard let source = firmware.sources?.first(where: { source in
+                source.sourceType == .ipsw && source.deviceMap?.contains(deviceKey) == true
+            }) else {
+                print("❌ No Sources Found")
                 return
             }
-            guard downloads[url] == nil, !firmware.isDownloadCompleted else { return }
-            let download = if case let .canceled(data) = firmware.state {
-                Download(resumeData: data)
-            } else {
-                Download(url: url)
+            await beginDownload(firmware: firmware, deviceKey: deviceKey, source: source)
+        } else if firmware.firmwareType == .macOS {
+            guard let source = firmware.sources?.first(where: { source in
+                source.sourceType == .installassistant && source.deviceMap?.contains(deviceKey) == true
+            }) else {
+                print("❌ No Sources Found")
+                return
             }
-            downloads[url] = download
-            download.start()
-            changeFirmwareDownloadState(for: firmware, state: .dowloading)
-            for await event in download.events {
-                process(event, for: firmware, deviceKey: deviceKey)
-            }
-            
-            downloads[url] = nil
+            await beginDownload(firmware: firmware, deviceKey: deviceKey, source: source)
         }
     }
     
@@ -96,10 +92,39 @@ import SwiftUICore
         }
     }
     
+    private func beginDownload(firmware: Firmware, deviceKey: String, source: FirmwareSources) async {
+        guard let urlString = source.links?[0].url else {
+            print("❌ No URL Found")
+            return
+        }
+        guard let url = URL(string: urlString) else {
+            print("❌ Error parsing url to URL Object")
+            return
+        }
+        guard let sourceType = source.sourceType else {
+            print("❌ No Source Type")
+            return
+        }
+        guard downloads[url] == nil, !firmware.isDownloadCompleted else { return }
+        let download = if case let .canceled(data) = firmware.state {
+            Download(resumeData: data)
+        } else {
+            Download(url: url)
+        }
+        downloads[url] = download
+        download.start()
+        changeFirmwareDownloadState(for: firmware, state: .dowloading)
+        for await event in download.events {
+            process(event, for: firmware, deviceKey: deviceKey, firmwareSourceType: sourceType)
+        }
+        
+        downloads[url] = nil
+    }
+    
     private func changeFirmwareDownloadState(for firmware: Firmware, state: Firmware.State) {
         self.selectedFirmwares = self.selectedFirmwares.map({ f in
             if f.key == firmware.key {
-                var newFirmware = f
+                let newFirmware = f
                 newFirmware.state = state
                 return newFirmware
             }
@@ -186,15 +211,35 @@ import SwiftUICore
             print("⚠️ No local firmware data found.")
         }
     }
+    
+    private func sortByDescendingDateFirmware(_ a: Firmware, _ b: Firmware) -> Bool {
+        guard let aReleaseDate = a.releasedDateType else { return false }
+        guard let bReleaseDate = b.releasedDateType else { return false }
+        return bReleaseDate < aReleaseDate
+    }
+    
+    private func sortByNameFirmware(_ a: Firmware, _ b: Firmware) -> Bool {
+        return a.key.localizedStandardCompare(b.key) == .orderedAscending
+    }
+    
+    private func sortByDescendingDateDevice(_ a: Device, _ b: Device) -> Bool {
+        guard let aReleaseDate = a.releasedDateType else { return false }
+        guard let bReleaseDate = b.releasedDateType else { return false }
+        return bReleaseDate < aReleaseDate
+    }
+    
+    private func sortByNameDevice(_ a: Device, _ b: Device) -> Bool {
+        return a.key.localizedStandardCompare(b.key) == .orderedAscending
+    }
 }
 
 private extension DeviceFirmwaresViewModel {
-    func process(_ event: Download.Event, for firmware: Firmware, deviceKey: String) {
+    func process(_ event: Download.Event, for firmware: Firmware, deviceKey: String, firmwareSourceType: FirmwareSourcesType) {
         switch event {
         case let .progress(current, total):
             updateFirmware(firmware, currentBytes: current, totalBytes: total)
         case let .completed(url):
-            saveFile(for: firmware, at: url, deviceKey: deviceKey)
+            saveFile(for: firmware, at: url, deviceKey: deviceKey, firmwareSourceType: firmwareSourceType)
         default:
             return
         }
@@ -203,7 +248,7 @@ private extension DeviceFirmwaresViewModel {
     func updateFirmware(_ firmware: Firmware, currentBytes: Int64, totalBytes: Int64) {
         self.selectedFirmwares = self.selectedFirmwares.map({ f in
             if f.key == firmware.key {
-                var newFirmware = f
+                let newFirmware = f
                 newFirmware.update(currentBytes: currentBytes, totalBytes: totalBytes)
                 return newFirmware
             }
@@ -212,15 +257,22 @@ private extension DeviceFirmwaresViewModel {
         })
     }
     
-    func saveFile(for firmware: Firmware, at url: URL, deviceKey: String) {
+    func saveFile(for firmware: Firmware, at url: URL, deviceKey: String, firmwareSourceType: FirmwareSourcesType) {
         let filemanager = FileManager.default
+        var extensionName: String {
+            switch firmwareSourceType {
+            case .installassistant: return "pkg"
+            case .ipsw: return "ipsw"
+            case .ota: return "zip"
+            }
+        }
         do {
             var downloadDirectory = filemanager.urls(for: .downloadsDirectory, in: .userDomainMask).first!
             downloadDirectory = downloadDirectory.appendingPathComponent("PearDBDownloads")
             if !filemanager.fileExists(atPath: downloadDirectory.path()) {
                 try? filemanager.createDirectory(at: downloadDirectory, withIntermediateDirectories: true)
             }
-            downloadDirectory = downloadDirectory.appendingPathComponent("\(deviceKey)_\(firmware.version)\(firmware.build != nil ? "_\(firmware.build!)" : "")\(firmware.restoreVersion != nil ? "_Restore" : "").ipsw")
+            downloadDirectory = downloadDirectory.appendingPathComponent("\(deviceKey)_\(firmware.version)\(firmware.build != nil ? "_\(firmware.build!)" : "")\(firmware.restoreVersion != nil ? "_Restore" : "").\(extensionName)")
             try? filemanager.moveItem(at: url, to: downloadDirectory)
             print("✅ Successfully downloaded temp file: \(url) saved to: \(downloadDirectory)")
         }

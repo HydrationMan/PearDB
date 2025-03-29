@@ -21,6 +21,7 @@ struct HeaderView<Content: View>: View {
                 Text(title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.largeTitle)
+                    .visionOSMods.padding3D("depth")
                 
                 if (searchable != nil) {
                     Searchbar(searchText: $search, hasCancel: !search.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) { searching in
@@ -28,6 +29,7 @@ struct HeaderView<Content: View>: View {
                     } onCancel: {
                         
                     }
+                    .visionOSMods.padding3D("depth")
                 }
                 
                 content

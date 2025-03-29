@@ -176,11 +176,6 @@ struct FirmwareReleaseTypeMenu: View {
             }
             .containerShape(RoundedRectangle(cornerRadius: 99))
         }
-        #if os(tvOS)
-        .frame(maxWidth: 180)
-        #else
-        .frame(maxWidth: 128)
-        #endif
         .menuStyle(BorderlessButtonMenuStyle())
         .padding(8)
         #if os(tvOS)
@@ -196,6 +191,7 @@ struct FirmwareReleaseTypeMenu: View {
             RoundedRectangle(cornerRadius: 99).stroke(Color(UIColor.separator), lineWidth: 1)
             #endif
         }
+        .visionOSMods.padding3D("depth")
     }
 }
 
@@ -221,11 +217,6 @@ struct FirmwareTypeMenu: View {
             }
             .containerShape(RoundedRectangle(cornerRadius: 99))
         }
-        #if os(tvOS)
-        .frame(maxWidth: 180)
-        #else
-        .frame(maxWidth: 128)
-        #endif
         .menuStyle(BorderlessButtonMenuStyle())
         .padding(8)
         #if os(tvOS)
@@ -241,5 +232,6 @@ struct FirmwareTypeMenu: View {
             RoundedRectangle(cornerRadius: 99).stroke(Color(UIColor.separator), lineWidth: 1)
             #endif
         }
+        .visionOSMods.padding3D("depth")
     }
 }

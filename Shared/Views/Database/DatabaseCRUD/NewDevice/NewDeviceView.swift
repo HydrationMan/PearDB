@@ -24,17 +24,12 @@ struct NewDeviceView: View {
                         dbViewModel.search(searchString: "")
                     }
                 }
+                .visionOSMods.padding3D("depth")
             } searchable: { searchString in
                 dbViewModel.search(searchString: searchString)
             }
             
-            #if os(macOS)
-                NewDeviceScrollView() { device in
-                    selectedDevice = device
-                    showSelectedDeviceDetailView.toggle()
-                }
-                .environmentObject(dbViewModel)
-            #else
+            #if os(iOS)
                 VStack(alignment: .trailing) {
                     HStack {
                         Text("Add Device")
@@ -57,6 +52,12 @@ struct NewDeviceView: View {
                 }
                 .padding([.top, .horizontal])
             
+                NewDeviceScrollView() { device in
+                    selectedDevice = device
+                    showSelectedDeviceDetailView.toggle()
+                }
+                .environmentObject(dbViewModel)
+            #else
                 NewDeviceScrollView() { device in
                     selectedDevice = device
                     showSelectedDeviceDetailView.toggle()

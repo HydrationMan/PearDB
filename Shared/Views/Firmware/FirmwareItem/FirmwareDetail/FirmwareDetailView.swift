@@ -29,6 +29,7 @@ struct FirmwareDetailView: View {
                             #else
                                 .frame(width: 32, height: 32)
                             #endif
+                                .visionOSMods.padding3D("depth")
                         }
                         VStack {
                             Text("\(firmware.osStr) \(firmware.version) ")
@@ -80,6 +81,7 @@ struct FirmwareDetailView: View {
                         #endif
                         ForEach(filterDevices(), id: \.id) { device in
                             DeviceItemView(device: device)
+                                .visionOSMods.padding3D("depth")
                         }
                     }
                 }

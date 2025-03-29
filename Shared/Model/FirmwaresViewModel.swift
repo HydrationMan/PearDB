@@ -26,6 +26,15 @@ class FirmwaresViewModel: ObservableObject {
     @Published var selectedFirmwareType: FirmwareType = .release
     
     init() {
+        #if os(macOS)
+        self.filter = .macOS
+        #elseif os(visionOS)
+        self.filter = .visionOS
+        #elseif os(watchOS)
+        self.filter = .watchOS
+        #elseif os(tvOS)
+        self.filter = .tvOS
+        #endif
         Task {
             await self.initializeDownload()
             self.isLoading = false

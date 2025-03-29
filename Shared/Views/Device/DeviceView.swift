@@ -30,6 +30,7 @@ struct DeviceView: View {
                             .progressViewStyle(.circular)
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .visionOSMods.padding3D("depth")
                     }
                     else {
                         #if os(iOS)
@@ -121,7 +122,6 @@ struct HeaderMenu: View {
             }
             .containerShape(RoundedRectangle(cornerRadius: 99))
         }
-        .frame(maxWidth: 128)
         .menuStyle(BorderlessButtonMenuStyle())
         .padding(8)
         .background(.thickMaterial)
@@ -133,5 +133,6 @@ struct HeaderMenu: View {
             RoundedRectangle(cornerRadius: 99).stroke(Color(UIColor.separator), lineWidth: 1)
             #endif
         }
+        .visionOSMods.padding3D("depth")
     }
 }

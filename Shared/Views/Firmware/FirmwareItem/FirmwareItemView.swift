@@ -105,5 +105,7 @@ struct FirmwareItemLabelView: View {
         .padding()
         .background(.regularMaterial)
         .cornerRadius(8)
+        .visionOSMods.cornerRadius(99)
+        .visionOSMods.padding3D("depth")
     }
 }

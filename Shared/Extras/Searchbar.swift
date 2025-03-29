@@ -38,6 +38,7 @@ struct Searchbar: View {
             }
         }
         .padding(8)
+        .visionOSMods.padding(8)
         .background(.thickMaterial)
         .cornerRadius(99)
         .overlay {

@@ -62,6 +62,10 @@
 		E65337C92D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
 		E65337CA2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
 		E65337CB2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */; };
+		E6597F2F2D9077C9007237DB /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6597F2E2D9077C9007237DB /* Units.swift */; };
+		E6597F302D9077C9007237DB /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6597F2E2D9077C9007237DB /* Units.swift */; };
+		E6597F312D9077C9007237DB /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6597F2E2D9077C9007237DB /* Units.swift */; };
+		E6597F322D9077C9007237DB /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6597F2E2D9077C9007237DB /* Units.swift */; };
 		E6A74E9E2D8E682B008F353A /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74E9D2D8E682B008F353A /* FirmwareView.swift */; };
 		E6A74E9F2D8E682B008F353A /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74E9D2D8E682B008F353A /* FirmwareView.swift */; };
 		E6A74EA02D8E682B008F353A /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74E9D2D8E682B008F353A /* FirmwareView.swift */; };
@@ -74,6 +78,10 @@
 		E6A74EB62D8E72DB008F353A /* FirmwareDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */; };
 		E6A74EB72D8E72DB008F353A /* FirmwareDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */; };
 		E6A74EB82D8E72DB008F353A /* FirmwareDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */; };
+		E6F1438C2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F1438B2D8FFADB007D6DA1 /* visionOSMods.swift */; };
+		E6F1438D2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F1438B2D8FFADB007D6DA1 /* visionOSMods.swift */; };
+		E6F1438E2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F1438B2D8FFADB007D6DA1 /* visionOSMods.swift */; };
+		E6F1438F2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F1438B2D8FFADB007D6DA1 /* visionOSMods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,9 +185,11 @@
 		E65337C22D8BCBFC00CCA049 /* PresentationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationKey.swift; sourceTree = "<group>"; };
 		E65337C72D8BCEC000CCA049 /* ListSavedDevicesToEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSavedDevicesToEditView.swift; sourceTree = "<group>"; };
 		E654315D2D6189E9008A3CC5 /* PearDBMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6597F2E2D9077C9007237DB /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		E6A74E9D2D8E682B008F353A /* FirmwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareView.swift; sourceTree = "<group>"; };
 		E6A74EAE2D8E725C008F353A /* FirmwareItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareItemView.swift; sourceTree = "<group>"; };
 		E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareDetailView.swift; sourceTree = "<group>"; };
+		E6F1438B2D8FFADB007D6DA1 /* visionOSMods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = visionOSMods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -490,6 +500,7 @@
 				E61232F42D8693A2001B030C /* BorderEdges.swift */,
 				E61232F52D8693A2001B030C /* SemiOpaqueWindow.swift */,
 				E612339C2D87929A001B030C /* AddDeviceButtonView.swift */,
+				E6597F2E2D9077C9007237DB /* Units.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -497,6 +508,7 @@
 		E654316C2D619525008A3CC5 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E6F1438A2D8FFAC5007D6DA1 /* Extensions */,
 				E61233982D879183001B030C /* Extras */,
 				E61233392D86E98F001B030C /* Views */,
 				E654317A2D619722008A3CC5 /* Model */,
@@ -529,6 +541,14 @@
 				E6A74EB42D8E72DB008F353A /* FirmwareDetailView.swift */,
 			);
 			path = FirmwareDetail;
+			sourceTree = "<group>";
+		};
+		E6F1438A2D8FFAC5007D6DA1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E6F1438B2D8FFADB007D6DA1 /* visionOSMods.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -866,11 +886,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E61233992D8791DC001B030C /* BorderEdges.swift in Sources */,
+				E6597F302D9077C9007237DB /* Units.swift in Sources */,
 				E612333E2D86E9CD001B030C /* DeviceView.swift in Sources */,
 				E65337CA2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E61233762D86F0FA001B030C /* Searchbar.swift in Sources */,
 				E61233772D86F0FA001B030C /* FooterView.swift in Sources */,
 				E65337C12D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
+				E6F1438F2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */,
 				E6A74EB22D8E725C008F353A /* FirmwareItemView.swift in Sources */,
 				E6A74E9E2D8E682B008F353A /* FirmwareView.swift in Sources */,
 				E6A74EB72D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
@@ -907,6 +929,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6597F322D9077C9007237DB /* Units.swift in Sources */,
 				E6A74EA02D8E682B008F353A /* FirmwareView.swift in Sources */,
 				E612339A2D8791DC001B030C /* BorderEdges.swift in Sources */,
 				E612339D2D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
@@ -917,6 +940,7 @@
 				E612337F2D86F0FA001B030C /* FooterView.swift in Sources */,
 				E65337CB2D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E6A74EB82D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
+				E6F1438C2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */,
 				E612333B2D86E9CD001B030C /* DeviceView.swift in Sources */,
 				E65337BE2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
 				E6A74EAF2D8E725C008F353A /* FirmwareItemView.swift in Sources */,
@@ -934,10 +958,12 @@
 				E61233A02D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
 				E61233802D86F0FA001B030C /* HeaderView.swift in Sources */,
 				E61233812D86F0FA001B030C /* FooterView.swift in Sources */,
+				E6F1438E2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */,
 				E61233822D86F0FA001B030C /* GenericButtonView.swift in Sources */,
 				E6A74E9F2D8E682B008F353A /* FirmwareView.swift in Sources */,
 				E6A74EB62D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
 				E61233832D86F0FA001B030C /* Searchbar.swift in Sources */,
+				E6597F312D9077C9007237DB /* Units.swift in Sources */,
 				E65337C82D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E61233842D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
 				E65337BF2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
@@ -957,6 +983,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E65337C92D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
+				E6F1438D2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */,
 				E6A74EA12D8E682B008F353A /* FirmwareView.swift in Sources */,
 				E61233752D86F0F3001B030C /* XMarkButtonView.swift in Sources */,
 				E61233182D8693A2001B030C /* BorderEdges.swift in Sources */,
@@ -965,6 +992,7 @@
 				E61233192D8693A2001B030C /* SemiOpaqueWindow.swift in Sources */,
 				E61233732D86F0F3001B030C /* HeaderView.swift in Sources */,
 				E61233742D86F0F3001B030C /* Searchbar.swift in Sources */,
+				E6597F2F2D9077C9007237DB /* Units.swift in Sources */,
 				E6A74EB12D8E725C008F353A /* FirmwareItemView.swift in Sources */,
 				E65337C02D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
 				E65337C42D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
