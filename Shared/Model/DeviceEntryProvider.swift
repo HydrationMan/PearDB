@@ -22,13 +22,29 @@ final class DeviceEntryProvider {
     }
     
     private init(){
-        
         persistentContainer = NSPersistentCloudKitContainer(name: "DeviceDataModel")
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-        persistentContainer.loadPersistentStores {_, error in
-            if let error {
-                fatalError("❌ Unable to load store with error: \(error)")
+        if let description = persistentContainer.persistentStoreDescriptions.first {
+            description.shouldMigrateStoreAutomatically = true
+            description.shouldInferMappingModelAutomatically = true
+        }
+        persistentContainer.loadPersistentStores {description, error in
+            if let error, let url = description.url {
+                let coordinator = self.persistentContainer.persistentStoreCoordinator
+                // Destroy
+                try? coordinator.destroyPersistentStore(at: url, type: .sqlite)
+                // Re-create
+                _ =  try? coordinator.addPersistentStore(type: .sqlite, at: url)
+                print(error.localizedDescription)
             }
+        }
+    }
+    
+    private func purgeCoreData() {
+        let coordinator = self.persistentContainer.persistentStoreCoordinator
+                
+        coordinator.persistentStores.compactMap { $0.url }.forEach {
+            try? coordinator.destroyPersistentStore(at: $0, type: .sqlite)
         }
     }
 }

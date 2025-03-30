@@ -84,6 +84,7 @@ struct AddDeviceModalView: View {
                         entry.firmware = firmware
                         entry.isMain = isMain
                         entry.serial = serial
+                        entry.version = "2.0"
                     }
                     try? moc.save()
                     presentations.forEach {
