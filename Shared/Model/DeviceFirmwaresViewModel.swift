@@ -16,6 +16,7 @@ import SwiftUICore
     @Published var rcFirmwares: [Firmware] = []
     @Published var isLoading: Bool = true
     @Published var isFirmwareLoading: [String] = []
+    @Published var selectedFirmwareReleaseType: FirmwareType = .release
     
     init() {
         Task {
@@ -24,12 +25,16 @@ import SwiftUICore
         }
     }
     
+    public func changeFirmwareReleaseType(releaseType: FirmwareType) {
+        self.selectedFirmwareReleaseType = releaseType
+    }
+    
     public func filterFirmwares(device: Device) {
         let filteredFirmwares = self.firmwares.filter { $0.deviceMap.contains { $0 == device.key } }
         if (!filteredFirmwares.isEmpty) {
-            self.selectedFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .release && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
-            self.betaFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .beta && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
-            self.rcFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .rc && $0.sources != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
+            self.selectedFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .release && $0.sources != nil && $0.releasedDateType != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
+            self.betaFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .beta && $0.sources != nil && $0.releasedDateType != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
+            self.rcFirmwares = filteredFirmwares.filter({ $0.firmwareReleaseType == .rc && $0.sources != nil && $0.releasedDateType != nil }).sorted(by: { sortByDescendingDateFirmware($0, $1) })
         } else {
             print("⚠️ No Firmwares found")
         }

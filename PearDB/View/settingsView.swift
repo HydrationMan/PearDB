@@ -6,25 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SettingsView: View {
     @State private var isPurging = false
     @State private var isRedownloading = false
-
-//    var body: some View {
-//        VStack {
-//            Button("Purge Data") {
-//                purgeData()
-//            }
-//            .disabled(isPurging)
-//
-//            Button("Redownload Data") {
-//                redownloadData()
-//            }
-//            .disabled(isRedownloading)
-//        }
-//        .padding()
-//    }
+    
     var body: some View {
         Form {
             Section(header: Text("Debug")) {

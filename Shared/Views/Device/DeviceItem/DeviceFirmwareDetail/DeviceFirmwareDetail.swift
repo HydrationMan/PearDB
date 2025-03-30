@@ -43,7 +43,7 @@ struct DeviceFirmwareDetail: View {
                 Text(firmware.released ?? "")
                     .font(.title3)
                 #if os(macOS)
-                if (firmware.sources?.contains(where: { $0.sourceType == .ipsw && $0.deviceMap?.contains(device.key) == true }) == true && (firmware.firmwareType == .iOS || firmware.firmwareType == .iPadOS)) || firmware.sources?.contains(where: { $0.sourceType == .installassistant && $0.deviceMap?.contains(device.key) == true }) == true && firmware.firmwareType == .macOS {
+                if showButton() {
                     Button {
                         onButtonPressed()
                     } label: {
@@ -132,5 +132,9 @@ private extension DeviceFirmwareDetail {
         case (false, .dowloading): return "pause.fill"
         case (false, _): return "tray.and.arrow.down"
         }
+    }
+    
+    func showButton() -> Bool {
+        return (firmware.sources?.contains(where: { $0.sourceType == .ipsw && $0.deviceMap?.contains(device.key) == true }) == true && (firmware.firmwareType == .iOS || firmware.firmwareType == .iPadOS)) || firmware.sources?.contains(where: { $0.sourceType == .installassistant && $0.deviceMap?.contains(device.key) == true }) == true && firmware.firmwareType == .macOS
     }
 }
