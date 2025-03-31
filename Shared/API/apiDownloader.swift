@@ -28,11 +28,7 @@ class AppleDBDownloader: ObservableObject {
     @Published var isDownloading = false
     
     init() {
-        #if os(tvOS)
-        let documentDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!
-        #else
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        #endif
         
         self.localDirectory = documentDirectory.appendingPathComponent("AppleDB")
         createDirectoryIfNeeded()
