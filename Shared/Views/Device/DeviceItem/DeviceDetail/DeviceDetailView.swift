@@ -29,47 +29,6 @@ struct DeviceDetailView: View {
                 Rectangle.semiOpaqueWindow().padding(-1)
             #endif
                 VStack {
-            #if os(macOS)
-                    HStack(alignment: .top) {
-                        HStack(alignment: .center) {
-                            if !device.imageUrl.isEmpty {
-                                HStack {
-                                    ZStack {
-                                        ForEach(Array(device.imageUrl.enumerated()), id: \.offset) { offset, imageUrl in
-                                            AsyncImageView(url: imageUrl)
-                                                .frame(width: 128, height: 256)
-                                                .offset(x: 100 * CGFloat(offset))
-                                                .shadow(radius: 8)
-                                        }
-                                    }
-                                }
-                                .padding(.trailing, 90 * CGFloat(device.imageUrl.count))
-                            }
-                            VStack(alignment: .leading) {
-                                Text(device.name)
-                                    .font(.largeTitle)
-                                Text("Released: \(device.released ?? "unknown")")
-                                    .font(.title3)
-                                    .foregroundColor(.secondary)
-                                Text("Chip: \(device.soc ?? "unknown")")
-                                    .font(.title3)
-                                    .foregroundColor(.secondary)
-                                Text("Model(s): \(device.model?.joined(separator: ", ") ?? "unknown")")
-                                    .font(.title3)
-                                    .foregroundColor(.secondary)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        AddDeviceButtonView(isLoading: isLoading, isDeviceAlreadySaved: isDeviceAlreadySaved, fromDB: fromDB) {
-                            isAddDeviceDialogOpened.toggle()
-                        }
-                    }
-                    .padding()
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .background(.ultraThickMaterial)
-                    .compositingGroup()
-                    .shadow(radius: 5)
-                #else
                     VStack(alignment: .leading) {
                         HStack(alignment: .top) {
                             Text(device.name)
@@ -99,7 +58,6 @@ struct DeviceDetailView: View {
                     .background(.ultraThickMaterial)
                     .compositingGroup()
                     .shadow(radius: 5)
-                #endif
                 
                 #if os(macOS)
                     TabView(selection: $selection) {

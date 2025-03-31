@@ -39,7 +39,7 @@ struct AsyncImageView: View {
                     
                 }
             case .failed:
-                Color.clear
+                Image(.sad)
             }
         }
         .onAppear {

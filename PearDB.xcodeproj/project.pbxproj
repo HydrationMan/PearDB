@@ -17,6 +17,15 @@
 		A7EF13102D6980730020715A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FC6B72D51917F002E6B3B /* WidgetKit.framework */; };
 		A7EF13112D6980730020715A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FC6B92D51917F002E6B3B /* SwiftUI.framework */; };
 		A7EF131D2D6980750020715A /* PearDBMacWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7EF130F2D6980730020715A /* PearDBMacWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E60419192D9A1E6A003C31EB /* DeviceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60419122D9A1E6A003C31EB /* DeviceSectionView.swift */; };
+		E60419282D9A2020003C31EB /* DeviceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60419122D9A1E6A003C31EB /* DeviceSectionView.swift */; };
+		E60419292D9A2020003C31EB /* DeviceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60419122D9A1E6A003C31EB /* DeviceSectionView.swift */; };
+		E604192A2D9A2020003C31EB /* DeviceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60419122D9A1E6A003C31EB /* DeviceSectionView.swift */; };
+		E604192C2D9A2754003C31EB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E604192B2D9A2754003C31EB /* Media.xcassets */; };
+		E604192D2D9A2754003C31EB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E604192B2D9A2754003C31EB /* Media.xcassets */; };
+		E604192E2D9A2754003C31EB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E604192B2D9A2754003C31EB /* Media.xcassets */; };
+		E604192F2D9A2754003C31EB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E604192B2D9A2754003C31EB /* Media.xcassets */; };
+		E60419302D9A2754003C31EB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E604192B2D9A2754003C31EB /* Media.xcassets */; };
 		E61233182D8693A2001B030C /* BorderEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61232F42D8693A2001B030C /* BorderEdges.swift */; };
 		E61233192D8693A2001B030C /* SemiOpaqueWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61232F52D8693A2001B030C /* SemiOpaqueWindow.swift */; };
 		E612333B2D86E9CD001B030C /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612333A2D86E9CD001B030C /* DeviceView.swift */; };
@@ -174,6 +183,8 @@
 		A7B6FDA42D5E822F001E2DD6 /* PearDBTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B6FDB62D5E8253001E2DD6 /* PearDBVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PearDBVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7EF130F2D6980730020715A /* PearDBMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PearDBMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E60419122D9A1E6A003C31EB /* DeviceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSectionView.swift; sourceTree = "<group>"; };
+		E604192B2D9A2754003C31EB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E61232F42D8693A2001B030C /* BorderEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderEdges.swift; sourceTree = "<group>"; };
 		E61232F52D8693A2001B030C /* SemiOpaqueWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiOpaqueWindow.swift; sourceTree = "<group>"; };
 		E612333A2D86E9CD001B030C /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
@@ -486,6 +497,7 @@
 			children = (
 				E612333A2D86E9CD001B030C /* DeviceView.swift */,
 				E612334A2D86EBCB001B030C /* DeviceItem */,
+				E60419122D9A1E6A003C31EB /* DeviceSectionView.swift */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -517,6 +529,7 @@
 				E61233392D86E98F001B030C /* Views */,
 				E654317A2D619722008A3CC5 /* Model */,
 				E65431B02D619814008A3CC5 /* API */,
+				E604192B2D9A2754003C31EB /* Media.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -830,6 +843,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E604192F2D9A2754003C31EB /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +858,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E604192E2D9A2754003C31EB /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,6 +873,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E60419302D9A2754003C31EB /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,6 +881,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E604192D2D9A2754003C31EB /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,6 +896,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E604192C2D9A2754003C31EB /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +922,7 @@
 				E61233792D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
 				E65337C32D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
 				E612339F2D87929A001B030C /* AddDeviceButtonView.swift in Sources */,
+				E60419282D9A2020003C31EB /* DeviceSectionView.swift in Sources */,
 				E612337A2D86F0FA001B030C /* GenericButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -946,6 +965,7 @@
 				E6A74EB82D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
 				E6F1438C2D8FFAEF007D6DA1 /* visionOSMods.swift in Sources */,
 				E612333B2D86E9CD001B030C /* DeviceView.swift in Sources */,
+				E60419292D9A2020003C31EB /* DeviceSectionView.swift in Sources */,
 				E65337BE2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
 				E6A74EAF2D8E725C008F353A /* FirmwareItemView.swift in Sources */,
 				E65337C62D8BCBFC00CCA049 /* PresentationKey.swift in Sources */,
@@ -971,6 +991,7 @@
 				E65337C82D8BCEC900CCA049 /* ListSavedDevicesToEditView.swift in Sources */,
 				E61233842D86F0FA001B030C /* XMarkButtonView.swift in Sources */,
 				E65337BF2D8BB1F600CCA049 /* AddDeviceModalView.swift in Sources */,
+				E604192A2D9A2020003C31EB /* DeviceSectionView.swift in Sources */,
 				E612333C2D86E9CD001B030C /* DeviceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,6 +1013,7 @@
 				E61233752D86F0F3001B030C /* XMarkButtonView.swift in Sources */,
 				E61233182D8693A2001B030C /* BorderEdges.swift in Sources */,
 				E6A74EB52D8E72DB008F353A /* FirmwareDetailView.swift in Sources */,
+				E60419192D9A1E6A003C31EB /* DeviceSectionView.swift in Sources */,
 				E61233722D86F0F3001B030C /* GenericButtonView.swift in Sources */,
 				E61233192D8693A2001B030C /* SemiOpaqueWindow.swift in Sources */,
 				E61233732D86F0F3001B030C /* HeaderView.swift in Sources */,
@@ -1563,10 +1585,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PearDBMacWidget/PearDBMacWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMacWidget/Info.plist;
@@ -1594,10 +1616,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PearDBMacWidget/PearDBMacWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMacWidget/Info.plist;
@@ -1627,12 +1649,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PearDBMac/PearDBMac.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBMac/Preview Content\"";
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMac/Info.plist;
@@ -1662,12 +1684,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PearDBMac/PearDBMac.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"PearDBMac/Preview Content\"";
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDBMac/Info.plist;

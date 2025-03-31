@@ -16,10 +16,12 @@ struct DeviceSectionView: View {
     
     var body: some View {
         ZStack {
-            Rectangle.semiOpaqueWindow().padding(-1)
+            #if os(macOS)
+                Rectangle.semiOpaqueWindow().padding(-1)
+            #endif
             NavigationStack {
-                ScrollView {
-                    TabView(selection: $deviceViewModel.selectedDeviceGroup) {
+                TabView(selection: $deviceViewModel.selectedDeviceGroup) {
+                    ScrollView {
                         LazyVGrid(columns: columns, alignment: .center) {
                             DeviceSectionItemView(deviceType: .iphone)
                             DeviceSectionItemView(deviceType: .ipad)
@@ -28,12 +30,13 @@ struct DeviceSectionView: View {
                             DeviceSectionItemView(deviceType: .ipadMini)
                             DeviceSectionItemView(deviceType: .ipodTouch)
                         }
-                        .tabItem {
-                            Text(DeviceGroupType.iOSDevices.rawValue)
-                        }
-                        .tag(DeviceGroupType.iOSDevices)
-                        .padding(.horizontal)
-                        
+                    }
+                    .tabItem {
+                        Label(DeviceGroupType.iOSDevices.rawValue, systemImage: "ipad.landscape.and.iphone")
+                    }
+                    .tag(DeviceGroupType.iOSDevices)
+                    .padding(.horizontal)
+                    ScrollView {
                         LazyVGrid(columns: columns, alignment: .center) {
                             DeviceSectionItemView(deviceType: .macBookAir)
                             DeviceSectionItemView(deviceType: .macBookPro)
@@ -46,12 +49,13 @@ struct DeviceSectionView: View {
                             DeviceSectionItemView(deviceType: .powerMac)
                             DeviceSectionItemView(deviceType: .powerBook)
                         }
-                        .tabItem {
-                            Text(DeviceGroupType.macs.rawValue)
-                        }
-                        .tag(DeviceGroupType.macs)
-                        .padding(.horizontal)
-                        
+                    }
+                    .tabItem {
+                        Label(DeviceGroupType.macs.rawValue, systemImage: "desktopcomputer.and.macbook")
+                    }
+                    .tag(DeviceGroupType.macs)
+                    .padding(.horizontal)
+                    ScrollView {
                         LazyVGrid(columns: columns, alignment: .center) {
                             DeviceSectionItemView(deviceType: .appleWatch)
                             DeviceSectionItemView(deviceType: .appleTV)
@@ -66,12 +70,13 @@ struct DeviceSectionView: View {
                             DeviceSectionItemView(deviceType: .beddit)
                             DeviceSectionItemView(deviceType: .accessories)
                         }
-                        .tabItem {
-                            Text(DeviceGroupType.homeAndAccessories.rawValue)
-                        }
-                        .tag(DeviceGroupType.homeAndAccessories)
-                        .padding(.horizontal)
-                        
+                    }
+                    .tabItem {
+                        Label(DeviceGroupType.homeAndAccessories.rawValue, systemImage: "homepod.and.appletv")
+                    }
+                    .tag(DeviceGroupType.homeAndAccessories)
+                    .padding(.horizontal)
+                    ScrollView {
                         LazyVGrid(columns: columns, alignment: .center) {
                             DeviceSectionItemView(deviceType: .airPods)
                             DeviceSectionItemView(deviceType: .audio)
@@ -79,12 +84,13 @@ struct DeviceSectionView: View {
                             DeviceSectionItemView(deviceType: .beatsHeadphones)
                             DeviceSectionItemView(deviceType: .beatsSpeakers)
                         }
-                        .tabItem {
-                            Text(DeviceGroupType.audio.rawValue)
-                        }
-                        .tag(DeviceGroupType.audio)
-                        .padding(.horizontal)
-                        
+                    }
+                    .tabItem {
+                        Label(DeviceGroupType.audio.rawValue, systemImage: "airpods.max")
+                    }
+                    .tag(DeviceGroupType.audio)
+                    .padding(.horizontal)
+                    ScrollView {
                         LazyVGrid(columns: columns, alignment: .center) {
                             DeviceSectionItemView(deviceType: .ipodTouch)
                             DeviceSectionItemView(deviceType: .ipodNano)
@@ -92,12 +98,13 @@ struct DeviceSectionView: View {
                             DeviceSectionItemView(deviceType: .ipodMini)
                             DeviceSectionItemView(deviceType: .ipod)
                         }
-                        .tabItem {
-                            Text(DeviceGroupType.iPods.rawValue)
-                        }
-                        .tag(DeviceGroupType.iPods)
-                        .padding(.horizontal)
-                        
+                    }
+                    .tabItem {
+                        Label(DeviceGroupType.iPods.rawValue, systemImage: "ipod")
+                    }
+                    .tag(DeviceGroupType.iPods)
+                    .padding(.horizontal)
+                    ScrollView {
                         LazyVGrid(columns: columns, alignment: .center) {
                             DeviceSectionItemView(deviceType: .applePencil)
                             DeviceSectionItemView(deviceType: .mouse)
@@ -105,15 +112,18 @@ struct DeviceSectionView: View {
                             DeviceSectionItemView(deviceType: .keyboard)
                             DeviceSectionItemView(deviceType: .remote)
                         }
-                        .tabItem {
-                            Text(DeviceGroupType.inputs.rawValue)
-                        }
-                        .tag(DeviceGroupType.inputs)
-                        .padding(.horizontal)
                     }
-                    .padding()
+                    .tabItem {
+                        Label(DeviceGroupType.inputs.rawValue, systemImage: "keyboard")
+                    }
+                    .tag(DeviceGroupType.inputs)
+                    .padding(.horizontal)
                 }
+                #if os(macOS)
+                .padding()
+                #endif
             }
+            .navigationTitle("Devices")
         }
     }
 }
