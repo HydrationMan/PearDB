@@ -30,7 +30,6 @@ struct MainView: View {
                 .tabItem {
                     Label("Devices", systemImage: "internaldrive")
                 }
-                .environmentObject(deviceViewModel)
             FirmwareView()
                 .tabItem {
                     Label("Firmware", systemImage: "terminal")
