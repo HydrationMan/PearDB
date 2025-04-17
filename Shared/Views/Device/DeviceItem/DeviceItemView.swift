@@ -34,7 +34,7 @@ struct DeviceItemLabelView: View {
     var body: some View {
         HStack {
             if !device.imageUrl.isEmpty {
-                AsyncImageView(url: device.imageUrl[0])
+                AsyncImageView(url: device.imageUrl[0], key: device.key)
                     .frame(width: 32, height: 64)
             }
             

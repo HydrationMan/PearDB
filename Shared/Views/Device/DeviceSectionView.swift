@@ -142,7 +142,7 @@ struct DeviceSectionItemView: View {
             .environmentObject(dbViewModel)) {
             VStack(alignment: .center) {
                 if let deviceImage = deviceViewModel.devices.filter({ $0.deviceType == deviceType }).sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedAscending }).last(where: { $0.imageUrl.count > 0 })?.imageUrl[0] {
-                    AsyncImageView(url: deviceImage)
+                    AsyncImageView(url: deviceImage, key: deviceType.rawValue)
                         .frame(width: 128, height: 256)
                 } else if deviceViewModel.isLoading {
                     VStack {

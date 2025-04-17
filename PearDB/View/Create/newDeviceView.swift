@@ -70,7 +70,7 @@ struct newDeviceView: View {
                                     showSelectedDeviceDetailView.toggle()
                                 } label: {
                                     HStack {
-                                        AsyncImageView(url: "https://img.appledb.dev/device@64/\(device.key)/0.png")
+                                        AsyncImageView(url: "https://img.appledb.dev/device@64/\(device.key)/0.png", key: device.key)
                                             .frame(width: 32, height: 64)
                                         Text(device.name)
                                     }

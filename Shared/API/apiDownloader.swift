@@ -21,6 +21,7 @@ class AppleDBDownloader: ObservableObject {
     
     private let fileManager = FileManager.default
     private let localDirectory: URL
+    private let imageCacheDirectory: URL
     private let lastDownloadKey = "lastAppleDBDownload"
     private let downloadInterval: TimeInterval = 86400 // 24 hours
     
@@ -29,7 +30,7 @@ class AppleDBDownloader: ObservableObject {
     
     init() {
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
+        self.imageCacheDirectory = documentDirectory.appendingPathComponent("ImageCache")
         self.localDirectory = documentDirectory.appendingPathComponent("AppleDB")
         createDirectoryIfNeeded()
     }
@@ -144,9 +145,19 @@ class AppleDBDownloader: ObservableObject {
     /// Asynchronously purges all downloaded data
     func purgeData() async throws {
         let contents = try fileManager.contentsOfDirectory(atPath: localDirectory.path)
-        
+        let imageCacheContents = try fileManager.contentsOfDirectory(atPath: imageCacheDirectory.path)
         for file in contents {
             let fileURL = localDirectory.appendingPathComponent(file)
+            do {
+                try fileManager.removeItem(at: fileURL)
+                print("🗑 Deleted: \(file)")
+            } catch {
+                print("❌ Failed to delete \(file): \(error)")
+                throw error
+            }
+        }
+        for file in imageCacheContents {
+            let fileURL = imageCacheDirectory.appendingPathComponent(file)
             do {
                 try fileManager.removeItem(at: fileURL)
                 print("🗑 Deleted: \(file)")
@@ -167,6 +178,13 @@ class AppleDBDownloader: ObservableObject {
     /// Ensures the directory exists
     private func createDirectoryIfNeeded() {
         if !fileManager.fileExists(atPath: localDirectory.path) {
+            do {
+                try fileManager.createDirectory(at: localDirectory, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("❌ Error creating AppleDB directory: \(error.localizedDescription)")
+            }
+        }
+        if !fileManager.fileExists(atPath: imageCacheDirectory.path) {
             do {
                 try fileManager.createDirectory(at: localDirectory, withIntermediateDirectories: true, attributes: nil)
             } catch {

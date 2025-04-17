@@ -23,7 +23,7 @@ struct FirmwareDetailView: View {
                 VStack {
                     HStack {
                         if let image = firmware.appledbWebImage?.id {
-                            AsyncImageView(url: "https://img.appledb.dev/images@preview/\(image)/0.png")
+                            AsyncImageView(url: "https://img.appledb.dev/images@preview/\(image)/0.png", key: firmware.key)
                             #if os(tvOS)
                                 .frame(width: 64, height: 64)
                             #else

@@ -43,7 +43,7 @@ struct DeviceDetailView: View {
                         HStack {
                             ZStack {
                                 ForEach(Array(device.imageUrl.enumerated()), id: \.offset) { offset, imageUrl in
-                                    AsyncImageView(url: imageUrl)
+                                    AsyncImageView(url: imageUrl, key: device.key)
                                         .frame(width: 64, height: 128)
                                         .offset(x: 48 * CGFloat(offset))
                                         .visionOSMods.padding3D("depth", CGFloat(offset) * 2)
