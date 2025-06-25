@@ -43,7 +43,11 @@ struct AddDeviceModalView: View {
                     Text("Beta").tag(FirmwareType.beta)
                     Text("RC").tag(FirmwareType.rc)
                 }
+                #if os(iOS)
                 .pickerStyle(.menu)
+                #elseif os(watchOS)
+                .pickerStyle(.wheel)
+                #endif
                 .onChange(of: firmwareType) {
                     switch(firmwareType) {
                     case .beta:

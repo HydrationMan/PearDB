@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUICore
+import SwiftUI
 @MainActor class DeviceFirmwaresViewModel: ObservableObject {
     private let appDbDownloader: AppleDBDownloader = AppleDBDownloader.shared
     private var downloads: [URL: Download] = [:]

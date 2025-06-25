@@ -4,80 +4,45 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>PearDB.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-		<key>PearDBMac.xcscheme_^#shared#^_</key>
+		<key>PearDB WatchApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>PearDBMacWidgetExtension.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
-		<key>PearDBPhoneWidgetExtension.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>PearDBTV.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>PearDBVision.xcscheme_^#shared#^_</key>
+		<key>PearDB WatchWidget.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>PearDBWatch.xcscheme_^#shared#^_</key>
+		<key>PearDB Widget.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>0</integer>
 		</dict>
-		<key>PearDBWatchWidgetExtension.xcscheme_^#shared#^_</key>
+		<key>PearDB tvApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>PearDB xrApp.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>PearDB.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>A74107CA2D5175EB00898B0C</key>
+		<key>A711D0C32E09630600A1A248</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A76FC6B42D51917F002E6B3B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A76FC6CE2D5191B5002E6B3B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A76FC6E42D5191D2002E6B3B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A7B6FDA32D5E822F001E2DD6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A7B6FDB52D5E8253001E2DD6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E654315C2D6189E9008A3CC5</key>
+		<key>A7D3AC052E09656C000557FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

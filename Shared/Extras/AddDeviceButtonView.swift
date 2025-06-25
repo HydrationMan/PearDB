@@ -35,7 +35,7 @@ struct AddDeviceButtonView: View {
                         .overlay {
                             #if os(macOS)
                             RoundedRectangle(cornerRadius: 99).stroke(Color(NSColor.separatorColor), lineWidth: 1)
-                            #else
+                            #elseif os(iOS)
                             RoundedRectangle(cornerRadius: 99).stroke(Color(UIColor.separator), lineWidth: 1)
                             #endif
                         }

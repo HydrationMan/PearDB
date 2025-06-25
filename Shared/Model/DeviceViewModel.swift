@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUICore
+import SwiftUI
 
 @MainActor
 class DeviceViewModel: ObservableObject {
@@ -161,7 +161,7 @@ class DeviceViewModel: ObservableObject {
                             if image.count > 0 {
                                 let newDevice = device
                                 image.index.forEach { imageIndex in
-                                    let imageUrl = "https://img.appledb.dev/device@256/\(device.key)/\(imageIndex.idText).png"
+                                    let imageUrl = "https://img.appledb.dev/device@256/\(device.effectiveImageKey)/\(imageIndex.idText).png"
                                     newDevice.imageUrl.append(imageUrl)
                                 }
                                 return newDevice
@@ -219,3 +219,4 @@ class DeviceViewModel: ObservableObject {
         }
     }
 }
+

@@ -7,10 +7,14 @@
 
 import SwiftUI
 import CoreData
+import Foundation
+import CoreSpotlight
 
 struct SettingsView: View {
     @State private var isPurging = false
     @State private var isRedownloading = false
+    
+    let sampleData = ["iPhone16,2", "Mac14,2", "Watch6,18"]
     
     var body: some View {
         Form {
@@ -31,6 +35,30 @@ struct SettingsView: View {
                 }
             }
         }
+        List {
+            Section {
+                ForEach(sampleData, id: \.self) { value in
+                    Text(value)
+                }
+            }
+            Section {
+                Button("Index Data") {
+                    indexData()
+                }
+            }
+        }
+    }
+    
+    func indexData() {
+        var searchableItems = [CSSearchableItem]()
+        sampleData.forEach {
+            let attributeSet = CSSearchableItemAttributeSet(contentType: .content)
+            attributeSet.displayName = $0.description
+            
+            let searchableItem = CSSearchableItem(uniqueIdentifier: nil, domainIdentifier: "sample", attributeSet: attributeSet)
+            searchableItems.append(searchableItem)
+        }
+        CSSearchableIndex.default().indexSearchableItems(searchableItems)
     }
 
     private func purgeData() {
@@ -59,3 +87,26 @@ struct SettingsView: View {
         }
     }
 }
+
+//func containerPath() -> String {
+//    if let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path {
+//        return "containerPath:\(path)"
+//    } else {
+//        return "path not found."
+//    }
+//}
+//
+//func listDocumentsDirectorySubpaths() {
+//    let fileManager = FileManager.default
+//    if let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+//        do {
+//            let subpaths = try fileManager.subpathsOfDirectory(atPath: documentsURL.path)
+//            print("Recursive Contents of Documents Directory:")
+//            for path in subpaths {
+//                print("- \(path)")
+//            }
+//        } catch {
+//            print("Failed to list subpaths with error: \(error)")
+//        }
+//    }
+//}

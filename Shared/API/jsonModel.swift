@@ -22,6 +22,7 @@ class Device: ObservableObject, Codable, Identifiable {
     @Published private(set) var model: [String]?
     @Published private(set) var info: [DeviceInfo]?
     @Published private(set) var key: String
+    @Published private(set) var imageKey: String?
     @Published private(set) var releasedRaw: ReleasedType?
     @Published var imageUrl: [String] = []
     
@@ -39,6 +40,7 @@ class Device: ObservableObject, Codable, Identifiable {
         model = try container.decodeIfPresent([String].self, forKey: .model)
         info = try container.decodeIfPresent([DeviceInfo].self, forKey: .info)
         key = try container.decode(String.self, forKey: .key)
+        imageKey = try container.decodeIfPresent(String.self, forKey: .imageKey)
         releasedRaw = try container.decodeIfPresent(ReleasedType.self, forKey: .releasedRaw)
     }
     
@@ -56,12 +58,13 @@ class Device: ObservableObject, Codable, Identifiable {
         try container.encodeIfPresent(model, forKey: .model)
         try container.encodeIfPresent(info, forKey: .info)
         try container.encode(key, forKey: .key)
+        try container.encodeIfPresent(imageKey, forKey: .imageKey)
         try container.encodeIfPresent(releasedRaw, forKey: .releasedRaw)
     }
 
     
     enum CodingKeys: String, CodingKey {
-        case name, identifierRaw = "identifier", socRaw = "soc", cpidRaw = "cpid", arch, type, board, bdid, model, info, key, releasedRaw = "released"
+        case name, identifierRaw = "identifier", socRaw = "soc", cpidRaw = "cpid", arch, type, board, bdid, model, info, key, imageKey, releasedRaw = "released"
     }
 
     var soc: String? {
@@ -276,6 +279,10 @@ class Device: ObservableObject, Codable, Identifiable {
         }
     }
     
+    var effectiveImageKey: String {
+        imageKey ?? key
+    }
+    
     enum IdentifierType: Codable {
         case single(String)
         case array([String])
@@ -372,6 +379,60 @@ class Device: ObservableObject, Codable, Identifiable {
         }
     }
 }
+
+enum SecurityNotesType: Codable {
+    case string(String)
+    case dictionary([String: CodableValue])
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let string = try? container.decode(String.self) {
+            self = .string(string)
+        } else if let dict = try? container.decode([String: CodableValue].self) {
+            self = .dictionary(dict)
+        } else {
+            throw DecodingError.typeMismatch(SecurityNotesType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unexpected type for securityNotes"))
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .string(let string):
+            try container.encode(string)
+        case .dictionary(let dict):
+            try container.encode(dict)
+        }
+    }
+}
+
+enum ReleaseNotesType: Codable {
+    case string(String)
+    case dictionary([String: CodableValue])
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let string = try? container.decode(String.self) {
+            self = .string(string)
+        } else if let dict = try? container.decode([String: CodableValue].self) {
+            self = .dictionary(dict)
+        } else {
+            throw DecodingError.typeMismatch(ReleaseNotesType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unexpected type for releaseNotes"))
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .string(let string):
+            try container.encode(string)
+        case .dictionary(let dict):
+            try container.encode(dict)
+        }
+    }
+}
+
+struct CodableValue: Codable {}
 
 // Model for memory/storage info
 struct DeviceInfo: Codable {
@@ -1084,8 +1145,8 @@ class Firmware: ObservableObject, Identifiable, Codable {
     @Published private(set) var releasedRaw: String?
     @Published private(set) var appledburl: String
     @Published private(set) var deviceMap: [String]
-    @Published private(set) var releaseNotesUrl: String?
-    @Published private(set) var securityNotesUrl: String?
+    @Published private(set) var releaseNotes: ReleaseNotesType?
+    @Published private(set) var securityNotes: SecurityNotesType?
     @Published private(set) var sources: [FirmwareSources]?
     @Published private(set) var rc: Bool?
     @Published private(set) var appledbWebImage: AppleDbWebImage?
@@ -1095,8 +1156,8 @@ class Firmware: ObservableObject, Identifiable, Codable {
 
     enum CodingKeys: String, CodingKey {
         case osStr, version, build, key, releasedRaw = "released", appledburl, deviceMap
-        case restoreVersion, beta, rsr, releaseNotesUrl = "releaseNotes"
-        case securityNotesUrl = "securityNotes", sources, rc
+        case restoreVersion, beta, rsr, releaseNotes
+        case securityNotes, sources, rc
         case appledbWebImage
     }
     
@@ -1132,8 +1193,8 @@ class Firmware: ObservableObject, Identifiable, Codable {
         releasedRaw = try container.decodeIfPresent(String.self, forKey: .releasedRaw)
         appledburl = try container.decode(String.self, forKey: .appledburl)
         deviceMap = try container.decode([String].self, forKey: .deviceMap)
-        releaseNotesUrl = try container.decodeIfPresent(String.self, forKey: .releaseNotesUrl)
-        securityNotesUrl = try container.decodeIfPresent(String.self, forKey: .securityNotesUrl)
+        releaseNotes = try container.decodeIfPresent(ReleaseNotesType.self, forKey: .releaseNotes)
+        securityNotes = try container.decodeIfPresent(SecurityNotesType.self, forKey: .securityNotes)
         sources = try container.decodeIfPresent([FirmwareSources].self, forKey: .sources)
         rc = try container.decodeIfPresent(Bool.self, forKey: .rc)
         appledbWebImage = try container.decodeIfPresent(AppleDbWebImage.self, forKey: .appledbWebImage)
@@ -1151,8 +1212,8 @@ class Firmware: ObservableObject, Identifiable, Codable {
         try container.encodeIfPresent(releasedRaw, forKey: .releasedRaw)
         try container.encode(appledburl, forKey: .appledburl)
         try container.encode(deviceMap, forKey: .deviceMap)
-        try container.encodeIfPresent(releaseNotesUrl, forKey: .releaseNotesUrl)
-        try container.encodeIfPresent(securityNotesUrl, forKey: .securityNotesUrl)
+        try container.encodeIfPresent(releaseNotes, forKey: .releaseNotes)
+        try container.encodeIfPresent(securityNotes, forKey: .securityNotes)
         try container.encodeIfPresent(sources, forKey: .sources)
         try container.encodeIfPresent(rc, forKey: .rc)
         try container.encodeIfPresent(appledbWebImage, forKey: .appledbWebImage)
@@ -1617,3 +1678,4 @@ struct DeviceImageIndex: Codable {
         }
     }
 }
+

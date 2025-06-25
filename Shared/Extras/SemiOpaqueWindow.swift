@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(macOS)
 extension View {
     public static func semiOpaqueWindow() -> some View {
         VisualEffect().ignoresSafeArea()
@@ -21,3 +22,4 @@ struct VisualEffect : NSViewRepresentable {
     }
     func updateNSView(_ view: NSView, context: Context) { }
 }
+#endif
