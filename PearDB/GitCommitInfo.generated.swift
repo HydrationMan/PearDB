@@ -3,8 +3,8 @@
 import Foundation
 
 struct GitCommitInfo {
-    static let hash = "43cd56e"
+    static let hash = "506f718"
     static let originalReferences = "HEAD -> refs/heads/0.2.0, refs/remotes/origin/HEAD, refs/remotes/origin/0.2.0"
     static let cleanedReferences = "HEAD -> 0.2.0, HEAD, 0.2.0"
-    static let message = "Organising Source"
+    static let message = "0.2.0 Build 10"
 }
