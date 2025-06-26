@@ -100,11 +100,3 @@ struct newDeviceView: View {
         }
     }
 }
-
-#Preview {
-    NavigationStack {
-        newDeviceView()
-            .environmentObject(DatabaseViewModel())
-    }
-}
-
