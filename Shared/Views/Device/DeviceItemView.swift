@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Foundation
+
+let deviceKeyMappings = [["iPhone5,3", "iPhone5,4"], ["iPhone6,1", "iPhone6,2"], ["iPhone9,1", "iPhone9,3"], ["iPhone9,2", "iPhone9,4"], ["iPhone10,1", "iPhone10,4"], ["iPhone10,2", "iPhone10,5"], ["iPhone10,3", "iPhone10,6"], ["iPhone11,6", "iPhone11,4"]]
 
 struct DeviceItemView: View {
     var device: Device
@@ -31,10 +34,28 @@ struct DeviceItemLabelView: View {
     var entry: Entry?
     var firmware: Firmware?
     
+    @EnvironmentObject var dbViewModel: DatabaseViewModel
+    
+    var mappedImageKey: String {
+        for pair in deviceKeyMappings where pair.count > 1 && pair[1] == device.key {
+            return pair[0]
+        }
+        return device.key
+    }
+    
     var body: some View {
         HStack {
-            if !device.imageUrl.isEmpty {
-                AsyncImageView(url: device.imageUrl[0])
+            if let firstUrl = device.imageUrl.first, !device.imageUrl.isEmpty {
+                AsyncImageView(url: firstUrl)
+                    .frame(width: 32, height: 64)
+            } else if let deviceImages = dbViewModel.images.first(where: { $0.key == mappedImageKey }),
+                      let firstIndex = deviceImages.index.first {
+                let urlString = "https://img.appledb.dev/device@256/\(mappedImageKey)/\(firstIndex.idText).png"
+                AsyncImageView(url: urlString)
+                    .frame(width: 32, height: 64)
+            } else {
+                Image(.sad)
+                    .resizable()
                     .frame(width: 32, height: 64)
             }
             
@@ -94,3 +115,4 @@ struct DeviceItemLabelView: View {
         .visionOSMods.padding3D("depth")
     }
 }
+

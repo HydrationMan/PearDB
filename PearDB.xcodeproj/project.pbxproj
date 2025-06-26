@@ -332,7 +332,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				DatabaseView.swift,
-				NewDeviceView.swift,
+				NewDeviceViewUpper.swift,
 			);
 			target = A7295A722E0A0D4900755E3C /* PearDB xrApp */;
 		};
@@ -340,7 +340,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				DatabaseView.swift,
-				NewDeviceView.swift,
+				NewDeviceViewUpper.swift,
 			);
 			target = A7295A872E0A0DE500755E3C /* PearDB tvApp */;
 		};
@@ -576,6 +576,7 @@
 				A711D0C22E09630600A1A248 /* Resources */,
 				A7D3AC1C2E09656E000557FA /* Embed Foundation Extensions */,
 				A7295A422E0A0BC900755E3C /* Embed Watch Content */,
+				A742ACAF2E0D09D80031620A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -806,6 +807,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A742ACAF2E0D09D80031620A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Set destination for generated Swift file\nOUTPUT_FILE=\"${SRCROOT}/PearDB/GitCommitInfo.generated.swift\"\n\n# Run git log and parse output\nLOG_LINE=$(git -C \"${SRCROOT}\" log -1 --oneline --decorate=full --no-color)\n\n# Parse with bash (or use awk/sed for more complex logic)\nHASH=$(echo $LOG_LINE | awk '{print $1}')\nREFS=$(echo $LOG_LINE | sed -e 's/^[^ ]* (\\([^)]*\\)).*$/\\1/' )\nMESSAGE=$(echo $LOG_LINE | sed -e 's/^[^)]*) //' )\n\n# Clean references\nCLEANED_REFS=$(echo $REFS | sed 's/refs\\/heads\\///g' | sed 's/refs\\/remotes\\/origin\\///g')\n\n# Write as Swift source\ncat > \"$OUTPUT_FILE\" <<EOL\n// Generated file. Do not edit.\n\nimport Foundation\n\nstruct GitCommitInfo {\n    static let hash = \"$HASH\"\n    static let originalReferences = \"$REFS\"\n    static let cleanedReferences = \"$CLEANED_REFS\"\n    static let message = \"$MESSAGE\"\n}\nEOL\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A711D0C02E09630600A1A248 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -962,6 +984,7 @@
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDB/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1010,6 +1033,7 @@
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PearDB/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1080,7 +1104,7 @@
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1143,7 +1167,7 @@
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1170,6 +1194,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB-WatchApp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1201,6 +1226,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB-WatchApp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1231,6 +1257,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB WatchApp/PearDB WatchWidget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "PearDB WatchWidget";
@@ -1261,6 +1288,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB WatchApp/PearDB WatchWidget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "PearDB WatchWidget";
@@ -1294,6 +1322,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1323,6 +1352,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1353,6 +1383,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB tvApp/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1384,6 +1415,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB tvApp/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PearDB;
@@ -1418,6 +1450,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB/PearDB Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "PearDB Widget";
@@ -1460,6 +1493,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PearDB/PearDB Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "PearDB Widget";

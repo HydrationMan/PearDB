@@ -70,8 +70,22 @@ struct newDeviceView: View {
                                     showSelectedDeviceDetailView.toggle()
                                 } label: {
                                     HStack {
-                                        AsyncImageView(url: "https://img.appledb.dev/device@64/\(device.key)/0.png")
-                                            .frame(width: 32, height: 64)
+                                        let mappedImageKey: String = {
+                                            for pair in deviceKeyMappings where pair.count > 1 && pair[1] == device.key {
+                                                return pair[0]
+                                            }
+                                            return device.key
+                                        }()
+                                        if let deviceImages = dbViewModel.images.first(where: { $0.key == mappedImageKey }),
+                                           let firstIndex = deviceImages.index.first {
+                                            let urlString = "https://img.appledb.dev/device@64/\(mappedImageKey)/\(firstIndex.idText).png"
+                                            AsyncImageView(url: urlString)
+                                                .frame(width: 32, height: 64)
+                                        } else {
+                                            Image(.sad)
+                                                .resizable()
+                                                .frame(width: 32, height: 64)
+                                        }
                                         Text(device.name)
                                     }
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -107,4 +121,3 @@ struct newDeviceView: View {
             .environmentObject(DatabaseViewModel())
     }
 }
-

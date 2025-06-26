@@ -34,17 +34,29 @@ struct SettingsView: View {
                     )
                 }
             }
-        }
-        List {
-            Section {
-                ForEach(sampleData, id: \.self) { value in
-                    Text(value)
-                }
-            }
-            Section {
-                Button("Index Data") {
-                    indexData()
-                }
+            
+            Section(header: Text("Git Info for Build")) {
+                Text("Commit Hash: ") +
+                Text(GitCommitInfo.hash)
+                    .foregroundColor(.yellow)
+                    .bold()
+
+                Text("References: ") +
+                Text("HEAD")
+                    .foregroundColor(.blue) +
+                Text(" -> ") +
+                Text("0.2.0")
+                    .foregroundColor(.green) +
+                Text(", ") +
+                Text("origin/HEAD")
+                    .foregroundColor(.red) +
+                Text(", ") +
+                Text("origin/0.2.0")
+                    .foregroundColor(.red)
+
+                Text("Message: ") +
+                Text(GitCommitInfo.message)
+                    .italic()
             }
         }
     }

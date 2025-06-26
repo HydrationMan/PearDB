@@ -22,6 +22,13 @@ struct DeviceDetailView: View {
     
     @EnvironmentObject var deviceFirmwaresViewModel: DeviceFirmwaresViewModel
     @EnvironmentObject var dbViewModel: DatabaseViewModel
+
+    var mappedImageKey: String {
+        for pair in deviceKeyMappings where pair.count > 1 && pair[1] == device.key {
+            return pair[0]
+        }
+        return device.key
+    }
     
     var body: some View {
         ZStack {
@@ -42,12 +49,27 @@ struct DeviceDetailView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         HStack {
                             ZStack {
-                                ForEach(Array(device.imageUrl.enumerated()), id: \.offset) { offset, imageUrl in
-                                    AsyncImageView(url: imageUrl)
+                                if !device.imageUrl.isEmpty {
+                                    ForEach(Array(device.imageUrl.enumerated()), id: \.offset) { offset, imageUrl in
+                                        AsyncImageView(url: imageUrl)
+                                            .frame(width: 64, height: 128)
+                                            .offset(x: 48 * CGFloat(offset))
+                                            .visionOSMods.padding3D("depth", CGFloat(offset) * 2)
+                                            .shadow(radius: 8)
+                                    }
+                                } else if let deviceImages = dbViewModel.images.first(where: { $0.key == mappedImageKey }) {
+                                    ForEach(Array(deviceImages.index.enumerated()), id: \.offset) { offset, imageIndex in
+                                        let urlString = "https://img.appledb.dev/device@256/\(mappedImageKey)/\(imageIndex.idText).png"
+                                        AsyncImageView(url: urlString)
+                                            .frame(width: 64, height: 128)
+                                            .offset(x: 48 * CGFloat(offset))
+                                            .visionOSMods.padding3D("depth", CGFloat(offset) * 2)
+                                            .shadow(radius: 8)
+                                    }
+                                } else {
+                                    Image(.sad)
+                                        .resizable()
                                         .frame(width: 64, height: 128)
-                                        .offset(x: 48 * CGFloat(offset))
-                                        .visionOSMods.padding3D("depth", CGFloat(offset) * 2)
-                                        .shadow(radius: 8)
                                 }
                             }
                         }
