@@ -93,6 +93,7 @@
 		A7D3AC012E09645B000557FA /* SemiOpaqueWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3ABA52E09633B000557FA /* SemiOpaqueWindow.swift */; };
 		A7D3AC092E09656C000557FA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC082E09656C000557FA /* WidgetKit.framework */; };
 		A7D3AC0B2E09656C000557FA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC0A2E09656C000557FA /* SwiftUI.framework */; };
+		A7D3AC172E09656E000557FA /* PearDB Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7D3AC062E09656C000557FA /* PearDB Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E1F7A1402E649E1200964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A13F2E649E1200964529 /* ZippyJSON */; };
 		E1F7A1422E649E3A00964529 /* simdjsonparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7A1412E649E3600964529 /* simdjsonparser.swift */; };
 		E1F7A1432E649E3A00964529 /* simdjsonparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7A1412E649E3600964529 /* simdjsonparser.swift */; };
@@ -100,7 +101,6 @@
 		E1F7A1F02E649EDF00964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1EF2E649EDF00964529 /* ZippyJSON */; };
 		E1F7A1F22E649EE300964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1F12E649EE300964529 /* ZippyJSON */; };
 		E1F7A1F42E649EE600964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1F32E649EE600964529 /* ZippyJSON */; };
-		A7D3AC172E09656E000557FA /* PearDB Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7D3AC062E09656C000557FA /* PearDB Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -485,6 +485,7 @@
 				A7295A892E0A0DE500755E3C /* PearDB tvApp */,
 				A7D3AC072E09656C000557FA /* Frameworks */,
 				A711D0C52E09630600A1A248 /* Products */,
+				E1F7A34A2E64A02100964529 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -574,6 +575,14 @@
 				A7D3AC0A2E09656C000557FA /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1F7A34A2E64A02100964529 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				E1F7A1412E649E3600964529 /* simdjsonparser.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
