@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7295A3E2E0A0BC900755E3C /* PearDB WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A7295A342E0A0BC700755E3C /* PearDB WatchApp.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A7295A482E0A0C0300755E3C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC082E09656C000557FA /* WidgetKit.framework */; };
 		A7295A492E0A0C0300755E3C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC0A2E09656C000557FA /* SwiftUI.framework */; };
 		A7295A522E0A0C0500755E3C /* PearDB WatchWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7295A472E0A0C0300755E3C /* PearDB WatchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -99,9 +100,17 @@
 		E1F7A1F02E649EDF00964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1EF2E649EDF00964529 /* ZippyJSON */; };
 		E1F7A1F22E649EE300964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1F12E649EE300964529 /* ZippyJSON */; };
 		E1F7A1F42E649EE600964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1F32E649EE600964529 /* ZippyJSON */; };
+		A7D3AC172E09656E000557FA /* PearDB Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7D3AC062E09656C000557FA /* PearDB Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A7295A3C2E0A0BC900755E3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A711D0BC2E09630600A1A248 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7295A332E0A0BC700755E3C;
+			remoteInfo = "PearDBWatch Watch App";
+		};
 		A7295A502E0A0C0500755E3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A711D0BC2E09630600A1A248 /* Project object */;
@@ -109,9 +118,27 @@
 			remoteGlobalIDString = A7295A462E0A0C0300755E3C;
 			remoteInfo = PearDBWatchExtension;
 		};
+		A7D3AC152E09656E000557FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A711D0BC2E09630600A1A248 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7D3AC052E09656C000557FA;
+			remoteInfo = PearDBWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		A7295A422E0A0BC900755E3C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				A7295A3E2E0A0BC900755E3C /* PearDB WatchApp.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7295A572E0A0C0500755E3C /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,6 +146,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				A7295A522E0A0C0500755E3C /* PearDB WatchWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7D3AC1C2E09656E000557FA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A7D3AC172E09656E000557FA /* PearDB Widget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,7 +504,6 @@
 		A7D3ABA82E09633B000557FA /* Extras */ = {
 			isa = PBXGroup;
 			children = (
-				E1F7A1412E649E3600964529 /* simdjsonparser.swift */,
 				A7D3AB9C2E09633B000557FA /* ListSavedDevicesToEditView.swift */,
 				A7D3AB9D2E09633B000557FA /* PresentationKey.swift */,
 				A7D3AB9E2E09633B000557FA /* AddDeviceModalView.swift */,
@@ -549,11 +586,15 @@
 				A711D0C02E09630600A1A248 /* Sources */,
 				A711D0C12E09630600A1A248 /* Frameworks */,
 				A711D0C22E09630600A1A248 /* Resources */,
+				A7D3AC1C2E09656E000557FA /* Embed Foundation Extensions */,
+				A7295A422E0A0BC900755E3C /* Embed Watch Content */,
 				A742ACAF2E0D09D80031620A /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A7D3AC162E09656E000557FA /* PBXTargetDependency */,
+				A7295A3D2E0A0BC900755E3C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A711D0C62E09630600A1A248 /* PearDB */,
@@ -930,10 +971,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A7295A3D2E0A0BC900755E3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = A7295A332E0A0BC700755E3C /* PearDB WatchApp */;
+			targetProxy = A7295A3C2E0A0BC900755E3C /* PBXContainerItemProxy */;
+		};
 		A7295A512E0A0C0500755E3C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A7295A462E0A0C0300755E3C /* PearDB WatchWidget */;
 			targetProxy = A7295A502E0A0C0500755E3C /* PBXContainerItemProxy */;
+		};
+		A7D3AC162E09656E000557FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7D3AC052E09656C000557FA /* PearDB Widget */;
+			targetProxy = A7D3AC152E09656E000557FA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -951,7 +1003,7 @@
 				CODE_SIGN_ENTITLEMENTS = PearDB/PearDB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -974,7 +1026,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.PearDB;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -1000,7 +1052,7 @@
 				CODE_SIGN_ENTITLEMENTS = PearDB/PearDB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				DEVELOPMENT_TEAM = XVQR493263;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1023,7 +1075,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.PearDB;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
