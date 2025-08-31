@@ -24,6 +24,8 @@ class AppleDBDownloader: ObservableObject {
     private let lastDownloadKey = "lastAppleDBDownload"
     private let downloadInterval: TimeInterval = 86400 // 24 hours
     
+    private let cache = NSCache<NSURL, NSData>()
+    
     @Published var downloadProgress: Double = 0.0
     @Published var isDownloading = false
     
@@ -36,22 +38,17 @@ class AppleDBDownloader: ObservableObject {
     
     /// Checks if data should be redownloaded
     func shouldDownload() -> Bool {
-        var exists = false
-        
         for url in urls {
-            let doesItExist = loadLocalJSON(named: url.key) != nil
-            exists = doesItExist
-            if (!doesItExist) {
-                break
+            let key = url.key
+            let fileURL = localDirectory.appendingPathComponent("\(key).json")
+            guard fileManager.fileExists(atPath: fileURL.path) else {
+                print("File does not exist: \(url.key)")
+                return true
             }
         }
-        
-        if (exists) {
-            if let lastDownload = UserDefaults.standard.object(forKey: lastDownloadKey) as? Date {
-                return Date().timeIntervalSince(lastDownload) > downloadInterval
-            }
+        if let lastDownload = UserDefaults.standard.object(forKey: lastDownloadKey) as? Date {
+            return Date().timeIntervalSince(lastDownload) > downloadInterval
         }
-        
         return true
     }
     
@@ -94,37 +91,46 @@ class AppleDBDownloader: ObservableObject {
     
     /// Asynchronously downloads all JSON files
     private func downloadAllJSONs() async throws {
+        if isDownloading {
+            return
+        }
+        print("Downloading all JSON")
+        
         isDownloading = true
         downloadProgress = 0.0
         
-        let totalFiles = urls.count
-        var completedFiles = 0
-        
-        for (key, urlString) in urls {
-            guard let url = URL(string: urlString) else { continue }
-            let destinationURL = localDirectory.appendingPathComponent("\(key).json")
-
-            do {
-                let (data, _) = try await URLSession.shared.data(from: url)
-                try data.write(to: destinationURL, options: .atomic)
-
-                // Safe mutation since the entire class runs on @MainActor
+        try await withThrowingTaskGroup { [urls, localDirectory] group in
+            let totalFiles = urls.count
+            var completedFiles = 0
+            
+            for (key, urlString) in urls {
+                guard let url = URL(string: urlString) else {
+                    continue
+                }
+                group.addTask {
+                    let destinationURL = localDirectory.appendingPathComponent("\(key).json")
+                    let request = URLRequest(url: url, cachePolicy: .reloadRevalidatingCacheData)
+                    let (data, _) = try await URLSession.shared.data(for: request)
+                    try data.write(to: destinationURL, options: .atomic)
+                }
+            }
+            
+            for try await _ in group {
                 completedFiles += 1
                 self.downloadProgress = Double(completedFiles) / Double(totalFiles)
-
-                if completedFiles == totalFiles {
-                    UserDefaults.standard.set(Date(), forKey: self.lastDownloadKey)
-                    self.isDownloading = false
-                }
-            } catch {
-                throw error
             }
         }
+        
+        UserDefaults.standard.set(Date(), forKey: self.lastDownloadKey)
+        self.isDownloading = false
     }
     
     /// Loads a local JSON file
     func loadLocalJSON(named key: String) -> Data? {
         let fileURL = localDirectory.appendingPathComponent("\(key).json")
+        if let cached = cache.object(forKey: fileURL as NSURL) {
+            return cached as Data
+        }
         
         guard fileManager.fileExists(atPath: fileURL.path) else {
             print("❌ File not found: \(fileURL.path)")
@@ -134,6 +140,9 @@ class AppleDBDownloader: ObservableObject {
         do {
             let data = try Data(contentsOf: fileURL)
             print("✅ Successfully loaded JSON: \(key), size: \(data.count) bytes")
+            
+            cache.setObject(data as NSData, forKey: fileURL as NSURL)
+            
             return data
         } catch {
             print("❌ Error reading JSON file \(key): \(error)")
@@ -143,6 +152,11 @@ class AppleDBDownloader: ObservableObject {
     
     /// Asynchronously purges all downloaded data
     func purgeData() async throws {
+        // Clear URLSessionCache (images)
+        URLSession.shared.configuration.urlCache?.removeAllCachedResponses()
+        // Clear memory JSON Cache
+        cache.removeAllObjects()
+        
         let contents = try fileManager.contentsOfDirectory(atPath: localDirectory.path)
         
         for file in contents {

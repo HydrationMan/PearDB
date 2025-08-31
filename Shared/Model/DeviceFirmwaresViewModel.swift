@@ -151,7 +151,7 @@ import SwiftUI
     private func loadIPSWData(_ build: String, _ deviceKey: String) -> IpswFirmware? {
         if let data = appDbDownloader.loadLocalJSON(named: "\(deviceKey)_\(build)") {
             do {
-                let decodedIPSWFirmware = try JSONDecoder().decode(IpswFirmware.self, from: data)
+                let decodedIPSWFirmware = try PJSONDecoder().decode(IpswFirmware.self, from: data)
                 if (self.isFirmwareLoading.contains {$0 == deviceKey}) {
                     self.isFirmwareLoading.remove(at: self.isFirmwareLoading.firstIndex(of: deviceKey)!)
                 }
@@ -192,7 +192,7 @@ import SwiftUI
     private func loadFirmwareData() {
         if let data = appDbDownloader.loadLocalJSON(named: "ios_main") {
             do {
-                let decodedFirmwares = try JSONDecoder().decode([Firmware].self, from: data)
+                let decodedFirmwares = try PJSONDecoder().decode([Firmware].self, from: data)
                 DispatchQueue.main.async {
                     self.firmwares = decodedFirmwares
                 }

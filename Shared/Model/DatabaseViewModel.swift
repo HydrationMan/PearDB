@@ -77,7 +77,7 @@ import CoreData
     private func loadDeviceData() {
         if let data = appDbDownloader.loadLocalJSON(named: "device_main") {
             do {
-                let decodedDevices = try JSONDecoder().decode([Device].self, from: data)
+                let decodedDevices = try PJSONDecoder().decode([Device].self, from: data)
                 DispatchQueue.main.async {
                     self.devices = decodedDevices.filter({ $0.deviceGroup == .iOSDevices || $0.deviceGroup == .macs || ($0.deviceGroup == .homeAndAccessories && !($0.deviceType == .accessories || $0.deviceType == .beddit || $0.deviceType == .cases || $0.deviceType == .adapters || $0.deviceType == .power)) || $0.deviceGroup == .audio || $0.deviceGroup == .iPods || $0.deviceGroup == .inputs}).map({ device in
                         if let image = self.images.first(where: {$0.key == device.key}) {
@@ -117,7 +117,7 @@ import CoreData
     private func loadFirmwareData() {
         if let data = appDbDownloader.loadLocalJSON(named: "ios_main") {
             do {
-                let decodedFirmwares = try JSONDecoder().decode([Firmware].self, from: data)
+                let decodedFirmwares = try PJSONDecoder().decode([Firmware].self, from: data)
                 DispatchQueue.main.async {
                     self.firmwares = decodedFirmwares
                 }
@@ -165,7 +165,7 @@ import CoreData
     private func loadDeviceImages() {
         if let data = appDbDownloader.loadLocalJSON(named: "device_images") {
             do {
-                let decodedDeviceImages = try JSONDecoder().decode([DeviceImages].self, from: data)
+                let decodedDeviceImages = try PJSONDecoder().decode([DeviceImages].self, from: data)
                 DispatchQueue.main.async {
                     self.images = decodedDeviceImages
                 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A7295A3E2E0A0BC900755E3C /* PearDB WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = A7295A342E0A0BC700755E3C /* PearDB WatchApp.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A7295A482E0A0C0300755E3C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC082E09656C000557FA /* WidgetKit.framework */; };
 		A7295A492E0A0C0300755E3C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC0A2E09656C000557FA /* SwiftUI.framework */; };
 		A7295A522E0A0C0500755E3C /* PearDB WatchWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7295A472E0A0C0300755E3C /* PearDB WatchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -93,17 +92,16 @@
 		A7D3AC012E09645B000557FA /* SemiOpaqueWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3ABA52E09633B000557FA /* SemiOpaqueWindow.swift */; };
 		A7D3AC092E09656C000557FA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC082E09656C000557FA /* WidgetKit.framework */; };
 		A7D3AC0B2E09656C000557FA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D3AC0A2E09656C000557FA /* SwiftUI.framework */; };
-		A7D3AC172E09656E000557FA /* PearDB Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A7D3AC062E09656C000557FA /* PearDB Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E1F7A1402E649E1200964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A13F2E649E1200964529 /* ZippyJSON */; };
+		E1F7A1422E649E3A00964529 /* simdjsonparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7A1412E649E3600964529 /* simdjsonparser.swift */; };
+		E1F7A1432E649E3A00964529 /* simdjsonparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7A1412E649E3600964529 /* simdjsonparser.swift */; };
+		E1F7A1442E649E3A00964529 /* simdjsonparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7A1412E649E3600964529 /* simdjsonparser.swift */; };
+		E1F7A1F02E649EDF00964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1EF2E649EDF00964529 /* ZippyJSON */; };
+		E1F7A1F22E649EE300964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1F12E649EE300964529 /* ZippyJSON */; };
+		E1F7A1F42E649EE600964529 /* ZippyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E1F7A1F32E649EE600964529 /* ZippyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A7295A3C2E0A0BC900755E3C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A711D0BC2E09630600A1A248 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7295A332E0A0BC700755E3C;
-			remoteInfo = "PearDBWatch Watch App";
-		};
 		A7295A502E0A0C0500755E3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A711D0BC2E09630600A1A248 /* Project object */;
@@ -111,27 +109,9 @@
 			remoteGlobalIDString = A7295A462E0A0C0300755E3C;
 			remoteInfo = PearDBWatchExtension;
 		};
-		A7D3AC152E09656E000557FA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A711D0BC2E09630600A1A248 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7D3AC052E09656C000557FA;
-			remoteInfo = PearDBWidgetExtension;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A7295A422E0A0BC900755E3C /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				A7295A3E2E0A0BC900755E3C /* PearDB WatchApp.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A7295A572E0A0C0500755E3C /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,17 +119,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				A7295A522E0A0C0500755E3C /* PearDB WatchWidget.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7D3AC1C2E09656E000557FA /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				A7D3AC172E09656E000557FA /* PearDB Widget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +158,7 @@
 		A7D3AC062E09656C000557FA /* PearDB Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PearDB Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7D3AC082E09656C000557FA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		A7D3AC0A2E09656C000557FA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		E1F7A1412E649E3600964529 /* simdjsonparser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simdjsonparser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -417,6 +387,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1F7A1402E649E1200964529 /* ZippyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +395,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1F7A1F02E649EDF00964529 /* ZippyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A742ABE32E0CF62D0031620A /* RealityKitContent in Frameworks */,
+				E1F7A1F22E649EE300964529 /* ZippyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +421,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1F7A1F42E649EE600964529 /* ZippyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +466,7 @@
 		A7D3ABA82E09633B000557FA /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				E1F7A1412E649E3600964529 /* simdjsonparser.swift */,
 				A7D3AB9C2E09633B000557FA /* ListSavedDevicesToEditView.swift */,
 				A7D3AB9D2E09633B000557FA /* PresentationKey.swift */,
 				A7D3AB9E2E09633B000557FA /* AddDeviceModalView.swift */,
@@ -574,15 +549,11 @@
 				A711D0C02E09630600A1A248 /* Sources */,
 				A711D0C12E09630600A1A248 /* Frameworks */,
 				A711D0C22E09630600A1A248 /* Resources */,
-				A7D3AC1C2E09656E000557FA /* Embed Foundation Extensions */,
-				A7295A422E0A0BC900755E3C /* Embed Watch Content */,
 				A742ACAF2E0D09D80031620A /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A7D3AC162E09656E000557FA /* PBXTargetDependency */,
-				A7295A3D2E0A0BC900755E3C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A711D0C62E09630600A1A248 /* PearDB */,
@@ -592,6 +563,7 @@
 			);
 			name = PearDB;
 			packageProductDependencies = (
+				E1F7A13F2E649E1200964529 /* ZippyJSON */,
 			);
 			productName = PearDB;
 			productReference = A711D0C42E09630600A1A248 /* PearDB.app */;
@@ -616,6 +588,7 @@
 			);
 			name = "PearDB WatchApp";
 			packageProductDependencies = (
+				E1F7A1EF2E649EDF00964529 /* ZippyJSON */,
 			);
 			productName = "PearDBWatch Watch App";
 			productReference = A7295A342E0A0BC700755E3C /* PearDB WatchApp.app */;
@@ -658,6 +631,7 @@
 			name = "PearDB xrApp";
 			packageProductDependencies = (
 				A7295A772E0A0D4A00755E3C /* RealityKitContent */,
+				E1F7A1F12E649EE300964529 /* ZippyJSON */,
 			);
 			productName = "PearDB xrApp";
 			productReference = A7295A732E0A0D4900755E3C /* PearDB xrApp.app */;
@@ -680,6 +654,7 @@
 			);
 			name = "PearDB tvApp";
 			packageProductDependencies = (
+				E1F7A1F32E649EE600964529 /* ZippyJSON */,
 			);
 			productName = "PearDB tvApp";
 			productReference = A7295A882E0A0DE500755E3C /* PearDB tvApp.app */;
@@ -743,6 +718,9 @@
 			);
 			mainGroup = A711D0BB2E09630600A1A248;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E1F7A13E2E649E1200964529 /* XCRemoteSwiftPackageReference "ZippyJSON" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A711D0C52E09630600A1A248 /* Products */;
 			projectDirPath = "";
@@ -855,6 +833,7 @@
 				A7D3ABEC2E09633B000557FA /* ListSavedDevicesToEditView.swift in Sources */,
 				A7D3ABED2E09633B000557FA /* AddDeviceModalView.swift in Sources */,
 				A7D3ABEF2E09633B000557FA /* PresentationKey.swift in Sources */,
+				E1F7A1442E649E3A00964529 /* simdjsonparser.swift in Sources */,
 				A7D3ABF42E09633B000557FA /* VisionOSMods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -889,6 +868,7 @@
 				A7295AC32E0A0EA800755E3C /* VisionOSMods.swift in Sources */,
 				A7295AC42E0A0EA800755E3C /* SemiOpaqueWindow.swift in Sources */,
 				A7295AC52E0A0EA800755E3C /* DeviceView.swift in Sources */,
+				E1F7A1432E649E3A00964529 /* simdjsonparser.swift in Sources */,
 				A7295AC62E0A0EA800755E3C /* FirmwareDetailView.swift in Sources */,
 				A7295AC72E0A0EA800755E3C /* PresentationKey.swift in Sources */,
 				A7295AC82E0A0EA800755E3C /* DeviceSectionView.swift in Sources */,
@@ -923,6 +903,7 @@
 				A7295AEA2E0A0EA800755E3C /* FirmwareDetailView.swift in Sources */,
 				A7295AEB2E0A0EA800755E3C /* ListSavedDevicesToEditView.swift in Sources */,
 				A7295AEE2E0A0EA800755E3C /* DeviceView.swift in Sources */,
+				E1F7A1422E649E3A00964529 /* simdjsonparser.swift in Sources */,
 				A7295AEF2E0A0EA800755E3C /* VisionOSMods.swift in Sources */,
 				A7295AF22E0A0EA800755E3C /* SemiOpaqueWindow.swift in Sources */,
 				A7295AF32E0A0EA800755E3C /* Searchbar.swift in Sources */,
@@ -949,21 +930,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A7295A3D2E0A0BC900755E3C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = A7295A332E0A0BC700755E3C /* PearDB WatchApp */;
-			targetProxy = A7295A3C2E0A0BC900755E3C /* PBXContainerItemProxy */;
-		};
 		A7295A512E0A0C0500755E3C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A7295A462E0A0C0300755E3C /* PearDB WatchWidget */;
 			targetProxy = A7295A502E0A0C0500755E3C /* PBXContainerItemProxy */;
-		};
-		A7D3AC162E09656E000557FA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7D3AC052E09656C000557FA /* PearDB Widget */;
-			targetProxy = A7D3AC152E09656E000557FA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -981,7 +951,7 @@
 				CODE_SIGN_ENTITLEMENTS = PearDB/PearDB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1004,7 +974,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.PearDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -1030,7 +1000,7 @@
 				CODE_SIGN_ENTITLEMENTS = PearDB/PearDB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = XVQR493263;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1053,7 +1023,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hydrate.PearDB;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.PearDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -1592,10 +1562,41 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		E1F7A13E2E649E1200964529 /* XCRemoteSwiftPackageReference "ZippyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/michaeleisel/ZippyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.15;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		A7295A772E0A0D4A00755E3C /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		E1F7A13F2E649E1200964529 /* ZippyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1F7A13E2E649E1200964529 /* XCRemoteSwiftPackageReference "ZippyJSON" */;
+			productName = ZippyJSON;
+		};
+		E1F7A1EF2E649EDF00964529 /* ZippyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1F7A13E2E649E1200964529 /* XCRemoteSwiftPackageReference "ZippyJSON" */;
+			productName = ZippyJSON;
+		};
+		E1F7A1F12E649EE300964529 /* ZippyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1F7A13E2E649E1200964529 /* XCRemoteSwiftPackageReference "ZippyJSON" */;
+			productName = ZippyJSON;
+		};
+		E1F7A1F32E649EE600964529 /* ZippyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1F7A13E2E649E1200964529 /* XCRemoteSwiftPackageReference "ZippyJSON" */;
+			productName = ZippyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

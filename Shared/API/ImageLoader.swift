@@ -55,9 +55,9 @@ struct AsyncImageView: View {
             return
         }
         
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         print("🌍 Fetching Image: \(url.absoluteString)")
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             // Handle network error
             if let error = error {
                 print("❌ Image Fetch Error: \(error.localizedDescription)")

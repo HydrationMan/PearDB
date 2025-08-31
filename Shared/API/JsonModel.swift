@@ -11,57 +11,20 @@ import Combine
 // Model for main.json or {key}.json response
 class Device: ObservableObject, Codable, Identifiable {
     var id: String { key }
-    @Published private(set) var name: String
-    @Published private(set) var identifierRaw: IdentifierType?
-    @Published private(set) var socRaw: SOCType?
-    @Published private(set) var cpidRaw: CPIDType?
-    @Published private(set) var arch: String?
-    @Published private(set) var type: String?
-    @Published private(set) var board: [String]?
-    @Published private(set) var bdid: String?
-    @Published private(set) var model: [String]?
-    @Published private(set) var info: [DeviceInfo]?
-    @Published private(set) var key: String
-    @Published private(set) var imageKey: String?
-    @Published private(set) var releasedRaw: ReleasedType?
+    private(set) var name: String
+    private(set) var identifierRaw: IdentifierType?
+    private(set) var socRaw: SOCType?
+    private(set) var cpidRaw: CPIDType?
+    private(set) var arch: String?
+    private(set) var type: String?
+    private(set) var board: [String]?
+    private(set) var bdid: String?
+    private(set) var model: [String]?
+    private(set) var info: [DeviceInfo]?
+    private(set) var key: String
+    private(set) var imageKey: String?
+    private(set) var releasedRaw: ReleasedType?
     @Published var imageUrl: [String] = []
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        name = try container.decode(String.self, forKey: .name)
-        identifierRaw = try container.decodeIfPresent(IdentifierType.self, forKey: .identifierRaw)
-        socRaw = try container.decodeIfPresent(SOCType.self, forKey: .socRaw)
-        cpidRaw = try container.decodeIfPresent(CPIDType.self, forKey: .cpidRaw)
-        arch = try container.decodeIfPresent(String.self, forKey: .arch)
-        type = try container.decodeIfPresent(String.self, forKey: .type)
-        board = try container.decodeIfPresent([String].self, forKey: .board)
-        bdid = try container.decodeIfPresent(String.self, forKey: .bdid)
-        model = try container.decodeIfPresent([String].self, forKey: .model)
-        info = try container.decodeIfPresent([DeviceInfo].self, forKey: .info)
-        key = try container.decode(String.self, forKey: .key)
-        imageKey = try container.decodeIfPresent(String.self, forKey: .imageKey)
-        releasedRaw = try container.decodeIfPresent(ReleasedType.self, forKey: .releasedRaw)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(name, forKey: .name)
-        try container.encodeIfPresent(identifierRaw, forKey: .identifierRaw)
-        try container.encodeIfPresent(socRaw, forKey: .socRaw)
-        try container.encodeIfPresent(cpidRaw, forKey: .cpidRaw)
-        try container.encodeIfPresent(arch, forKey: .arch)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(board, forKey: .board)
-        try container.encodeIfPresent(bdid, forKey: .bdid)
-        try container.encodeIfPresent(model, forKey: .model)
-        try container.encodeIfPresent(info, forKey: .info)
-        try container.encode(key, forKey: .key)
-        try container.encodeIfPresent(imageKey, forKey: .imageKey)
-        try container.encodeIfPresent(releasedRaw, forKey: .releasedRaw)
-    }
-
     
     enum CodingKeys: String, CodingKey {
         case name, identifierRaw = "identifier", socRaw = "soc", cpidRaw = "cpid", arch, type, board, bdid, model, info, key, imageKey, releasedRaw = "released"
@@ -1135,21 +1098,21 @@ enum DeviceType: String, Codable, CaseIterable {
 
 class Firmware: ObservableObject, Identifiable, Codable {
     var id: String { key }
-    @Published private(set) var osStr: String
-    @Published private(set) var version: String
-    @Published private(set) var restoreVersion: String?
-    @Published private(set) var beta: Bool?
-    @Published private(set) var rsr: Bool?
-    @Published private(set) var build: String?
-    @Published private(set) var key: String
-    @Published private(set) var releasedRaw: String?
-    @Published private(set) var appledburl: String
-    @Published private(set) var deviceMap: [String]
-    @Published private(set) var releaseNotes: ReleaseNotesType?
-    @Published private(set) var securityNotes: SecurityNotesType?
-    @Published private(set) var sources: [FirmwareSources]?
-    @Published private(set) var rc: Bool?
-    @Published private(set) var appledbWebImage: AppleDbWebImage?
+    let osStr: String
+    let version: String
+    let restoreVersion: String?
+    let beta: Bool?
+    let rsr: Bool?
+    let build: String?
+    let key: String
+    let releasedRaw: String?
+    let appledburl: String
+    let deviceMap: [String]
+    let releaseNotes: ReleaseNotesType?
+    let securityNotes: SecurityNotesType?
+    let sources: [FirmwareSources]?
+    let rc: Bool?
+    let appledbWebImage: AppleDbWebImage?
     @Published var state: State = .idle
     private(set) var currentBytes: Int64 = 0
     private(set) var totalBytes: Int64 = 0
@@ -1179,44 +1142,6 @@ class Firmware: ObservableObject, Identifiable, Codable {
     
     var released: String? {
         return releasedRaw
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        osStr = try container.decode(String.self, forKey: .osStr)
-        version = try container.decode(String.self, forKey: .version)
-        restoreVersion = try container.decodeIfPresent(String.self, forKey: .restoreVersion)
-        beta = try container.decodeIfPresent(Bool.self, forKey: .beta)
-        rsr = try container.decodeIfPresent(Bool.self, forKey: .rsr)
-        build = try container.decodeIfPresent(String.self, forKey: .build)
-        key = try container.decode(String.self, forKey: .key)
-        releasedRaw = try container.decodeIfPresent(String.self, forKey: .releasedRaw)
-        appledburl = try container.decode(String.self, forKey: .appledburl)
-        deviceMap = try container.decode([String].self, forKey: .deviceMap)
-        releaseNotes = try container.decodeIfPresent(ReleaseNotesType.self, forKey: .releaseNotes)
-        securityNotes = try container.decodeIfPresent(SecurityNotesType.self, forKey: .securityNotes)
-        sources = try container.decodeIfPresent([FirmwareSources].self, forKey: .sources)
-        rc = try container.decodeIfPresent(Bool.self, forKey: .rc)
-        appledbWebImage = try container.decodeIfPresent(AppleDbWebImage.self, forKey: .appledbWebImage)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(osStr, forKey: .osStr)
-        try container.encode(version, forKey: .version)
-        try container.encodeIfPresent(restoreVersion, forKey: .restoreVersion)
-        try container.encodeIfPresent(beta, forKey: .beta)
-        try container.encodeIfPresent(rsr, forKey: .rsr)
-        try container.encodeIfPresent(build, forKey: .build)
-        try container.encode(key, forKey: .key)
-        try container.encodeIfPresent(releasedRaw, forKey: .releasedRaw)
-        try container.encode(appledburl, forKey: .appledburl)
-        try container.encode(deviceMap, forKey: .deviceMap)
-        try container.encodeIfPresent(releaseNotes, forKey: .releaseNotes)
-        try container.encodeIfPresent(securityNotes, forKey: .securityNotes)
-        try container.encodeIfPresent(sources, forKey: .sources)
-        try container.encodeIfPresent(rc, forKey: .rc)
-        try container.encodeIfPresent(appledbWebImage, forKey: .appledbWebImage)
     }
     
     var firmwareOSType: OSStrings? {
