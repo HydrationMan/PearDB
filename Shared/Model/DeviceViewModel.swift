@@ -154,17 +154,14 @@ class DeviceViewModel: ObservableObject {
     private func loadDeviceData() {
         if let data = appDbDownloader.loadLocalJSON(named: "device_main") {
             do {
-                let decodedDevices = try JSONDecoder().decode([Device].self, from: data)
+                let decodedDevices = try PJSONDecoder().decode([Device].self, from: data)
+  
                 DispatchQueue.main.async {
                     self.devices = decodedDevices.map({ device in
                         if let image = self.deviceImages.first(where: {$0.key == device.key}) {
-                            if image.count > 0 {
-                                let newDevice = device
-                                image.index.forEach { imageIndex in
-                                    let imageUrl = "https://img.appledb.dev/device@256/\(device.effectiveImageKey)/\(imageIndex.idText).png"
-                                    newDevice.imageUrl.append(imageUrl)
-                                }
-                                return newDevice
+                            image.index.forEach { imageIndex in
+                                let imageUrl = "https://img.appledb.dev/device@256/\(device.effectiveImageKey)/\(imageIndex.idText).png"
+                                device.imageUrl.append(imageUrl)
                             }
                         }
                         return device
@@ -194,7 +191,7 @@ class DeviceViewModel: ObservableObject {
     private func loadDeviceImages() {
         if let data = appDbDownloader.loadLocalJSON(named: "device_images") {
             do {
-                let decodedDeviceImages = try JSONDecoder().decode([DeviceImages].self, from: data)
+                let decodedDeviceImages = try PJSONDecoder().decode([DeviceImages].self, from: data)
                 DispatchQueue.main.async {
                     self.deviceImages = decodedDeviceImages
                 }

@@ -111,7 +111,7 @@ class FirmwaresViewModel: ObservableObject {
     private func loadFirmwareData() {
         if let data = appDbDownloader.loadLocalJSON(named: "ios_main") {
             do {
-                let decodedFirmwares = try JSONDecoder().decode([Firmware].self, from: data)
+                let decodedFirmwares = try PJSONDecoder().decode([Firmware].self, from: data)
                 DispatchQueue.main.async {
                     self.firmwares = decodedFirmwares
                 }

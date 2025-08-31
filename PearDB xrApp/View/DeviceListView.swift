@@ -51,7 +51,7 @@ struct DeviceListView: View {
     private func loadDeviceData() {
         if let data = downloader.loadLocalJSON(named: "device_main") {
             do {
-                let decodedDevices = try JSONDecoder().decode([Device].self, from: data)
+                let decodedDevices = try PJSONDecoder().decode([Device].self, from: data)
                 self.devices = decodedDevices
                 self.isLoading = false
             } catch let DecodingError.typeMismatch(_, context) {

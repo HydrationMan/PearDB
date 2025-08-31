@@ -19,7 +19,7 @@ class AppleDBService: ObservableObject {
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data {
                 DispatchQueue.main.async {
-                    if let decoded = try? JSONDecoder().decode([String].self, from: data) {
+                    if let decoded = try? PJSONDecoder().decode([String].self, from: data) {
                         self.deviceNames = decoded
                     }
                 }
@@ -33,7 +33,7 @@ class AppleDBService: ObservableObject {
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data {
                 DispatchQueue.main.async {
-                    if let decoded = try? JSONDecoder().decode([Device].self, from: data) {
+                    if let decoded = try? PJSONDecoder().decode([Device].self, from: data) {
                         self.devices = decoded
                     }
                 }
@@ -72,7 +72,7 @@ class AppleDBService: ObservableObject {
             }
 
             do {
-                let decoder = JSONDecoder()
+                let decoder = PJSONDecoder()
                 let decodedDevice = try decoder.decode(Device.self, from: data)
                 DispatchQueue.main.async {
                     completion(decodedDevice)
